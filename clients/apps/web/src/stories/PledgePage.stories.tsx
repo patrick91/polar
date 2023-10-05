@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import PublicLayout from '@/components/Layout/PublicLayout'
-import { QueryClientProvider, queryClient } from 'polarkit/api'
+import { QueryClientProvider, queryClient } from '@polar-sh/sdk'
 import { issue, issueBodyHTML, pledger } from 'polarkit/testdata'
 import Pledge from '../components/Pledge/Pledge'
 

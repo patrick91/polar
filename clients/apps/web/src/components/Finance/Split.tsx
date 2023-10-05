@@ -1,6 +1,6 @@
 import { InformationCircleIcon, PlusIcon } from '@heroicons/react/24/outline'
 import { XMarkIcon } from '@heroicons/react/24/solid'
-import { api } from 'polarkit/api'
+import { api } from '@polar-sh/sdk'
 import { Pledge } from 'polarkit/api/client'
 import { PrimaryButton } from 'polarkit/components/ui/atoms'
 import { Banner } from 'polarkit/components/ui/molecules'

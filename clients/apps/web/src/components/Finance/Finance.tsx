@@ -1,12 +1,12 @@
 import Icon from '@/components/Icons/Icon'
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
+import { api } from '@polar-sh/sdk'
 import Link from 'next/link'
 import {
   ACCOUNT_TYPE_DISPLAY_NAMES,
   ACCOUNT_TYPE_ICON,
   ALL_ACCOUNT_TYPES,
 } from 'polarkit/account'
-import { api } from 'polarkit/api'
 import {
   Account,
   AccountType,

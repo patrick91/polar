@@ -1,4 +1,4 @@
-import { getServerURL } from 'polarkit/api'
+import { getServerURL } from '@polar-sh/sdk'
 import { Issue, PledgePledgesSummary, Pledger } from 'polarkit/api/client'
 import { Badge } from 'polarkit/components/badge'
 const { default: satori } = require('satori')

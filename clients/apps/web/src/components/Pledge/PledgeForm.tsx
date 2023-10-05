@@ -5,13 +5,13 @@ import {
   EnvelopeIcon,
 } from '@heroicons/react/24/outline'
 import { CommandLineIcon, HeartIcon } from '@heroicons/react/24/solid'
+import { api } from '@polar-sh/sdk'
 import { Elements } from '@stripe/react-stripe-js'
 import { PaymentIntent } from '@stripe/stripe-js'
 import { loadStripe } from '@stripe/stripe-js/pure'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { api } from 'polarkit/api'
 import {
   ApiError,
   Issue,

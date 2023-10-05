@@ -4,8 +4,8 @@ import {
   ClockIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline'
+import { api } from '@polar-sh/sdk'
 import { useRouter } from 'next/navigation'
-import { api } from 'polarkit/api'
 import { Issue } from 'polarkit/api/client'
 import { LogoIcon } from 'polarkit/components/brand'
 import { MoneyInput, PrimaryButton } from 'polarkit/components/ui/atoms'

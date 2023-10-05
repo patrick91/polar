@@ -5,8 +5,8 @@ import {
   MegaphoneIcon,
   UserIcon,
 } from '@heroicons/react/24/outline'
+import { api, queryClient } from '@polar-sh/sdk'
 import Image from 'next/image'
-import { api, queryClient } from 'polarkit/api'
 import { CurrencyAmount, Issue, Pledge, UserRead } from 'polarkit/api/client'
 import { MoneyInput, PrimaryButton } from 'polarkit/components/ui/atoms'
 import { Banner } from 'polarkit/components/ui/molecules'
