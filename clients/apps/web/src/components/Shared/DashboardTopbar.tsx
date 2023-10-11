@@ -63,7 +63,7 @@ const DashboardTopbar = ({
 
   const className = classNames(
     props.isFixed !== false ? 'fixed z-20 left-0 top-0 right-0' : '',
-    'flex h-20 w-full items-center justify-between space-x-4 bg-white dark:bg-polar-900 border-b border-gray-200 dark:border-polar-700',
+    'flex h-24 w-full items-center justify-between space-x-4 bg-white dark:bg-polar-900',
   )
 
   if (!hydrated) {
@@ -73,7 +73,7 @@ const DashboardTopbar = ({
   return (
     <>
       <div className={className}>
-        <div className="relative flex w-full flex-row items-center justify-between px-4 sm:px-6 md:px-8">
+        <div className="relative flex w-full flex-row items-center justify-between px-12">
           <div className="flex flex-row items-center gap-x-24">
             <h4 className="dark:text-polar-100 text-lg font-medium">
               {currentRoute?.title}

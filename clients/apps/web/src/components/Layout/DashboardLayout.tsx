@@ -30,10 +30,10 @@ const DashboardLayout = (props: {
   }
 
   return (
-    <div className="relative flex w-full flex-row">
-      <aside className="dark:bg-polar-900 dark:border-r-polar-700 flex h-screen w-[320px] flex-shrink-0 flex-col justify-between border-r border-r-gray-200 bg-white">
+    <div className="fixed bottom-4 left-4 right-4 top-4 flex flex-row gap-x-4">
+      <aside className="dark:bg-polar-900 flex h-full w-[320px] flex-shrink-0 flex-col justify-between rounded-3xl bg-white shadow-xl">
         <div className="flex flex-col">
-          <div className="relative z-10 mt-7 flex translate-x-0 flex-row items-center justify-between space-x-2 pl-9 pr-7">
+          <div className="relative z-10 mt-9 flex translate-x-0 flex-row items-center justify-between space-x-2 pl-9 pr-7">
             <a
               href="/"
               className="flex-shrink-0 items-center font-semibold text-gray-700"
@@ -67,7 +67,7 @@ const DashboardLayout = (props: {
           </div>
         )}
       </aside>
-      <div className="dark:bg-polar-900 relative flex h-screen w-full translate-x-0 flex-row bg-white">
+      <div className="dark:bg-polar-900 relative flex h-full w-full translate-x-0 flex-row overflow-auto rounded-3xl bg-white shadow-xl">
         <DashboardTopbar isFixed={true} useOrgFromURL={true} />
         <main className={classNames('relative h-full w-full overflow-y-auto')}>
           <Suspense>{props.children}</Suspense>
@@ -104,7 +104,7 @@ export const RepoPickerHeader = (props: {
 
 export const DashboardHeader = (props: { children?: React.ReactNode }) => {
   return (
-    <div className={classNames('sticky left-[300px] right-0 top-20 z-10')}>
+    <div className={classNames('sticky left-[300px] right-0 top-24 z-10')}>
       {props.children}
     </div>
   )
@@ -114,7 +114,7 @@ export const DashboardBody = (props: { children?: React.ReactNode }) => {
   return (
     <div
       className={classNames(
-        'relative mx-auto max-w-screen-2xl px-4 pb-6 pt-28 sm:px-6 md:px-8',
+        'relative mx-auto max-w-screen-2xl px-12 pb-6 pt-28',
       )}
     >
       {props.children}
