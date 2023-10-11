@@ -75,9 +75,9 @@ const DashboardTopbar = ({
       <div className={className}>
         <div className="relative flex w-full flex-row items-center justify-between px-12">
           <div className="flex flex-row items-center gap-x-24">
-            <h4 className="dark:text-polar-100 text-lg font-medium">
+            <h3 className="dark:text-polar-100 text-xl font-medium">
               {currentRoute?.title}
-            </h4>
+            </h3>
             {currentRoute &&
               'subs' in currentRoute &&
               (currentRoute.subs?.length ?? 0) > 0 && (
