@@ -24,9 +24,9 @@ export default function GlobalError({
             <span>Go back to Polar</span>
           </PrimaryButton>
 
-          <p className="pt-24 text-gray-400"></p>
+          <p className="pt-24 text-gray-600"></p>
 
-          <pre className="whitespace-break-spaces text-sm text-gray-400">
+          <pre className="whitespace-break-spaces text-sm text-gray-600">
             Error digest: {'digest' in error ? <>{error.digest}</> : 'oh oh'}
           </pre>
         </div>

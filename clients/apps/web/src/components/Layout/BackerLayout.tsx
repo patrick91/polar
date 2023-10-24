@@ -40,7 +40,7 @@ const BackerLayout = (props: {
 
   return (
     <div className="relative flex w-full flex-row">
-      <aside className="dark:bg-polar-950 dark:border-r-polar-700 flex h-screen w-[320px] flex-shrink-0 flex-col justify-between border-r border-r-gray-200 bg-white">
+      <aside className="dark:bg-polar-950 dark:border-r-polar-700 flex h-screen w-[320px] flex-shrink-0 flex-col justify-between border-r border-r-gray-200 bg-gray-50">
         <div className="flex flex-col">
           <div className="relative z-10 mt-7 flex translate-x-0 flex-row items-center justify-between space-x-2 pl-9 pr-7">
             <a
@@ -69,7 +69,7 @@ const BackerLayout = (props: {
           <MetaNavigation />
 
           {showConnectUsell ? (
-            <div className="dark:bg-polar-800 dark:border-polar-700 dark:text-polar-400 mx-4 mb-4 rounded-xl border border-blue-100 bg-blue-50 p-4 text-sm">
+            <div className="dark:bg-polar-800 dark:border-polar-700 dark:text-polar-400 mx-4 mb-4 rounded-xl border border-blue-100 bg-blue-100 p-4 text-sm">
               <p className="mb-2">Get funding for your public repositories.</p>
               <Link
                 href={CONFIG.GITHUB_INSTALLATION_URL}
@@ -79,7 +79,7 @@ const BackerLayout = (props: {
               </Link>
             </div>
           ) : (
-            <div className="dark:bg-polar-800 dark:border-polar-700 dark:text-polar-400 mx-4 mb-4 rounded-xl border border-blue-100 bg-blue-50 p-4 text-sm">
+            <div className="dark:bg-polar-800 dark:border-polar-700 dark:text-polar-400 mx-4 mb-4 rounded-xl border border-blue-100 bg-blue-100 p-4 text-sm">
               <p className="mb-2">Waiting for a bug to be fixed?</p>
               <Link
                 href="/new"
@@ -92,7 +92,7 @@ const BackerLayout = (props: {
         </div>
       </aside>
 
-      <div className="dark:bg-polar-950 relative flex h-screen w-full translate-x-0 flex-row bg-white">
+      <div className="dark:bg-polar-950 relative flex h-screen w-full translate-x-0 flex-row bg-gray-50">
         <DashboardTopbar isFixed useOrgFromURL />
         <nav className="fixed z-10 w-full ">
           {showBanner && <BackerConnectUpsell />}

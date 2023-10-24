@@ -133,7 +133,7 @@ const IssueReferenceExternalGitHubCommit = (props: {
 
           {!commit.branch_name && (
             <a
-              className="dark:text-polar-400 font-mono text-gray-500"
+              className="dark:text-polar-400 font-mono text-gray-600"
               href={commitHref}
             >
               {commit.sha.substring(0, 6)}
@@ -254,7 +254,7 @@ const IssueReferencePullRequest = (props: {
       timestamp: dateOrString(pr.created_at),
       titleClasses: '',
       iconClasses:
-        'bg-gray-100 border-gray-200 text-gray-500 dark:text-polar-300 dark:bg-polar-500/30 dark:border-polar-500/30',
+        'bg-gray-200 border-gray-200 text-gray-600 dark:text-polar-300 dark:bg-polar-500/30 dark:border-polar-500/30',
     }
   } else {
     isOpen = true
@@ -289,7 +289,7 @@ const IssueReferencePullRequest = (props: {
         >
           {markdownTitle}
         </a>
-        <span className="dark:text-polar-400 overflow-hidden whitespace-pre text-sm text-gray-500">
+        <span className="dark:text-polar-400 overflow-hidden whitespace-pre text-sm text-gray-600">
           #{pr.number} {formatting.label}{' '}
           {formatting.timestamp && <PolarTimeAgo date={formatting.timestamp} />}
         </span>

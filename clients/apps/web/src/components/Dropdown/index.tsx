@@ -17,7 +17,7 @@ export const Item = ({
     <Command.Item
       value={value}
       onSelect={onSelect}
-      className="py-4rounded-md dark:aria-selected:bg-polar-600 flex h-10 cursor-pointer select-none items-center rounded-md p-2 transition-colors duration-100 first:mt-2 aria-selected:bg-gray-100"
+      className="py-4rounded-md dark:aria-selected:bg-polar-600 flex h-10 cursor-pointer select-none items-center rounded-md p-2 transition-colors duration-100 first:mt-2 aria-selected:bg-gray-200"
     >
       <div className="flex w-full max-w-full items-center justify-between space-x-2">
         {children}
@@ -34,7 +34,7 @@ export const Avatar = (props: { url: string }) => {
       alt="Avatar"
       height={200}
       width={200}
-      className="h-5 w-5 rounded-full bg-white"
+      className="h-5 w-5 rounded-full bg-gray-50"
     />
   )
 }
@@ -57,8 +57,8 @@ export const Left = ({ children }: { children: React.ReactNode }) => {
 
 export const Badge = ({ children }: { children: React.ReactNode }) => {
   return (
-    <p className="dark:text-polar-50 inline-flex space-x-2 overflow-hidden text-xs text-gray-500">
-      <span className="dark:bg-polar-500 dark:border-polar-400/50 rounded-full border border-gray-200 bg-gray-100 px-2">
+    <p className="dark:text-polar-50 inline-flex space-x-2 overflow-hidden text-xs text-gray-600">
+      <span className="dark:bg-polar-500 dark:border-polar-400/50 rounded-full border border-gray-200 bg-gray-200 px-2">
         {children}
       </span>
     </p>
@@ -85,19 +85,19 @@ export const SelectedBox = ({
   return (
     <div
       className={twMerge(
-        'dark:hover:bg-polar-800 flex cursor-pointer items-center justify-between space-x-2 rounded-lg px-2 py-2 text-sm hover:bg-gray-100',
+        'dark:hover:bg-polar-800 flex cursor-pointer items-center justify-between space-x-2 rounded-lg px-2 py-2 text-sm hover:bg-gray-200',
         classNames,
       )}
       onClick={onClick}
     >
       {children}
-      <ChevronUpDownIcon className="dark:text-polar-300 h-6 w-6 flex-shrink-0 text-gray-500" />
+      <ChevronUpDownIcon className="dark:text-polar-300 h-6 w-6 flex-shrink-0 text-gray-600" />
     </div>
   )
 }
 
 export const Loading = () => {
   return (
-    <div className="h-8 w-40 flex-shrink-0 animate-pulse rounded-md bg-gray-100"></div>
+    <div className="h-8 w-40 flex-shrink-0 animate-pulse rounded-md bg-gray-200"></div>
   )
 }

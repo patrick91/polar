@@ -89,7 +89,7 @@ _If you already have a Polar account setup, you don't need to do anything._
           ></Textarea>
           <div className="flex flex-row items-center gap-4">
             <img src={props.user.avatar_url} className="h-8 w-8 rounded-full" />
-            <span className="dark:text-polar-200 text-gray-500">
+            <span className="dark:text-polar-200 text-gray-600">
               Comment will be posted on your behalf to issue{' '}
               <a href={githubIssueLink(props.issue)} className="font-medium">
                 #{props.issue.number}
@@ -100,7 +100,7 @@ _If you already have a Polar account setup, you don't need to do anything._
             <Banner color="blue">Great! Your message has been posted.</Banner>
           )}
         </div>
-        <div className="bg-gray-75 dark:bg-polar-800 dark:text-polar-400 flex items-center px-4 py-2 text-gray-500">
+        <div className="bg-gray-75 dark:bg-polar-800 dark:text-polar-400 flex items-center px-4 py-2 text-gray-600">
           <div className="flex-1"></div>
           <div>
             <button className="mr-4 text-blue-600" onClick={props.onCancel}>

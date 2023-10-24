@@ -243,14 +243,14 @@ const Split = (props: {
                 <span>{s.username}</span>
                 {s.is_suggested_from_contributions && (
                   <div className="flex">
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-gray-600">
                       Suggested from linked PRs
                     </span>
                   </div>
                 )}
               </div>
 
-              <div className="dark:text-polar-400 text-gray-500">
+              <div className="dark:text-polar-400 text-gray-600">
                 Est. $
                 {getCentsInDollarString(
                   Math.round(s.est_amount * 100) / 100,
@@ -258,7 +258,7 @@ const Split = (props: {
                 )}
               </div>
               <div className="flex w-[120px] items-center gap-2 py-2">
-                <span className="dark:text-polar-400 flex-shrink-0 text-gray-500">
+                <span className="dark:text-polar-400 flex-shrink-0 text-gray-600">
                   %
                 </span>
                 <div className="flex-1">
@@ -267,7 +267,7 @@ const Split = (props: {
                       'w-full',
                       s.is_fixed
                         ? 'dark:text-polar-100 font-medium text-black'
-                        : 'dark:text-polar-400 text-gray-500',
+                        : 'dark:text-polar-400 text-gray-600',
                     )}
                     value={prettifyNumber(s.raw_value || '')}
                     placeholder={prettifyNumber(
@@ -278,7 +278,7 @@ const Split = (props: {
                 </div>
                 {s.is_fixed && (
                   <XMarkIcon
-                    className="hover:text-polar-600 dark:text-polar-300 h-6 w-6 flex-shrink-0 cursor-pointer text-gray-500"
+                    className="hover:text-polar-600 dark:text-polar-300 h-6 w-6 flex-shrink-0 cursor-pointer text-gray-600"
                     onClick={() => onUpdate(s.username, '')}
                   />
                 )}
@@ -330,7 +330,7 @@ const Split = (props: {
             </Banner>
           )}
         </div>
-        <div className="bg-gray-75 dark:bg-polar-800 dark:text-polar-300 flex items-center px-4 py-2 text-gray-500">
+        <div className="bg-gray-75 dark:bg-polar-800 dark:text-polar-300 flex items-center px-4 py-2 text-gray-600">
           <InformationCircleIcon className="mr-2 h-6 w-6" />
           <div className="w-1-2 mr-4 flex-1 text-sm">
             Polar&apos;s fee of ${getCentsInDollarString(polarShare, true)} has

@@ -42,10 +42,10 @@ const IssueSummary: React.FC<IssueSummaryProps> = ({
   const markdownTitle = generateMarkdownTitle(title)
 
   return (
-    <div className="dark:hover:bg-polar-700 duration-50 dark:text-polar-50 group flex items-center justify-between gap-4 overflow-hidden rounded-2xl px-6 py-4 pb-5 hover:bg-blue-50">
+    <div className="dark:hover:bg-polar-700 duration-50 dark:text-polar-50 group flex items-center justify-between gap-4 overflow-hidden rounded-2xl px-6 py-4 pb-5 hover:bg-blue-100">
       <div className="flex flex-row items-center">
         {showLogo && (
-          <div className="mr-3 flex-shrink-0 justify-center rounded-full bg-white p-[1px] shadow">
+          <div className="mr-3 flex-shrink-0 justify-center rounded-full bg-gray-50 p-[1px] shadow">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt={`Avatar of ${organization.name}`}
@@ -71,7 +71,7 @@ const IssueSummary: React.FC<IssueSummaryProps> = ({
                 return <IssueLabel label={label} key={label.name} />
               })}
           </div>
-          <div className="dark:text-polar-400 text-xs text-gray-500">
+          <div className="dark:text-polar-400 text-xs text-gray-600">
             <p>
               #{number}{' '}
               {isOpen ? (
@@ -91,7 +91,7 @@ const IssueSummary: React.FC<IssueSummaryProps> = ({
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-6">
           {showStatus && (
-            <div className="dark:text-polar-400 flex flex-row items-center gap-2 text-sm text-gray-500">
+            <div className="dark:text-polar-400 flex flex-row items-center gap-2 text-sm text-gray-600">
               {isOpen ? (
                 <>
                   <div className="dark:border-polar-500 h-4 w-4 rounded-full border border-gray-500"></div>

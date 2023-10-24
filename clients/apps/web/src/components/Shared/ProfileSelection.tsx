@@ -18,7 +18,7 @@ const ProfileSelection = ({
   showBackerLinks = false,
 }) => {
   const classNames = twMerge(
-    'relative flex w-full flex-col rounded-xl bg-white dark:bg-polar-800 hover:bg-gray-100/50 dark:shadow-none dark:hover:bg-polar-700 dark:border dark:border-polar-700 transition-colors',
+    'relative flex w-full flex-col rounded-xl bg-gray-50 dark:bg-polar-800 hover:bg-gray-200/50 dark:shadow-none dark:hover:bg-polar-700 dark:border dark:border-polar-700 transition-colors',
     className,
   )
   const { currentUser: loggedUser, logout } = useAuth()
@@ -81,14 +81,14 @@ const ProfileSelection = ({
             avatar_url={current.avatar_url}
             type={current.type}
           />
-          <ChevronUpDownIcon className="dark:text-polar-500 h-5 w-5 flex-shrink-0 text-gray-400" />
+          <ChevronUpDownIcon className="dark:text-polar-500 h-5 w-5 flex-shrink-0 text-gray-600" />
         </div>
 
         {isOpen && (
           <div
             ref={ref}
             className={twMerge(
-              'dark:bg-polar-800 dark:text-polar-400 absolute left-0 w-full overflow-hidden rounded-2xl bg-white py-2 shadow-xl',
+              'dark:bg-polar-800 dark:text-polar-400 absolute left-0 w-full overflow-hidden rounded-2xl bg-gray-50 py-2 shadow-xl',
               narrow ? '-top-2' : '-top-1',
             )}
           >
@@ -137,7 +137,7 @@ const ProfileSelection = ({
                 ))}
 
               {showConnectUsell && (
-                <div className="dark:bg-polar-800 dark:text-polar-400 mx-4 my-4 flex flex-col rounded-lg border-blue-100 bg-blue-50 p-4 text-sm">
+                <div className="dark:bg-polar-800 dark:text-polar-400 mx-4 my-4 flex flex-col rounded-lg border-blue-100 bg-blue-100 p-4 text-sm">
                   <h3>Get funding for your public repositories.</h3>
                   <Link
                     href={CONFIG.GITHUB_INSTALLATION_URL}
@@ -198,8 +198,8 @@ const ListItem = (props: {
   const className = twMerge(
     'animate-background duration-10 flex items-center gap-2 py-2 px-4 w-full',
     props.current
-      ? 'bg-blue-50 dark:bg-polar-700'
-      : 'hover:bg-gray-100/50 dark:hover:bg-polar-700',
+      ? 'bg-blue-100 dark:bg-polar-700'
+      : 'hover:bg-gray-200/50 dark:hover:bg-polar-700',
     props.className ?? '',
   )
 

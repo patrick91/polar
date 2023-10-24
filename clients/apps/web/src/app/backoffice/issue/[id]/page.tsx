@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { id: string } }) {
           <div className="flex gap-2">
             <div>
               ${getCentsInDollarString(r.amount.amount, true, true)}{' '}
-              <span className="text-gray-500">
+              <span className="text-gray-600">
                 (of $
                 {getCentsInDollarString(r.pledge.amount.amount, true, true)})
               </span>{' '}

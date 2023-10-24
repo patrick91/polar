@@ -91,7 +91,7 @@ const IssueCard = ({
                 </a>
               </div>
             )}
-            <div className="dark:text-polar-500 whitespace-nowrap text-gray-400">
+            <div className="dark:text-polar-500 whitespace-nowrap text-gray-600">
               <PolarTimeAgo date={new Date(issue.issue_created_at)} />
             </div>
           </div>
@@ -145,7 +145,7 @@ const IssueCard = ({
               className="h-8 w-8 rounded-full"
             />
           </div>
-          <div className="dark:text-polar-500 text-gray-500">
+          <div className="dark:text-polar-500 text-gray-600">
             <div>
               {organization.name}&nbsp;/&nbsp;
               <span className="dark:text-polar-200 font-medium text-gray-600">
@@ -257,7 +257,7 @@ const FundingGoal = ({
         <div className="flex flex-col items-center sm:items-start">
           <div className="dark:text-polar-300 text-lg text-gray-900">
             ${getCentsInDollarString(pledges_sum?.amount || 0)}{' '}
-            <span className="dark:text-polar-400 text-gray-400">
+            <span className="dark:text-polar-400 text-gray-600">
               {`/ ${getCentsInDollarString(funding_goal.amount)} funded`}
             </span>
           </div>
@@ -287,7 +287,7 @@ const FundingGoal = ({
         <div className="flex flex-col items-center sm:items-start">
           <div className="dark:text-polar-300 text-lg text-gray-900">
             ${getCentsInDollarString(pledges_sum?.amount || 0)}{' '}
-            <span className="dark:text-polar-400 text-gray-400">funded</span>
+            <span className="dark:text-polar-400 text-gray-600">funded</span>
           </div>
         </div>
 
@@ -304,7 +304,7 @@ const FundingGoal = ({
 }
 
 const RewardsReceivers = ({ rewards }: { rewards: RewardsSummary }) => (
-  <div className="flex w-fit items-center gap-2 rounded-full border border-blue-100 bg-white py-0.5 pl-0.5 pr-2 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-400">
+  <div className="flex w-fit items-center gap-2 rounded-full border border-blue-100 bg-gray-50 py-0.5 pl-0.5 pr-2 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-400">
     <div className="flex flex-shrink-0 -space-x-1.5">
       {rewards.receivers.map((r) => (
         <Avatar avatar_url={r.avatar_url} name={r.name} />
@@ -317,7 +317,7 @@ const RewardsReceivers = ({ rewards }: { rewards: RewardsSummary }) => (
 )
 
 const Assignees = ({ assignees }: { assignees: Assignee[] }) => (
-  <div className="flex w-fit items-center gap-2 rounded-full border border-blue-100 bg-blue-50 py-0.5 pl-0.5 pr-2 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-400">
+  <div className="flex w-fit items-center gap-2 rounded-full border border-blue-100 bg-blue-100 py-0.5 pl-0.5 pr-2 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-400">
     <div className="flex flex-shrink-0 -space-x-1.5">
       {assignees.map((a) => (
         <Avatar avatar_url={a.avatar_url} name={a.login} />

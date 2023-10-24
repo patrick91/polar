@@ -19,7 +19,7 @@ const FakePullRequest = ({
         classNames,
       )}
     >
-      <div className="dark:bg-polar-700 dark:border-polar-600 dark:text-polar-400 inline-flex w-full items-center space-x-2 border-b-[1px] border-gray-200 bg-gray-100 px-4 py-2 text-sm text-gray-500">
+      <div className="dark:bg-polar-700 dark:border-polar-600 dark:text-polar-400 inline-flex w-full items-center space-x-2 border-b-[1px] border-gray-200 bg-gray-200 px-4 py-2 text-sm text-gray-600">
         <span>
           <strong className="dark:text-polar-300 font-medium text-gray-700">
             janedoe

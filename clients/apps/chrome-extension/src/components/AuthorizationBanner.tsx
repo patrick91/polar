@@ -12,7 +12,7 @@ const AuthorizationBanner = () => (
     >
       Connect Polar
     </a>
-    <span className="hidden text-sm text-gray-500 sm:inline-flex">
+    <span className="hidden text-sm text-gray-600 sm:inline-flex">
       Connect Polar to see pledges here on GitHub
     </span>
   </div>

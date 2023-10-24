@@ -117,7 +117,7 @@ const SetupAccount = ({
         <div className="flex w-full items-start justify-between">
           <h1 className="text-2xl font-normal">Receive payments</h1>
           <XMarkIcon
-            className="dark:hover:text-polar-400 h-6 w-6 cursor-pointer hover:text-gray-500"
+            className="dark:hover:text-polar-400 h-6 w-6 cursor-pointer hover:text-gray-600"
             onClick={onClose}
           />
         </div>
@@ -148,7 +148,7 @@ const SetupAccount = ({
               <div>
                 <div className="relative mt-2">
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span className="font-display dark:text-polar-40 text-gray-500">
+                    <span className="font-display dark:text-polar-40 text-gray-600">
                       https://opencollective.com/
                     </span>
                   </div>
@@ -172,7 +172,7 @@ const SetupAccount = ({
 
             <div>
               <CountryPicker onSelectCountry={onChangeCountry} />
-              <p className="dark:text-polar-40 mt-2 text-justify text-xs font-medium text-gray-500">
+              <p className="dark:text-polar-40 mt-2 text-justify text-xs font-medium text-gray-600">
                 If this is a personal account, please select your country of
                 residence. If this is an organization or business, select the
                 country of tax residency.

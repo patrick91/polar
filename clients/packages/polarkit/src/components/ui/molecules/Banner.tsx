@@ -17,10 +17,10 @@ const Banner = ({
       className={twMerge(
         'flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm',
         color === 'default'
-          ? 'dark:bg-polar-800 dark:ring-polar-700 bg-white shadow dark:ring-1'
+          ? 'dark:bg-polar-800 dark:ring-polar-700 bg-gray-50 shadow dark:ring-1'
           : '',
         color === 'muted'
-          ? 'bg-gray-75 dark:bg-polar-800 dark:border-polar-700 border text-gray-500'
+          ? 'bg-gray-75 dark:bg-polar-800 dark:border-polar-700 border text-gray-600'
           : '',
         color === 'red'
           ? 'border bg-red-100 text-red-600  dark:border-red-800 dark:bg-red-900 dark:text-red-600'

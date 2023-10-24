@@ -114,7 +114,7 @@ const LoadingScreen = ({ animate = false, children }: Props) => {
       <div className="flex grow items-center justify-center p-8 md:min-h-screen">
         <div className="flex-row">
           <LogoIcon animate={animate} key={`animate-${animate ? 't' : 'f'}`} />
-          <div className="dark:text-polar-400 mt-4 text-gray-500">
+          <div className="dark:text-polar-400 mt-4 text-gray-600">
             {children}
           </div>
         </div>

@@ -73,7 +73,7 @@ const IssueList = (props: {
             props.totalCount !== undefined &&
             props.totalCount > 100 &&
             !hasNextPage && (
-              <div className="p-4 text-center text-gray-500">
+              <div className="p-4 text-center text-gray-600">
                 You&apos;ve reached the bottom... 🏝️
               </div>
             )}
@@ -305,7 +305,7 @@ export const Header = (props: {
               </span>
             ) : (
               <MagnifyingGlassIcon
-                className="dark:text-polar-500 h-6 w-6 pl-1 text-lg text-gray-500"
+                className="dark:text-polar-500 h-6 w-6 pl-1 text-lg text-gray-600"
                 aria-hidden="true"
               />
             )
@@ -317,7 +317,7 @@ export const Header = (props: {
         {canFilterByBadged && (
           <>
             <DropdownMenu>
-              <DropdownMenuTrigger className="dark:text-polar-300 dark:hover:bg-polar-800 inline-flex flex-shrink-0 items-center space-x-2 rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-100">
+              <DropdownMenuTrigger className="dark:text-polar-300 dark:hover:bg-polar-800 inline-flex flex-shrink-0 items-center space-x-2 rounded-lg px-4 py-2 text-sm text-gray-600 hover:bg-gray-200">
                 <FunnelIcon className="dark:text-polar-300 h-4 w-4" />
                 <span>Filter</span>
               </DropdownMenuTrigger>
@@ -344,7 +344,7 @@ export const Header = (props: {
         )}
 
         <DropdownMenu>
-          <DropdownMenuTrigger className="dark:text-polar-300 dark:hover:bg-polar-800 inline-flex flex-shrink-0 items-center space-x-2 rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-100">
+          <DropdownMenuTrigger className="dark:text-polar-300 dark:hover:bg-polar-800 inline-flex flex-shrink-0 items-center space-x-2 rounded-lg px-4 py-2 text-sm text-gray-600 hover:bg-gray-200">
             <ArrowsUpDownIcon className="dark:text-polar-300 h-4 w-4" />
             <span>
               {props.filters?.sort

@@ -35,7 +35,7 @@ const RepositoryPublicPage = ({
 
       <div className="flex flex-col items-center space-y-4">
         {repository.description && (
-          <p className="dark:text-polar-500 text-center  text-gray-500">
+          <p className="dark:text-polar-500 text-center  text-gray-600">
             {repository.description}
           </p>
         )}

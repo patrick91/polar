@@ -55,7 +55,7 @@ const OrganizationPublicPage = ({
         {showMeta && (
           <div className="flex flex-col items-center space-y-8">
             {organization.bio && (
-              <div className="nowrap dark:text-polar-500 text-center text-gray-500">
+              <div className="nowrap dark:text-polar-500 text-center text-gray-600">
                 {organization.bio}
               </div>
             )}

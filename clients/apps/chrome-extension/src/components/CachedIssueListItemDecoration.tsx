@@ -64,7 +64,7 @@ const CachedIssueListItemDecoration = ({
         <FrameContextConsumer>
           {({ document, window }) => {
             return (
-              <div className="bg-blue-50 dark:bg-blue-500/20">
+              <div className="bg-blue-100 dark:bg-blue-500/20">
                 {/* open all links in the parent frame */}
                 <base target="_parent"></base>
                 <IssueListItemDecoration

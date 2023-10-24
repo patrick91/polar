@@ -166,7 +166,7 @@ const IssueListItemDecoration = ({
           {disputablePledges.map((p) => {
             return (
               <div key={p.id}>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-gray-600">
                   <a
                     href="#"
                     onClick={(e) => {
@@ -196,7 +196,7 @@ const IssueListItemDecoration = ({
             return (
               <div key={p.id}>
                 {p.authed_can_admin_sender && (
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-gray-600">
                     You&apos;ve disputed your pledge{' '}
                     {disputeBoxShowAmount && (
                       <>(${getCentsInDollarString(p.amount.amount)})</>
@@ -205,7 +205,7 @@ const IssueListItemDecoration = ({
                 )}
 
                 {p.authed_can_admin_received && (
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-gray-600">
                     {p.pledger?.name} disputed their pledge{' '}
                     {disputeBoxShowAmount && (
                       <>(${getCentsInDollarString(p.amount.amount)})</>

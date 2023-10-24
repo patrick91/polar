@@ -139,10 +139,10 @@ export const AddBadgeButton = (props: { issue: Issue }) => {
       <button
         onClick={click}
         className={twMerge(
-          isBadged ? 'dark:bg-polar-800 bg-white' : '',
+          isBadged ? 'dark:bg-polar-800 bg-gray-50' : '',
           isBadged
             ? 'border-green-200 text-green-600 hover:border-green-300 dark:border-green-600'
-            : 'dark:border-polar-600 dark:text-polar-400 border-blue-200 bg-white text-blue-600 transition ease-in-out hover:border-blue-600 hover:bg-blue-600 hover:text-white dark:bg-transparent dark:hover:border-blue-600 dark:hover:bg-blue-600 dark:hover:text-white',
+            : 'dark:border-polar-600 dark:text-polar-400 border-blue-200 bg-gray-50 text-blue-600 transition ease-in-out hover:border-blue-600 hover:bg-blue-600 hover:text-white dark:bg-transparent dark:hover:border-blue-600 dark:hover:bg-blue-600 dark:hover:text-white',
           'cursor-pointer items-center justify-center space-x-1 rounded-md border px-2 py-1 text-sm',
           'flex overflow-hidden whitespace-nowrap',
         )}
@@ -220,7 +220,7 @@ export const BadgePromotionModal = (props: {
           {isBadged && (
             <button
               onClick={clickRemoveBadge}
-              className="text-gray dark:border-polar-500 dark:text-polar-400 dark:hover:bg-polar-700 flex cursor-pointer items-center rounded-full border border-gray-200 px-2 py-0.5 pr-3 text-sm text-gray-500 hover:bg-gray-100"
+              className="text-gray dark:border-polar-500 dark:text-polar-400 dark:hover:bg-polar-700 flex cursor-pointer items-center rounded-full border border-gray-200 px-2 py-0.5 pr-3 text-sm text-gray-600 hover:bg-gray-200"
             >
               <XIcon /> Remove
             </button>
@@ -341,7 +341,7 @@ const PostCommentForm = (props: {
             setMessage(e.target.value)
           }}
         ></textarea>
-        <div className="flex items-center justify-between border-t bg-blue-50 px-4 py-2 dark:bg-blue-500/30">
+        <div className="flex items-center justify-between border-t bg-blue-100 px-4 py-2 dark:bg-blue-500/30">
           <div className="text-xs text-gray-900 dark:text-white/90">
             🔔 Comments on your behalf
           </div>
@@ -351,7 +351,7 @@ const PostCommentForm = (props: {
             className={twMerge(
               !posted
                 ? 'text-blue-600 dark:text-blue-300'
-                : 'text-gray-400 dark:text-blue-200/40',
+                : 'text-gray-600 dark:text-blue-200/40',
               'font-medium',
             )}
           >
@@ -499,7 +499,7 @@ const PromoteTab = (props: {
       <div className="flex flex-col">
         <div className="text-sm font-medium">Spread the word</div>
 
-        <div className="dark:text-polar-400 mb-1 mt-2 text-xs text-gray-500">
+        <div className="dark:text-polar-400 mb-1 mt-2 text-xs text-gray-600">
           Share link to the pledge page
         </div>
 
@@ -509,7 +509,7 @@ const PromoteTab = (props: {
           onCopy={() => onCopy('badge-page-link')}
         />
 
-        <div className="dark:text-polar-400 my-2 flex items-center justify-between text-xs text-gray-500">
+        <div className="dark:text-polar-400 my-2 flex items-center justify-between text-xs text-gray-600">
           <span>Embed badge on website</span>
 
           <select

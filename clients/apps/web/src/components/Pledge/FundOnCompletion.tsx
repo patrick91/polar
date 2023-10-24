@@ -91,7 +91,7 @@ const FundOnCompletion = ({
       <div>
         <label
           htmlFor="amount"
-          className="dark:text-polar-400 mb-2 text-sm font-medium text-gray-500"
+          className="dark:text-polar-400 mb-2 text-sm font-medium text-gray-600"
         >
           Amount
         </label>
@@ -111,7 +111,7 @@ const FundOnCompletion = ({
               formState.amount < organization.pledge_minimum_amount
                 ? 'text-red-500'
                 : '',
-              'dark:text-polar-400 text-xs text-gray-500',
+              'dark:text-polar-400 text-xs text-gray-600',
             )}
           >
             Minimum is $
@@ -134,7 +134,7 @@ const FundOnCompletion = ({
         <div className="grid gap-0 leading-none">
           <label
             htmlFor="payment_promise"
-            className="dark:text-polar-400 text-xs font-medium text-gray-500"
+            className="dark:text-polar-400 text-xs font-medium text-gray-600"
           >
             I promise to pay once the issue is completed
           </label>
@@ -179,13 +179,13 @@ const NotLoggedInBanner = () => {
 
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
-          <UserCircleIcon className="dark:text-polar-400 h-5 w-5 text-gray-500" />
+          <UserCircleIcon className="dark:text-polar-400 h-5 w-5 text-gray-600" />
           <div className="dark:text-polar-500 text-xs font-semibold text-gray-600">
             Show profile in connection with funding
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <BellIcon className="h-5 w-5 text-gray-500" />
+          <BellIcon className="h-5 w-5 text-gray-600" />
           <div className="dark:text-polar-500 text-xs text-gray-600">
             + Track funding on funded issue
           </div>
@@ -217,7 +217,7 @@ const NextSteps = () => (
         <div className="dark:text-polar-300 text-gray-600">
           Fund on completion
         </div>
-        <div className="dark:text-polar-400 text-xs font-light text-gray-500">
+        <div className="dark:text-polar-400 text-xs font-light text-gray-600">
           Payment terms and how it works
         </div>
       </div>

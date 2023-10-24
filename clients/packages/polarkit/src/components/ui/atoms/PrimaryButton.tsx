@@ -86,10 +86,10 @@ const bg = (color: Color, loading: boolean, disabled: boolean) => {
 
 const text = (color: Color, loading: boolean, disabled: boolean) => {
   if (disabled) {
-    return 'text-gray-400 dark:text-polar-600'
+    return 'text-gray-600 dark:text-polar-600'
   }
   if (loading) {
-    return 'text-gray-400'
+    return 'text-gray-600'
   }
   if (loading) {
     return 'text-white'

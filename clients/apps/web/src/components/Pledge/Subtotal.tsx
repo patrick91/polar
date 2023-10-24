@@ -12,26 +12,26 @@ const Subtotal = ({
 
   return (
     <div>
-      <div className="dark:text-polar-400 flex w-full text-sm text-gray-500">
+      <div className="dark:text-polar-400 flex w-full text-sm text-gray-600">
         <div className="w-full">Funding amount</div>
         <div className="w-full text-right">
           ${getCentsInDollarString(amount, true)}
         </div>
       </div>
 
-      <div className="dark:text-polar-400 mb-1 flex w-full text-sm text-gray-500">
+      <div className="dark:text-polar-400 mb-1 flex w-full text-sm text-gray-600">
         <div className="w-1/2 text-sm">Service fee</div>
         <div className="w-1/2 text-right">
           ${getCentsInDollarString(fee, true)}
         </div>
       </div>
       {fee === 0 && (
-        <p className="dark:text-polar-400 mb-1 flex w-full text-xs text-gray-500">
+        <p className="dark:text-polar-400 mb-1 flex w-full text-xs text-gray-600">
           Service fee (4.5%) covered by Polar.
         </p>
       )}
       {fee > 0 && (
-        <p className="dark:text-polar-400 mb-1 flex w-full text-xs text-gray-500">
+        <p className="dark:text-polar-400 mb-1 flex w-full text-xs text-gray-600">
           <span className="underline">Note</span>: Service fee is
           non-refundable.
         </p>

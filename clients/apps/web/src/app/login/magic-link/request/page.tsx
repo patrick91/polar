@@ -16,11 +16,11 @@ export default function Page({
       <div id="polar-bg-gradient"></div>
       <div className="flex w-80 flex-col items-center">
         <LogoType70 className="mb-6 h-10" />
-        <div className="dark:text-polar-400 text-center text-gray-500">
+        <div className="dark:text-polar-400 text-center text-gray-600">
           Email with sign in link sent to{' '}
           <span className="font-bold">{email}</span>.
         </div>
-        <div className="dark:text-polar-400 text-center text-gray-500">
+        <div className="dark:text-polar-400 text-center text-gray-600">
           An account will be created unless one already exists.
         </div>
       </div>

@@ -107,7 +107,7 @@ const List = (props: {
           {rewards &&
             rewards.map((t) => (
               <tr key={t.pledge.id}>
-                <td className="dark:text-polar-400 px-2 py-3 text-sm text-gray-500">
+                <td className="dark:text-polar-400 px-2 py-3 text-sm text-gray-600">
                   <div className="flex items-center gap-2">
                     {icon(t)}
                     <span className="inline-flex flex-col">
@@ -124,7 +124,7 @@ const List = (props: {
                 </td>
 
                 {showReceiver && (
-                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-500">
+                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-600">
                     <div className="flex items-center gap-1 ">
                       {t.user?.avatar_url && (
                         <img
@@ -143,7 +143,7 @@ const List = (props: {
                 )}
 
                 {showBacker && (
-                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-500">
+                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-600">
                     <div className="flex items-center gap-1 ">
                       {t.pledge.pledger?.avatar_url && (
                         <img
@@ -166,12 +166,12 @@ const List = (props: {
                   </td>
                 )}
 
-                <td className="dark:text-polar-400 hidden whitespace-nowrap py-3 pr-3 text-sm text-gray-500 md:table-cell">
+                <td className="dark:text-polar-400 hidden whitespace-nowrap py-3 pr-3 text-sm text-gray-600 md:table-cell">
                   {formatDate(dateOrString(t.pledge.created_at))}
                 </td>
 
                 {showPaymentStatus && (
-                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-500">
+                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-600">
                     <div className="flex flex-wrap items-center gap-2">
                       {t.pledge.type === PledgeType.ON_COMPLETION &&
                         t.pledge.state === PledgeState.CREATED && (
@@ -190,16 +190,16 @@ const List = (props: {
                 )}
 
                 {showPaidOutDate && (
-                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-500">
+                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-600">
                     {(t.paid_at && formatDate(dateOrString(t.paid_at))) ||
                       'Unknown'}
                   </td>
                 )}
 
-                <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-right text-sm text-gray-500">
+                <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-right text-sm text-gray-600">
                   ${getCentsInDollarString(t.amount.amount, true, true)}
                   <br />
-                  <span className="dark:text-polar-300 text-gray-400">
+                  <span className="dark:text-polar-300 text-gray-600">
                     (of $
                     {getCentsInDollarString(t.pledge.amount.amount, true, true)}
                     )

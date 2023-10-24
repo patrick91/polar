@@ -115,7 +115,7 @@ const IssuePledge = (props: Props) => {
         <div
           className={twMerge(
             'dark:border-polar-700 border-t',
-            'flex flex-row items-center gap-2 bg-gray-50 bg-white px-6 py-2 text-sm  dark:bg-transparent',
+            'flex flex-row items-center gap-2 bg-gray-50 bg-gray-50 px-6 py-2 text-sm  dark:bg-transparent',
           )}
           key={p.id}
         >

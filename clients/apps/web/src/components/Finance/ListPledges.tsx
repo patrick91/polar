@@ -98,7 +98,7 @@ const List = (props: {
           {pledges &&
             pledges.map((t) => (
               <tr key={t.id}>
-                <td className="dark:text-polar-400 px-2 py-3 text-sm text-gray-500 ">
+                <td className="dark:text-polar-400 px-2 py-3 text-sm text-gray-600 ">
                   <div className="flex items-center gap-2">
                     {icon(t)}
                     <span className="inline-flex flex-col">
@@ -113,7 +113,7 @@ const List = (props: {
                     </span>
                   </div>
                 </td>
-                <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-500">
+                <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-600">
                   <div className="flex items-center gap-2">
                     <div className="flex items-center gap-1 ">
                       {t.pledger?.avatar_url && (
@@ -139,12 +139,12 @@ const List = (props: {
                   </div>
                 </td>
 
-                <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-500">
+                <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-600">
                   {formatDate(dateOrString(t.created_at))}
                 </td>
 
                 {showEstimatedPayoutDate && (
-                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-500">
+                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-600">
                     <div>
                       {(t.scheduled_payout_at &&
                         formatDate(dateOrString(t.scheduled_payout_at))) ||
@@ -154,7 +154,7 @@ const List = (props: {
                 )}
 
                 {showRefundedDate && (
-                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-500">
+                  <td className="dark:text-polar-400 whitespace-nowrap py-3 pr-3 text-sm text-gray-600">
                     {(t.refunded_at &&
                       formatDate(dateOrString(t.refunded_at))) ||
                       'Unknown'}
@@ -162,7 +162,7 @@ const List = (props: {
                 )}
 
                 <td className="whitespace-nowrap py-3 pr-3 text-sm">
-                  <div className="dark:text-polar-400 text-right text-gray-500">
+                  <div className="dark:text-polar-400 text-right text-gray-600">
                     ${getCentsInDollarString(t.amount.amount, true, true)}
                   </div>
                 </td>

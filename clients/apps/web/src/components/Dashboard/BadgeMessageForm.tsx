@@ -95,7 +95,7 @@ const BadgeMessageForm = (props: {
             {props.title ?? 'Customize embed'}
           </div>
           {props.subtitle && (
-            <div className="dark:text-polar-400 text-sm text-gray-500">
+            <div className="dark:text-polar-400 text-sm text-gray-600">
               {props.subtitle}
             </div>
           )}
@@ -110,7 +110,7 @@ const BadgeMessageForm = (props: {
       <div
         className={twMerge(
           props.innerClassNames,
-          'dark:bg-polar-800 dark:ring-polar-600 rounded-xl bg-white px-5 py-3.5 dark:ring-1',
+          'dark:bg-polar-800 dark:ring-polar-600 rounded-xl bg-gray-50 px-5 py-3.5 dark:ring-1',
         )}
       >
         {descriptionMode === 'View' && (
@@ -157,7 +157,7 @@ const BadgeMessageForm = (props: {
               onBlur={onFundingGoalChange}
               placeholder={20000}
               value={fundingGoal}
-              className="dark:bg-polar-800 bg-white"
+              className="dark:bg-polar-800 bg-gray-50"
             />
           </div>
         )}

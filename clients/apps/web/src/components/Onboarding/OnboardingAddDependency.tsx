@@ -138,11 +138,11 @@ const OnboardingAddDependency = () => {
           <div className="absolute -left-1 -right-1 -top-1 bottom-6 bg-gradient-to-b from-gray-50/10 to-gray-50 dark:from-gray-950/10 dark:to-gray-950"></div>
         </div>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <div className=" dark:bg-polar-800 dark:ring-polar-700 flex flex-col  items-center space-y-2 rounded-lg bg-white px-6 py-4 shadow dark:ring-1">
+          <div className=" dark:bg-polar-800 dark:ring-polar-700 flex flex-col  items-center space-y-2 rounded-lg bg-gray-50 px-6 py-4 shadow dark:ring-1">
             <h2 className="dark:text-polar-200 text-center text-lg font-medium text-gray-900">
               Pledge to any GitHub issue
             </h2>
-            <p className="dark:text-polar-400 flex-1 overflow-hidden text-center text-gray-500">
+            <p className="dark:text-polar-400 flex-1 overflow-hidden text-center text-gray-600">
               Enter an issue link, like https://github.com/
               <wbr />
               polarsource/
@@ -174,11 +174,11 @@ const OnboardingAddDependency = () => {
               <p className="mt-2 text-sm text-red-500">{errorMessage}</p>
             )}
           </div>
-          <div className="dark:bg-polar-800 dark:ring-polar-700 flex flex-col items-center space-y-2 rounded-lg bg-white px-6  py-4 shadow dark:ring-1">
+          <div className="dark:bg-polar-800 dark:ring-polar-700 flex flex-col items-center space-y-2 rounded-lg bg-gray-50 px-6  py-4 shadow dark:ring-1">
             <h2 className="dark:text-polar-200 text-center text-lg font-medium text-gray-900">
               Let Polar find issues automatically
             </h2>
-            <p className="dark:text-polar-400 flex-1 text-center text-gray-500">
+            <p className="dark:text-polar-400 flex-1 text-center text-gray-600">
               Polar will search the repository for references to open source
               issues
             </p>

@@ -178,7 +178,7 @@ const DisputeModal = (props: { pledge: Pledge }) => {
     <ModalBox>
       <>
         <h1 className="text-2xl font-normal">Dispute your pledge</h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-600">
           Still an issue or not solved in a satisfactory way?
           <br />
           <br />
@@ -191,7 +191,7 @@ const DisputeModal = (props: { pledge: Pledge }) => {
             <td className="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
               Amount
             </td>
-            <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">
+            <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-600 sm:pl-0">
               ${getCentsInDollarString(pledge.amount.amount)}
             </td>
           </tr>
@@ -199,7 +199,7 @@ const DisputeModal = (props: { pledge: Pledge }) => {
             <td className="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
               Pledger
             </td>
-            <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">
+            <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-600 sm:pl-0">
               {pledge.pledger?.name}
             </td>
           </tr>
@@ -207,7 +207,7 @@ const DisputeModal = (props: { pledge: Pledge }) => {
             <td className="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
               Pledge ID
             </td>
-            <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">
+            <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-600 sm:pl-0">
               {pledge.id}
             </td>
           </tr>
@@ -215,7 +215,7 @@ const DisputeModal = (props: { pledge: Pledge }) => {
             <td className="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
               Issue ID
             </td>
-            <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">
+            <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-600 sm:pl-0">
               {pledge.issue.id}
             </td>
           </tr>

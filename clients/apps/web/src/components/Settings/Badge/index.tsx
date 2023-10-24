@@ -268,7 +268,7 @@ const BadgeSetup = ({
         initial={isSettingPage ? false : 'hidden'}
         animate="show"
       >
-        <div className="dark:bg-polar-800 dark:ring-polar-700 w-full rounded-xl bg-white shadow dark:ring-1 dark:ring-inset">
+        <div className="dark:bg-polar-800 dark:ring-polar-700 w-full rounded-xl bg-gray-50 shadow dark:ring-1 dark:ring-inset">
           <div className="flex flex-col space-y-4 p-5">
             <BadgeMessageForm
               value={settings.message || ''}
@@ -353,14 +353,14 @@ const BadgeSetup = ({
             />
           </div>
 
-          <div className="dark:bg-polar-700 dark:border-polar-600 dark:text-polar-300 flex flex-row items-center rounded-b-xl border-t border-gray-200 bg-gray-100/50 px-4 py-3 text-gray-500">
+          <div className="dark:bg-polar-700 dark:border-polar-600 dark:text-polar-300 flex flex-row items-center rounded-b-xl border-t border-gray-200 bg-gray-200/50 px-4 py-3 text-gray-600">
             <InfoOutlined
               width={24}
               height={24}
               className="dark:text-polar-400 text-gray-300"
             />
             <p className="text-polar-400 ml-4 text-xs">
-              <strong className="dark:text-polar-100 mb-1 block font-medium text-gray-500">
+              <strong className="dark:text-polar-100 mb-1 block font-medium text-gray-600">
                 How is the Polar section added?
               </strong>
               Polar edits the issue description to add your custom promotion
@@ -566,7 +566,7 @@ export const Controls = ({
   return (
     <>
       {hasRetroactiveChanges && (
-        <div className="dark:bg-polar-900 dark:border-polar-700 flex flex-row space-x-8 rounded-xl border bg-white p-4">
+        <div className="dark:bg-polar-900 dark:border-polar-700 flex flex-row space-x-8 rounded-xl border bg-gray-50 p-4">
           <div className="w-1/2 items-center text-sm">
             <SettingsCheckbox
               id="retroactive_embed"
@@ -582,7 +582,7 @@ export const Controls = ({
               }}
             />
           </div>
-          <div className="dark:text-polar-400 flex w-1/2 flex-row items-center space-x-2 text-xs text-gray-500">
+          <div className="dark:text-polar-400 flex w-1/2 flex-row items-center space-x-2 text-xs text-gray-600">
             <ExclamationCircleIcon width={16} height={16} />
             <p>Updates the modified at of the issues in GitHub.</p>
           </div>
@@ -603,7 +603,7 @@ export const Controls = ({
 
           <span
             className={twMerge(
-              'dark:text-polar-400 text-sm leading-6 text-gray-500 transition-all duration-500',
+              'dark:text-polar-400 text-sm leading-6 text-gray-600 transition-all duration-500',
               isSaved ? 'opacity-1' : 'opacity-0',
             )}
           >

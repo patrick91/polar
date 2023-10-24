@@ -31,7 +31,7 @@ const OnboardingConnectPersonalDashboard = () => {
     <>
       <div
         className={twMerge(
-          'flex-start dark:bg-polar-800 dark:ring-polar-700 mb-4 flex flex-row overflow-hidden rounded-xl bg-white shadow dark:ring-1',
+          'flex-start dark:bg-polar-800 dark:ring-polar-700 mb-4 flex flex-row overflow-hidden rounded-xl bg-gray-50 shadow dark:ring-1',
         )}
       >
         <div className="flex-1">
@@ -39,7 +39,7 @@ const OnboardingConnectPersonalDashboard = () => {
             <h2 className="text-xl">
               Connect a repo to unlock Polar’s full potential
             </h2>
-            <div className="dark:text-polar-400 flex-1 text-sm text-gray-500">
+            <div className="dark:text-polar-400 flex-1 text-sm text-gray-600">
               <p>
                 Interested in getting backers behind your open source efforts?
                 Connect your repositories to get started.

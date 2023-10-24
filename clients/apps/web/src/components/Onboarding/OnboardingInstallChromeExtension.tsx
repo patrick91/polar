@@ -42,13 +42,13 @@ const OnboardingInstallChromeExtension = () => {
     <>
       <div
         className={twMerge(
-          'flex-start dark:bg-polar-800 dark:ring-polar-700 flex flex-row overflow-hidden rounded-xl bg-white shadow dark:ring-1',
+          'flex-start dark:bg-polar-800 dark:ring-polar-700 flex flex-row overflow-hidden rounded-xl bg-gray-50 shadow dark:ring-1',
         )}
       >
         <div className="flex-1">
           <div className="flex h-full flex-col space-y-2 p-6 pt-4">
             <h2 className="text-xl">Enhance GitHub Issues</h2>
-            <p className="dark:text-polar-400 flex-1 text-sm text-gray-500">
+            <p className="dark:text-polar-400 flex-1 text-sm text-gray-600">
               You don&apos;t have to leave GitHub to use Polar. Our extension
               can enhance the GitHub Issues table with our additional insights,
               pledges and more in the future.

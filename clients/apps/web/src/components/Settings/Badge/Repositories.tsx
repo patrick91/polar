@@ -24,7 +24,7 @@ export const BadgeRepositories = ({
       <h2
         className={twMerge(
           isSettingPage ? 'text-left' : 'text-center',
-          'dark:text-polar-100 text-lg text-gray-500',
+          'dark:text-polar-100 text-lg text-gray-600',
         )}
       >
         Add badge to issues
@@ -32,7 +32,7 @@ export const BadgeRepositories = ({
       <div className="dark:border-polar-600 flex w-full flex-row rounded-xl border border-gray-200 text-sm">
         <div className="dark:border-polar-600 w-1/2 border-r border-gray-200 px-6 py-3">
           <strong className="font-medium">By label</strong>
-          <p className="dark:text-polar-400 text-gray-500">
+          <p className="dark:text-polar-400 text-gray-600">
             Issues with a{' '}
             <span className="flew-row inline-flex gap-1">
               {Array.from(badgeLabels).map((badgeLabel) => (
@@ -47,7 +47,7 @@ export const BadgeRepositories = ({
         </div>
         <div className="w-1/2 px-6 py-3">
           <strong className="font-medium">All</strong>
-          <p className="dark:text-polar-400 text-gray-500">
+          <p className="dark:text-polar-400 text-gray-600">
             All new issues will get the Polar badge automatically.
           </p>
         </div>

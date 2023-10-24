@@ -4,7 +4,7 @@ const Footer = () => {
       <a className="text-blue-600 hover:text-blue-500" href="/faq">
         Polar FAQ
       </a>
-      <span className="dark:text-polar-500 text-gray-500">
+      <span className="dark:text-polar-500 text-gray-600">
         &copy; Polar Software Inc.
       </span>
     </div>

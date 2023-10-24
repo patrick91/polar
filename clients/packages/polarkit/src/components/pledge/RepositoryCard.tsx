@@ -27,13 +27,13 @@ const RepositoryCard = ({
       <GrayCard className="px-8 text-center">
         <div className="flex flex-row items-center justify-center space-x-2">
           <img
-            className="h-8 w-8 rounded-full bg-white"
+            className="h-8 w-8 rounded-full bg-gray-50"
             src={organization.avatar_url}
             alt=""
           />
           <h2 className="text-lg font-normal">{repository.name}</h2>
         </div>
-        <p className="my-3 text-sm font-normal text-gray-500">
+        <p className="my-3 text-sm font-normal text-gray-600">
           {repository.description}
         </p>
         <div className="flex flex-row items-center justify-center space-x-4">

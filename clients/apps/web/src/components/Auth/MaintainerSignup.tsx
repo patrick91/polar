@@ -29,7 +29,7 @@ const MaintainerSignup = () => {
       <div className="my-16 flex flex-col items-center  md:my-0">
         <LogoType70 className="mb-16 h-10" />
 
-        <div className="dark:bg-polar-800 dark:ring-polar-800 flex flex-col gap-8 overflow-hidden rounded-lg bg-white shadow  dark:ring-1 md:flex-row ">
+        <div className="dark:bg-polar-800 dark:ring-polar-800 flex flex-col gap-8 overflow-hidden rounded-lg bg-gray-50 shadow  dark:ring-1 md:flex-row ">
           <div className="flex flex-col gap-8 p-8 md:max-w-[320px] ">
             <h1 className="text-4xl font-light">Get a funded backlog</h1>
 
@@ -137,7 +137,7 @@ const MaintainerSignup = () => {
           </div>
         </div>
 
-        <div className="mt-8 text-sm text-gray-500">
+        <div className="mt-8 text-sm text-gray-600">
           By using Polar you agree to our{' '}
           <a
             className="dark:text-polar-300 text-gray-700"

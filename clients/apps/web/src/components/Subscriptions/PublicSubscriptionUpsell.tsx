@@ -19,7 +19,7 @@ const PublicSubscriptionUpsell: React.FC<PublicSubscriptionUpsellProps> = ({
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-col">
           <h2 className="text-xl">Subscriptions</h2>
-          <p className="dark:text-polar-400 mt-3 text-gray-400">
+          <p className="dark:text-polar-400 mt-3 text-gray-600">
             Say thanks with a subscription & gain benefits as a bonus
           </p>
         </div>

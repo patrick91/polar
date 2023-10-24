@@ -96,7 +96,7 @@ export function RepoSelection(props: {
               className={twMerge(
                 width,
                 props.openClassNames,
-                'dark:bg-polar-800 dark:border-polar-700 !absolute -top-10 z-10 w-max rounded-lg bg-white shadow-lg dark:border',
+                'dark:bg-polar-800 dark:border-polar-700 !absolute -top-10 z-10 w-max rounded-lg bg-gray-50 shadow-lg dark:border',
               )}
             >
               <div className="flex items-center px-2">
@@ -179,7 +179,7 @@ const SelectedEmpty = ({
 }) => {
   return (
     <SelectedBox onClick={onClick} classNames={classNames}>
-      <div className="dark:text-polar-300 flex items-center gap-2 text-gray-500">
+      <div className="dark:text-polar-300 flex items-center gap-2 text-gray-600">
         <RepoIcon />
         <span>All repositories</span>
       </div>
@@ -190,7 +190,7 @@ const SelectedEmpty = ({
 const RepoIcon = () => {
   return (
     <svg
-      className="dark:text-polar-500 text-gray-400"
+      className="dark:text-polar-500 text-gray-600"
       width="17"
       height="18"
       viewBox="0 0 17 18"

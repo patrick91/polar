@@ -16,7 +16,7 @@ const Recommended = () => {
             <h1 className="dark:text-polar-50 text-lg text-gray-900">
               Recommended issues
             </h1>
-            <p className="dark:text-polar-400 text-sm text-gray-500">
+            <p className="dark:text-polar-400 text-sm text-gray-600">
               Based on repositories that you&apos;ve starred and their
               popularity
             </p>

@@ -50,7 +50,7 @@ export default function ClientPage() {
   return (
     <>
       {pledges.isFetched && !havePledges ? (
-        <div className="dark:text-polar-600 flex flex-col items-center justify-center space-y-6 py-64 text-gray-400">
+        <div className="dark:text-polar-600 flex flex-col items-center justify-center space-y-6 py-64 text-gray-600">
           <span className="text-6xl">
             <HowToVoteOutlined fontSize="inherit" />
           </span>

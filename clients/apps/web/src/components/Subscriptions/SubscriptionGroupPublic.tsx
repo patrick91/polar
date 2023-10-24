@@ -28,7 +28,7 @@ const SubscriptionGroupPublic = ({
             <span className="dark:text-polar-50 ml-3">{title}</span>
           </h2>
         </div>
-        <p className="dark:text-polar-500 mt-4 text-gray-400">{description}</p>
+        <p className="dark:text-polar-500 mt-4 text-gray-600">{description}</p>
       </div>
       <div className="grid grid-cols-3 gap-6">
         {tiers.map((tier) => (

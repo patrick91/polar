@@ -24,7 +24,7 @@ const ThankYouUpsell = (props: {
           <h2 className="text-xl">
             Welcome! You now have an account with Polar 🎉
           </h2>
-          <p className="dark:text-polar-400 text-sm font-normal text-gray-500">
+          <p className="dark:text-polar-400 text-sm font-normal text-gray-600">
             Sign in anytime in the future by requesting a magic link to your
             inbox.
           </p>
@@ -73,7 +73,7 @@ const ThankYouUpsell = (props: {
             Sign in with email
           </PrimaryButton>
         </div>
-        <div className="bg-grid-pattern dark:bg-grid-pattern-dark relative hidden w-3/5 overflow-hidden border-l border-blue-100 bg-blue-50 dark:border-blue-500/20 dark:bg-blue-500/20 md:block">
+        <div className="bg-grid-pattern dark:bg-grid-pattern-dark relative hidden w-3/5 overflow-hidden border-l border-blue-100 bg-blue-100 dark:border-blue-500/20 dark:bg-blue-500/20 md:block">
           <Image
             src={screenshot}
             alt="Polar dashboard screenshot"

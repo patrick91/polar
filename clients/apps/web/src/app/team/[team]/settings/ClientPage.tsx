@@ -51,7 +51,7 @@ const PaymentMethodSettings = ({ org }: { org: Organization }) => {
 
   return (
     <div className="dark:text-polar-200 dark:border-polar-700 dark:bg-polar-800 flex w-full flex-col divide-y rounded-xl border text-gray-900">
-      <div className="dark:text-polar:300 space-y-2 p-4 text-sm text-gray-500">
+      <div className="dark:text-polar:300 space-y-2 p-4 text-sm text-gray-600">
         <PrimaryButton
           fullWidth={false}
           classNames=""

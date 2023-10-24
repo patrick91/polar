@@ -62,7 +62,7 @@ const SubscriptionTierForm: React.FC<SubscriptionTierFormProps> = ({
           <FormItem className="max-w-[300px]">
             <div className="flex flex-row items-center justify-between">
               <FormLabel>Name</FormLabel>
-              <span className="dark:text-polar-400 text-sm text-gray-400">
+              <span className="dark:text-polar-400 text-sm text-gray-600">
                 {field.value?.length ?? 0} / 24
               </span>
             </div>
@@ -168,7 +168,7 @@ const SubscriptionTierForm: React.FC<SubscriptionTierFormProps> = ({
           <FormItem>
             <div className="flex flex-row items-center justify-between">
               <FormLabel>Description</FormLabel>
-              <span className="dark:text-polar-400 text-sm text-gray-400">
+              <span className="dark:text-polar-400 text-sm text-gray-600">
                 {field.value?.length ?? 0} / 240
               </span>
             </div>

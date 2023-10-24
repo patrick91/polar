@@ -27,7 +27,7 @@ const Login = ({ gotoUrl }: { gotoUrl?: string }) => {
         </div>
         <LabeledSeparator label="Or" />
         <MagicLinkLoginForm />
-        <div className="mt-8 text-center text-sm text-gray-500">
+        <div className="mt-8 text-center text-sm text-gray-600">
           By using Polar you agree to our{' '}
           <a
             className="dark:text-polar-300 text-gray-700"

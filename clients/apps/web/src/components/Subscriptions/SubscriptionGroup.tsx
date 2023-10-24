@@ -44,7 +44,7 @@ const SubscriptionGroup: React.FC<SubscriptionGroupProps> = ({
             </Button>
           </Link>
         </div>
-        <p className="dark:text-polar-500 mt-4 text-gray-400">{description}</p>
+        <p className="dark:text-polar-500 mt-4 text-gray-600">{description}</p>
       </div>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,_1fr))] gap-8">
         {tiers.map((tier) => (

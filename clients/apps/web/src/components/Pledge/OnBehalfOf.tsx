@@ -42,7 +42,7 @@ const OnBehalfOf = ({
         <div>
           <label
             htmlFor="attribute_pledge"
-            className="dark:text-polar-400 mb-2 text-sm font-medium text-gray-500"
+            className="dark:text-polar-400 mb-2 text-sm font-medium text-gray-600"
           >
             Fund on behalf of
           </label>
@@ -86,7 +86,7 @@ const OnBehalfOf = ({
           </Select>
 
           {attributePledgeTo && (
-            <div className="dark:text-polar-500 mt-2 text-xs text-gray-400">
+            <div className="dark:text-polar-500 mt-2 text-xs text-gray-600">
               By pledging on behalf of{' '}
               {attributePledgeTo.pretty_name || attributePledgeTo.name}, you
               confirm are authorized to do so on their behalf.

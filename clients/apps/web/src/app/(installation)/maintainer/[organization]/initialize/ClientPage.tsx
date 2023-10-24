@@ -18,7 +18,7 @@ export default function ClientPage() {
       <div className="flex min-h-screen px-2 py-8 md:px-0">
         <div className="mx-auto space-y-8 md:my-auto md:w-[700px]">
           {!showControls && (
-            <h1 className="flex-column mb-11 flex items-center justify-center text-center text-xl font-normal text-gray-500">
+            <h1 className="flex-column mb-11 flex items-center justify-center text-center text-xl font-normal text-gray-600">
               Connecting repositories
               <span className="ml-4">
                 <Spinner />
@@ -35,7 +35,7 @@ export default function ClientPage() {
       <div className="flex min-h-screen px-2 py-8 md:px-0">
         <div className="mx-auto space-y-8 md:my-auto md:w-[700px]">
           {!showControls && (
-            <h1 className="flex-column mb-11 flex items-center justify-center text-center text-xl font-normal text-gray-500">
+            <h1 className="flex-column mb-11 flex items-center justify-center text-center text-xl font-normal text-gray-600">
               Connecting repositories
               <span className="ml-4">
                 <Spinner />
@@ -46,7 +46,7 @@ export default function ClientPage() {
           {showControls && (
             <>
               <div className="text-center">
-                <span className="dark:border-polar-700 rounded-2xl border border-gray-200 px-3 py-1 text-sm font-medium text-gray-500">
+                <span className="dark:border-polar-700 rounded-2xl border border-gray-200 px-3 py-1 text-sm font-medium text-gray-600">
                   {syncedIssuesCount} issues fetched
                 </span>
                 <h1 className="mt-8 text-xl font-normal">

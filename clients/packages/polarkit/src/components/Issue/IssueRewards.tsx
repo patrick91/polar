@@ -40,7 +40,7 @@ const IssueRewards = ({ rewards }: { rewards: Reward[] }) => {
 
       {pendingSum > 0 && (
         <Group>
-          <Pill className="dark:bg-polar-900 dark:text-polar-300 bg-gray-100 text-gray-800">
+          <Pill className="dark:bg-polar-900 dark:text-polar-300 bg-gray-200 text-gray-800">
             ${getCentsInDollarString(pendingSum, false, true)}
           </Pill>
           <span>Pending</span>

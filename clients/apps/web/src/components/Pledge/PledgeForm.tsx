@@ -107,7 +107,7 @@ const PledgeForm = ({
       <form className="flex flex-col">
         <label
           htmlFor="action"
-          className="dark:text-polar-200 mb-2 text-sm font-medium text-gray-500"
+          className="dark:text-polar-200 mb-2 text-sm font-medium text-gray-600"
         >
           I want to&hellip;
         </label>
@@ -120,7 +120,7 @@ const PledgeForm = ({
           >
             <TabsTrigger
               value="fund"
-              className="dark:text-polar-300 dark:data-[state=active]:bg-polar-700 text-gray-500 data-[state=active]:text-red-600 dark:data-[state=active]:text-red-600"
+              className="dark:text-polar-300 dark:data-[state=active]:bg-polar-700 text-gray-600 data-[state=active]:text-red-600 dark:data-[state=active]:text-red-600"
             >
               <div className="flex w-full items-center justify-center gap-4 px-1 text-left">
                 <HeartIcon className="h-6 w-6" />
@@ -176,7 +176,7 @@ const Fund = ({
       <div>
         <label
           htmlFor="funding_method"
-          className="dark:text-polar-200 mb-2 text-sm font-medium text-gray-500"
+          className="dark:text-polar-200 mb-2 text-sm font-medium text-gray-600"
         >
           Funding method
         </label>
@@ -573,7 +573,7 @@ const FundToday = ({
       <div>
         <label
           htmlFor="amount"
-          className="dark:text-polar-200 mb-2 text-sm font-medium text-gray-500"
+          className="dark:text-polar-200 mb-2 text-sm font-medium text-gray-600"
         >
           Funding amount
         </label>
@@ -594,7 +594,7 @@ const FundToday = ({
               formState.amount < organization.pledge_minimum_amount
                 ? 'text-red-500'
                 : '',
-              'dark:text-polar-400 text-xs text-gray-500',
+              'dark:text-polar-400 text-xs text-gray-600',
             )}
           >
             Minimum is $
@@ -608,7 +608,7 @@ const FundToday = ({
       <div>
         <label
           htmlFor="email"
-          className="dark:text-polar-200 mb-2 text-sm font-medium text-gray-500"
+          className="dark:text-polar-200 mb-2 text-sm font-medium text-gray-600"
         >
           Contact details
         </label>
@@ -625,7 +625,7 @@ const FundToday = ({
             }}
           />
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-lg">
-            <span className="dark:text-polar-500 text-gray-500">
+            <span className="dark:text-polar-500 text-gray-600">
               <EnvelopeIcon className="h-6 w-6" />
             </span>
           </div>
@@ -637,7 +637,7 @@ const FundToday = ({
           <div>
             <label
               htmlFor="payment_method"
-              className="dark:text-polar-400 mb-2 text-sm font-medium text-gray-500"
+              className="dark:text-polar-400 mb-2 text-sm font-medium text-gray-600"
             >
               Payment method
             </label>

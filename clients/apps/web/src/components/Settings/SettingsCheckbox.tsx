@@ -45,7 +45,7 @@ const SettingsCheckbox = ({
         {description && (
           <span
             id={`${id}-description`}
-            className="dark:text-polar-400 inline-flex items-center space-x-1 text-gray-500"
+            className="dark:text-polar-400 inline-flex items-center space-x-1 text-gray-600"
           >
             <InformationCircleIcon className="h-6 w-6" />
             <span>{description}</span>

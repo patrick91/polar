@@ -117,7 +117,7 @@ const PublicRewardsSetting = (props: {
                 </div>
               </div>
               <div className="flex w-[120px] items-center gap-3 py-2">
-                <span className="dark:text-polar-400 flex-shrink-0 text-gray-500">
+                <span className="dark:text-polar-400 flex-shrink-0 text-gray-600">
                   %
                 </span>
                 <div className="flex-1">
@@ -125,7 +125,7 @@ const PublicRewardsSetting = (props: {
                     className={
                       usePublicRewards
                         ? 'dark:text-polar-100 font-medium text-black'
-                        : 'dark:text-polar-400 text-gray-500'
+                        : 'dark:text-polar-400 text-gray-600'
                     }
                     disabled={!usePublicRewards}
                     value={contributorsShare}
@@ -150,12 +150,12 @@ const PublicRewardsSetting = (props: {
                   className="h-6 w-6 rounded-full"
                 />
                 <div>{props.org.pretty_name || props.org.name}</div>
-                <div className="dark:text-polar-400 text-gray-500">
+                <div className="dark:text-polar-400 text-gray-600">
                   Reviews, feedback & maintenance. Reward yourself too.
                 </div>
               </div>
               <div className="flex w-[120px] items-center gap-3 py-2">
-                <span className="dark:text-polar-400 flex-shrink-0 text-gray-500">
+                <span className="dark:text-polar-400 flex-shrink-0 text-gray-600">
                   %
                 </span>
                 <div className="flex-1">

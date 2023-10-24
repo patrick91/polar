@@ -207,12 +207,12 @@ export const HeaderPill = (props: {
       href={props.href}
       className={twMerge(
         props.active
-          ? ' dark:bg-polar-800 dark:ring-polar-700 bg-white shadow dark:ring-1'
-          : ' dark:bg-polar-900 dark:hover:bg-polar-800/50 dark:ring-polar-700 border bg-transparent hover:bg-gray-100/50 dark:ring-1',
+          ? ' dark:bg-polar-800 dark:ring-polar-700 bg-gray-50 shadow dark:ring-1'
+          : ' dark:bg-polar-900 dark:hover:bg-polar-800/50 dark:ring-polar-700 border bg-transparent hover:bg-gray-200/50 dark:ring-1',
         'transition-background relative flex w-full max-w-[300px] flex-col rounded-xl px-5 py-4 duration-200',
       )}
     >
-      <div className="text-md dark:text-polar-400 flex-1 text-gray-500">
+      <div className="text-md dark:text-polar-400 flex-1 text-gray-600">
         {props.title}
       </div>
       <div className="dark:text-polar-200 text-3xl font-medium text-gray-900">
@@ -221,7 +221,7 @@ export const HeaderPill = (props: {
       {props.active && props.amount > 0 && (
         <>
           <Triangle />
-          <div className="dark:bg-polar-800 absolute bottom-0 left-1/2 -ml-6 h-2  w-12 bg-white"></div>
+          <div className="dark:bg-polar-800 absolute bottom-0 left-1/2 -ml-6 h-2  w-12 bg-gray-50"></div>
         </>
       )}
     </Link>
@@ -356,7 +356,7 @@ const AccountBanner = (props: { org: Organization; accounts: Account[] }) => {
                 </button>
               )}
               {false && (
-                <span className="text-gray-400">
+                <span className="text-gray-600">
                   Ask the admin to make changes
                 </span>
               )}
