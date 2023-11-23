@@ -8,7 +8,7 @@ export const useOrganizationArticles = (
   platform: Platforms = Platforms.GITHUB,
 ): UseQueryResult<ListResourceArticle> =>
   useQuery({
-    queryKey: ['article', 'organization', orgName],
+    queryKey: ['article', orgName],
     queryFn: () =>
       api.articles.search({
         organizationName: orgName,
@@ -32,8 +32,20 @@ export const useCreateArticle = (orgName: string) =>
 
 export const useArticle = (id: string) =>
   useQuery({
-    queryKey: ['article', 'id', id],
+    queryKey: ['article', id],
     queryFn: () => api.articles.get({ id }),
     retry: defaultRetry,
     enabled: !!id,
+  })
+
+export const useLookupArticle = (
+  orgName: string,
+  slug: string,
+  platform: Platforms = Platforms.GITHUB,
+) =>
+  useQuery({
+    queryKey: ['article', orgName, slug],
+    queryFn: () =>
+      api.articles.lookup({ organizationName: orgName, slug, platform }),
+    retry: defaultRetry,
   })

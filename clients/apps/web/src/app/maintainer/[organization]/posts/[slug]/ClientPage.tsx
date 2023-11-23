@@ -1,37 +1,21 @@
 'use client'
 
 import Editor from '@/components/Feed/Editor'
-import { Post, getFeed } from '@/components/Feed/data'
 import { DashboardBody } from '@/components/Layout/DashboardLayout'
 import { useParams, useRouter } from 'next/navigation'
-import { api } from 'polarkit'
 import { Button, Input } from 'polarkit/components/ui/atoms'
-import { useSubscriptionTiers } from 'polarkit/hooks'
-import { useCallback, useEffect, useState } from 'react'
+import { useLookupArticle } from 'polarkit/hooks'
+import { useCallback } from 'react'
 
 const ClientPage = () => {
-  const { post: postId, organization } = useParams()
-  const [post, setPost] = useState<Post>()
-  const [body, setBody] = useState(post?.body || '')
-
-  useEffect(() => {
-    getFeed(api, organization as string).then((feed) => {
-      const post = feed.find(
-        (post) => 'id' in post && post.id === postId,
-      ) as Post
-
-      setPost(post)
-      setBody(post?.body || '')
-    })
-  }, [postId])
+  const { slug, organization } = useParams()
+  const article = useLookupArticle(organization as string, slug as string)
 
   const router = useRouter()
 
   const handleSave = useCallback(() => {
     router.push(`/maintainer/${organization}/posts`)
   }, [router, organization])
-
-  const subscriptionTiers = useSubscriptionTiers(organization as string)
 
   return (
     <>
@@ -51,7 +35,7 @@ const ClientPage = () => {
             </div>
             <Input className="min-w-[320px]" placeholder="Title" />
             <div className="flex h-full w-full flex-col">
-              {post && <Editor value={body} onChange={setBody} post={post} />}
+              {article.data && <Editor value={article.data.body} />}
             </div>
           </div>
         </div>

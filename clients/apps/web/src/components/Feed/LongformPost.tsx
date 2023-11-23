@@ -1,8 +1,8 @@
 'use client'
 
 import { COMPONENTS } from '@/components/Feed/Editor'
-import { Post } from '@/components/Feed/data'
 import { StaggerReveal } from '@/components/Shared/StaggerReveal'
+import { Article } from '@polar-sh/sdk'
 import Link from 'next/link'
 import { LogoIcon } from 'polarkit/components/brand'
 import { Avatar, Button } from 'polarkit/components/ui/atoms'
@@ -21,8 +21,12 @@ const revealTransition = {
   duration: 1,
 }
 
-export default function LongformPost({ post }: { post: Post }) {
-  const organization = useOrganizationLookup(post.author.username)
+interface LongformPostProps {
+  article: Article
+}
+
+export default function LongformPost({ article }: LongformPostProps) {
+  const organization = useOrganizationLookup(article.organization.name)
 
   return (
     <StaggerReveal className="max-w-2xl" transition={staggerTransition}>
@@ -32,7 +36,7 @@ export default function LongformPost({ post }: { post: Post }) {
         </StaggerReveal.Child>
         <StaggerReveal.Child transition={revealTransition}>
           <span className="dark:text-polar-500 text-gray-500">
-            {post.createdAt.toLocaleString('en-US', {
+            {article.createdAt.toLocaleString('en-US', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
@@ -41,18 +45,18 @@ export default function LongformPost({ post }: { post: Post }) {
         </StaggerReveal.Child>
         <StaggerReveal.Child transition={revealTransition}>
           <h1 className="text-center text-4xl font-bold leading-relaxed">
-            {post.title}
+            {article.title}
           </h1>
         </StaggerReveal.Child>
         <StaggerReveal.Child transition={revealTransition}>
           <div className="flex flex-row items-center gap-x-3">
             <Avatar
               className="h-8 w-8"
-              avatar_url={post.author.avatar_url}
-              name={post.author.username}
+              avatar_url={article.byline.avatar_url}
+              name={article.byline.name}
             />
             <h3 className="text-md dark:text-polar-50">
-              {post.author.username}
+              {article.byline.name}
             </h3>
           </div>
         </StaggerReveal.Child>
@@ -82,21 +86,21 @@ export default function LongformPost({ post }: { post: Post }) {
             },
           ]}
         >
-          {post.body}
+          {article.body}
         </Markdown>
         <div className="dark:bg-polar-700 flex flex-col items-center gap-y-6 rounded-3xl bg-gray-100 px-16 py-12">
           <Avatar
             className="h-12 w-12"
-            avatar_url={post.author.avatar_url}
-            name={post.author.username}
+            avatar_url={article.organization.avatar_url}
+            name={article.organization.name}
           />
           <h2 className="text-xl font-medium">
-            Subscribe to {post.author.username}
+            Subscribe to {article.organization.name}
           </h2>
           <p className="dark:text-polar-300 text-center text-gray-500">
             {organization.data?.bio
               ? organization.data?.bio
-              : `Support ${post.author.username} by subscribing to their work and get access to exclusive content.`}
+              : `Support ${article.organization.name} by subscribing to their work and get access to exclusive content.`}
           </p>
           <Link href={`/${organization.data?.name}?tab=subscriptions`}>
             <Button className="mt-4">Subscribe</Button>

@@ -11,7 +11,6 @@ import {
 import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 import { api } from 'polarkit/api'
-import { Post, getFeed, isRecommendation } from '../../../components/Feed/data'
 
 const cacheConfig = {
   next: {
@@ -87,7 +86,7 @@ export default async function Page({
 }) {
   const api = getServerSideAPI()
 
-  const [organization, repositories] = await Promise.all([
+  const [organization, repositories, articles] = await Promise.all([
     api.organizations.lookup(
       {
         platform: Platforms.GITHUB,
@@ -102,6 +101,10 @@ export default async function Page({
       },
       cacheConfig,
     ),
+    api.articles.search({
+      platform: Platforms.GITHUB,
+      organizationName: params.organization,
+    }),
   ])
 
   let subscriptionTiers: SubscriptionTier[] = []
@@ -138,15 +141,10 @@ export default async function Page({
 
   const currentTab = searchParams.tab as string | undefined
 
-  const posts = (await getFeed(api, params.organization)).filter(
-    (entry) =>
-      !isRecommendation(entry) && entry.author.username === organization.name,
-  ) as Post[]
-
   return (
     <>
       <OrganizationPublicPage
-        posts={posts}
+        articles={articles}
         organization={organization}
         repositories={repositories.items || []}
         subscriptionTiers={subscriptionTiers}

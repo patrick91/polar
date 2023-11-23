@@ -9,6 +9,7 @@ import {
   HowToVoteOutlined,
 } from '@mui/icons-material'
 import {
+  ListResourceArticle,
   Organization,
   Repository,
   SubscriptionTier,
@@ -23,8 +24,8 @@ import {
 } from 'polarkit/components/ui/atoms'
 import { useCallback } from 'react'
 import { Post as PostComponent } from '../Feed/Posts/Post'
-import { Post } from '../Feed/data'
 import GithubLoginButton from '../Shared/GithubLoginButton'
+import Pagination, { usePagination } from '../Shared/Pagination'
 import { ProfileMenu } from '../Shared/ProfileSelection'
 import OrganizationSubscriptionsPublicPage from '../Subscriptions/OrganizationSubscriptionsPublicPage'
 import PublicSubscriptionUpsell from '../Subscriptions/PublicSubscriptionUpsell'
@@ -118,27 +119,38 @@ export const OrganizationPublicPageNav = ({
 }
 
 export const OrganizationPublicPageContent = ({
-  posts,
+  articles,
   organization,
   repositories,
   subscriptionTiers,
 }: {
-  posts: Post[]
+  articles: ListResourceArticle
   organization: Organization
   repositories: Repository[]
   subscriptionTiers: SubscriptionTier[]
 }) => {
+  const { currentPage, setCurrentPage } = usePagination()
+
   return (
     <div className="mt-12 flex h-full w-full flex-col md:mt-0">
       {isFeatureEnabled('feed') && (
         <TabsContent className="w-full" value="overview">
-          <div className="flex max-w-xl flex-col gap-y-6">
-            {posts.map((post) => (
-              <Link href={`/${organization.name}/posts/${post.id}`}>
-                <PostComponent {...post} />
+          <Pagination
+            className="flex max-w-xl flex-col gap-y-6"
+            pageSize={20}
+            totalCount={articles.pagination.total_count ?? 0}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          >
+            {articles?.items?.map((article) => (
+              <Link
+                key={article.id}
+                href={`/${organization.name}/articles/${article.id}`}
+              >
+                <PostComponent article={article} />
               </Link>
             ))}
-          </div>
+          </Pagination>
         </TabsContent>
       )}
       <TabsContent

@@ -5,6 +5,7 @@ import {
   ShortTextOutlined,
 } from '@mui/icons-material'
 import {
+  ListResourceArticle,
   Organization,
   Repository,
   SubscriptionSummary,
@@ -15,7 +16,6 @@ import { LogoType } from 'polarkit/components/brand'
 import { Avatar, Tabs } from 'polarkit/components/ui/atoms'
 import { useMemo } from 'react'
 import { externalURL, prettyURL } from '.'
-import { Post } from '../Feed/data'
 import HowItWorks from '../Pledge/HowItWorks'
 import Footer from './Footer'
 import {
@@ -23,23 +23,25 @@ import {
   OrganizationPublicPageNav,
 } from './OrganizationPublicPageNav'
 
-const OrganizationPublicPage = ({
-  posts,
-  organization,
-  repositories,
-  subscriptionTiers,
-  subscriptionSummary,
-  subscribersCount,
-  currentTab,
-}: {
-  posts: Post[]
+interface OrganizationPublicPageProps {
+  articles: ListResourceArticle
   organization: Organization
   repositories: Repository[]
   subscriptionTiers: SubscriptionTier[]
   subscriptionSummary: SubscriptionSummary[]
   subscribersCount: number
   currentTab?: string
-}) => {
+}
+
+const OrganizationPublicPage = ({
+  articles,
+  organization,
+  repositories,
+  subscriptionTiers,
+  subscriptionSummary,
+  subscribersCount,
+  currentTab,
+}: OrganizationPublicPageProps) => {
   const showMeta =
     organization.bio ||
     organization.company ||
@@ -184,7 +186,7 @@ const OrganizationPublicPage = ({
           </div>
           <OrganizationPublicPageContent
             organization={organization}
-            posts={posts}
+            articles={articles}
             repositories={repositories}
             subscriptionTiers={subscriptionTiers}
           />
