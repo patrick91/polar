@@ -1,66 +1,152 @@
 'use client'
 
+// @ts-ignore
+import {
+  GlobalCanvas,
+  SmoothScrollbar,
+  Tracker,
+  useScrollbar,
+  useTracker,
+} from '@14islands/r3f-scroll-rig'
 import { ArrowForward } from '@mui/icons-material'
-import { motion } from 'framer-motion'
+import {
+  HTMLMotionProps,
+  motion,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion'
 import Link from 'next/link'
 import { LogoIcon } from 'polarkit/components/brand'
-import { useRef } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, useEffect, useRef } from 'react'
 
 const ClientPage = () => {
   const ref = useRef(null)
 
   return (
-    <main className="bg-polar-950 flex flex-col text-white">
-      <motion.section
-        ref={ref}
-        className="relative flex h-screen w-full flex-col justify-between p-32"
-      >
-        <header className="bg-polar-950 fixed left-0 right-0 top-0 flex w-full flex-row items-center justify-between px-32 py-16">
-          <div className="flex flex-row items-center gap-x-24">
-            <LogoIcon className="h-16 w-16" />
-            <ul className="flex flex-row gap-x-12 text-xl font-light">
-              <li>Backer</li>
-              <li>Maintainer</li>
-              <li>Community</li>
-              <li>Company</li>
-            </ul>
-          </div>
-          <div className="flex flex-row items-center gap-x-24">
-            <ul className="flex flex-row gap-x-12 text-xl font-light">
-              <Link href="/login">
-                <li>Log in</li>
+    <>
+      <GlobalCanvas style={{ pointerEvents: 'none', zIndex: -1 }}>
+        <ambientLight />
+      </GlobalCanvas>
+      <SmoothScrollbar config={{ duration: 0.1 }} />
+      <main className="bg-polar-950 flex flex-col text-white">
+        <motion.section
+          ref={ref}
+          className="relative flex h-screen w-full flex-col justify-between p-32"
+        >
+          <header className="bg-polar-950 fixed left-0 right-0 top-0 z-50 flex w-full flex-row items-center justify-between px-32 py-16">
+            <div className="flex flex-row items-center gap-x-24">
+              <Link href="/">
+                <LogoIcon className="h-16 w-16" />
               </Link>
-            </ul>
-          </div>
-        </header>
-        <div className="flex flex-grow flex-col items-start justify-end md:gap-y-16 2xl:gap-y-32">
-          <h1 className="text-[calc(100vw_/_20)] !font-normal leading-snug tracking-tight">
-            Welcome to the
-            <br />
-            Open Source Revolution
-          </h1>
-          <p className="text-3xl font-light">
-            Turn your coding endeavors into a sustainable income
-          </p>
-          <div className="flex flex-row items-center gap-x-12">
-            <button className="flex flex-row items-center gap-x-4 rounded-full bg-blue-500 px-8 py-4 font-light text-white transition-colors hover:bg-blue-400 md:text-xl">
-              <span>Get Started</span>
-              <ArrowForward />
-            </button>
+              <ul className="flex flex-row gap-x-12 text-xl font-light">
+                <Link href="#backer">Backer</Link>
+                <Link href="#maintainer">Maintainer</Link>
+                <Link href="#community">Community</Link>
+                <Link href="#company">Company</Link>
+              </ul>
+            </div>
+            <div className="flex flex-row items-center gap-x-24">
+              <ul className="flex flex-row gap-x-12 text-xl font-light">
+                <Link href="/login">Log in</Link>
+              </ul>
+            </div>
+          </header>
+          <div className="flex flex-grow flex-col items-start justify-end md:gap-y-16 2xl:gap-y-32">
+            <h1 className="text-[calc(100vw_/_20)] !font-light leading-snug tracking-tight">
+              Welcome to the
+              <br />
+              Open Source Revolution
+            </h1>
+            <p className="text-3xl font-light">
+              Turn your coding endeavors into a sustainable income
+            </p>
+            <div className="flex flex-row items-center gap-x-12">
+              <button className="flex flex-row items-center gap-x-4 rounded-full bg-blue-500 px-8 py-4 font-light text-white transition-colors hover:bg-blue-400 md:text-xl">
+                <span>Get Started</span>
+                <ArrowForward />
+              </button>
 
-            <button className="bg-transparent py-4 font-light md:text-xl">
-              <span>Open Source on GitHub</span>
-            </button>
+              <button className="bg-transparent py-4 font-light md:text-xl">
+                <span>Open Source on GitHub</span>
+              </button>
+            </div>
           </div>
-        </div>
-      </motion.section>
-      <motion.section className="h-screen w-full bg-black"></motion.section>
-      <motion.section className="h-screen w-full bg-blue-500"></motion.section>
-      <motion.section className="h-screen w-full"></motion.section>
-      <motion.section className="h-screen w-full"></motion.section>
-      <motion.section className="h-screen w-full"></motion.section>
-    </main>
+        </motion.section>
+        <motion.section className="flex w-full flex-col gap-y-12 bg-blue-500 py-16">
+          <HorizontalMarquee direction="left" />
+          <HorizontalMarquee direction="right" />
+        </motion.section>
+        <Section id="backer" className="h-screen w-full bg-black">
+          <div className="flex h-full w-full flex-col items-center justify-center">
+            <h1 className="text-4xl font-light">Backer</h1>
+            <p className="text-xl font-light">
+              Support your favorite open source projects
+            </p>
+          </div>
+        </Section>
+        <motion.section className="h-screen w-full"></motion.section>
+        <motion.section className="h-screen w-full"></motion.section>
+        <motion.section className="h-screen w-full"></motion.section>
+      </main>
+    </>
   )
 }
 
 export default ClientPage
+
+export const Section = (
+  props: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+) => {
+  const el = useRef<HTMLDivElement>(null)
+
+  return (
+    <>
+      <div ref={el} {...props} />
+    </>
+  )
+}
+
+const HorizontalMarquee = (
+  props: HTMLMotionProps<'div'> & { direction: 'left' | 'right' },
+) => {
+  const el = useRef<HTMLDivElement>(null)
+  const tracker = useTracker(el)
+  const progress = useTrackerMotionValue(tracker)
+
+  const x = useTransform(
+    progress,
+    [0, 1],
+    [
+      props.direction === 'left' ? '0vw' : '-99vw',
+      props.direction === 'left' ? '-99vw' : '0vw',
+    ],
+  )
+
+  return (
+    <motion.div {...props} ref={el} className="relative" style={{ x }}>
+      <h1 className="whitespace-nowrap text-9xl !font-light">
+        OPEN SOURCE OPEN SOURCE OPEN SOURCE OPEN SOURCE OPEN SOURCE OPEN SOURCE
+      </h1>
+    </motion.div>
+  )
+}
+
+/**
+ * Return a Framer Motion value bound to a tracker scrollState
+ * @param {Tracker} tracker scroll-rig tracker instance
+ * @param {string} prop scrollState prop to bind
+ */
+export function useTrackerMotionValue(tracker: Tracker, prop = 'progress') {
+  const progress = useMotionValue(0)
+  const { onScroll } = useScrollbar()
+  const { scrollState, rect } = tracker
+
+  useEffect(() => {
+    // update progress on scroll
+    return onScroll(() => {
+      progress.set(scrollState[prop])
+    })
+  }, [progress, scrollState, prop, onScroll, rect])
+
+  return progress
+}

@@ -16,6 +16,7 @@
     "node": ">= 18 <20"
   },
   "dependencies": {
+    "@14islands/r3f-scroll-rig": "^8.12.3",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.0.16",
@@ -30,6 +31,8 @@
     "@react-email/render": "^0.0.10",
     "@react-email/tailwind": "0.0.13",
     "@sentry/nextjs": "^7.88.0",
+    "@react-three/drei": "^9.90.0",
+    "@react-three/fiber": "^8.15.12",
     "@stripe/react-stripe-js": "^2.3.1",
     "@stripe/stripe-js": "^2.1.8",
     "@tailwindcss/forms": "^0.5.3",
@@ -69,6 +72,7 @@
     "satori": "^0.10.11",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-radix": "^2.8.0",
+    "three": "^0.159.0",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
