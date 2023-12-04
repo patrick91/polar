@@ -2,6 +2,7 @@
 
 import { ArrowForward } from '@mui/icons-material'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { LogoIcon } from 'polarkit/components/brand'
 import { useRef } from 'react'
 
@@ -14,7 +15,7 @@ const ClientPage = () => {
         ref={ref}
         className="relative flex h-screen w-full flex-col justify-between p-32"
       >
-        <header className="bg-polar-950 fixed left-0 right-0 top-0 flex w-full flex-row items-center justify-between px-32 py-24">
+        <header className="bg-polar-950 fixed left-0 right-0 top-0 flex w-full flex-row items-center justify-between px-32 py-16">
           <div className="flex flex-row items-center gap-x-24">
             <LogoIcon className="h-16 w-16" />
             <ul className="flex flex-row gap-x-12 text-xl font-light">
@@ -26,12 +27,13 @@ const ClientPage = () => {
           </div>
           <div className="flex flex-row items-center gap-x-24">
             <ul className="flex flex-row gap-x-12 text-xl font-light">
-              <li>Maintainer</li>
-              <li>Log in</li>
+              <Link href="/login">
+                <li>Log in</li>
+              </Link>
             </ul>
           </div>
         </header>
-        <div className="flex flex-grow flex-col items-start justify-end gap-y-32">
+        <div className="flex flex-grow flex-col items-start justify-end md:gap-y-16 2xl:gap-y-32">
           <h1 className="text-[calc(100vw_/_20)] !font-normal leading-snug tracking-tight">
             Welcome to the
             <br />
@@ -52,8 +54,8 @@ const ClientPage = () => {
           </div>
         </div>
       </motion.section>
-      <motion.section className="h-screen w-full"></motion.section>
-      <motion.section className="h-screen w-full"></motion.section>
+      <motion.section className="h-screen w-full bg-black"></motion.section>
+      <motion.section className="h-screen w-full bg-blue-500"></motion.section>
       <motion.section className="h-screen w-full"></motion.section>
       <motion.section className="h-screen w-full"></motion.section>
       <motion.section className="h-screen w-full"></motion.section>
