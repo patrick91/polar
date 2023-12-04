@@ -3,9 +3,9 @@ import { TextArea } from 'polarkit/components/ui/atoms'
 import {
   ChangeEventHandler,
   DragEventHandler,
+  forwardRef,
   useCallback,
   useEffect,
-  useRef,
 } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -17,12 +17,10 @@ interface MarkdownEditorProps {
   onChange?: (value: string) => void
 }
 
-export const MarkdownEditor = ({
-  value,
-  className,
-  onChange,
-}: MarkdownEditorProps) => {
-  const ref = useRef<HTMLTextAreaElement>(null)
+export const MarkdownEditor = forwardRef<
+  HTMLTextAreaElement,
+  MarkdownEditorProps
+>(({ value, className, onChange }, ref) => {
   const insertTextAtCursor = useCallback(
     (text: string, element: HTMLTextAreaElement) => {
       const cursorPosition = element.selectionStart
@@ -42,7 +40,7 @@ export const MarkdownEditor = ({
   )
 
   useEffect(() => {
-    if (ref.current) {
+    if (typeof ref !== 'function' && ref && ref.current) {
       ref.current.style.height = ref.current.scrollHeight + 'px'
     }
   }, [value])
@@ -109,4 +107,4 @@ export const MarkdownEditor = ({
       onDragOver={allow}
     />
   )
-}
+})

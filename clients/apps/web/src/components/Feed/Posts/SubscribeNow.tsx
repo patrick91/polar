@@ -16,7 +16,7 @@ const SubscribeNow = (props: { article: Article }) => {
 
   // User is already subscribed, hide button.
   if (userSubs.data?.items && userSubs.data?.items.length > 0) {
-    return <></>
+    return <span>Already Subbed!</span>
   }
 
   return (

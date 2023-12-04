@@ -63,7 +63,7 @@ module.exports = {
         DEFAULT: `0 0px 15px rgba(0 0 0 / 0.04), 0 0px 2px rgba(0 0 0 / 0.06)`,
         lg: '0 0px 20px rgba(0 0 0 / 0.04), 0 0px 5px rgba(0 0 0 / 0.06)',
         xl: '0 0px 30px rgba(0 0 0 / 0.04), 0 0px 10px rgba(0 0 0 / 0.06)',
-        '2xl': '0 0px 50px rgba(0 0 0 / 0.02), 0 0px 15px rgba(0 0 0 / 0.04)',
+        '2xl': '0 0px 50px rgba(0 0 0 / 0.02), 0 0px 25px rgba(0 0 0 / 0.04)',
         hidden: '0 1px 8px rgb(0 0 0 / 0), 0 0.5px 2.5px rgb(0 0 0 / 0)',
         up: '-2px -2px 22px 0px rgba(61, 84, 171, 0.15)',
       },

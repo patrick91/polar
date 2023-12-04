@@ -1,10 +1,11 @@
 import { useCurrentOrgAndRepoFromURL } from '@/hooks'
 import { TabsContent } from 'polarkit/components/ui/atoms'
+import { useCallback, useRef } from 'react'
 import { DashboardBody } from '../Layout/DashboardLayout'
 import { MarkdownEditor } from '../Markdown/MarkdownEditor'
 import { StaggerReveal } from '../Shared/StaggerReveal'
 import LongformPost from './LongformPost'
-import { PostToolbar } from './PostToolbar'
+import { PostToolbar, PostToolbarComponent } from './PostToolbar'
 
 interface PostEditorProps {
   title: string
@@ -21,7 +22,49 @@ export const PostEditor = ({
   onBodyChange,
   previewProps,
 }: PostEditorProps) => {
+  const editorRef = useRef<HTMLTextAreaElement>(null)
   const { org } = useCurrentOrgAndRepoFromURL()
+
+  const handleComponentInsert = useCallback(
+    (component: PostToolbarComponent) => {
+      if (!editorRef.current) {
+        return
+      }
+
+      const textarea = editorRef.current
+      const cursorPosition = textarea.selectionStart
+
+      const textBeforeCursorPosition = textarea.value.substring(
+        0,
+        cursorPosition,
+      )
+      const textAfterCursorPosition = textarea.value.substring(
+        cursorPosition,
+        textarea.value.length,
+      )
+
+      let elementToInsert = ''
+
+      if (component !== PostToolbarComponent.Poll) {
+        elementToInsert = `<${component}></${component}>`
+      } else {
+        elementToInsert = `<${component}>
+1. Option 1
+2. Option 2
+3. Option 3        
+</${component}>`
+      }
+
+      textarea.value =
+        textBeforeCursorPosition + elementToInsert + textAfterCursorPosition
+
+      textarea.focus()
+      textarea.selectionStart = cursorPosition + elementToInsert.length
+
+      onBodyChange?.(textarea.value)
+    },
+    [],
+  )
 
   if (!org) {
     return null
@@ -29,7 +72,7 @@ export const PostEditor = ({
 
   return (
     <>
-      <PostToolbar />
+      <PostToolbar onInsertComponent={handleComponentInsert} />
       <div className="dark:bg-polar-950 h-full bg-white">
         <DashboardBody className="mt-0 h-full">
           <div className="flex h-full flex-row">
@@ -44,6 +87,7 @@ export const PostEditor = ({
                     onChange={(e) => onTitleChange(e.target.value)}
                   />
                   <MarkdownEditor
+                    ref={editorRef}
                     className="focus:ring-none h-full overflow-visible rounded-none border-none bg-transparent p-0 shadow-none outline-none focus:ring-transparent focus-visible:ring-transparent dark:bg-transparent dark:shadow-none dark:outline-none dark:focus:ring-transparent"
                     value={body}
                     onChange={onBodyChange}
