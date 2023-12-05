@@ -9,6 +9,7 @@ import {
   useTracker,
 } from '@14islands/r3f-scroll-rig'
 import { ArrowForward } from '@mui/icons-material'
+import { EffectComposer, Noise } from '@react-three/postprocessing'
 import {
   HTMLMotionProps,
   motion,
@@ -24,16 +25,23 @@ const ClientPage = () => {
 
   return (
     <>
-      <GlobalCanvas style={{ pointerEvents: 'none', zIndex: -1 }}>
+      <GlobalCanvas
+        globalRender={false}
+        style={{ pointerEvents: 'none' }}
+        gl={{ antialias: true, alpha: true }}
+      >
         <ambientLight />
+        <EffectComposer>
+          <Noise opacity={1} />
+        </EffectComposer>
       </GlobalCanvas>
       <SmoothScrollbar config={{ duration: 0.1 }} />
-      <main className="bg-polar-950 flex flex-col text-white">
+      <main className="flex flex-col bg-black text-white">
         <motion.section
           ref={ref}
           className="relative flex h-screen w-full flex-col justify-between p-32"
         >
-          <header className="bg-polar-950 fixed left-0 right-0 top-0 z-50 flex w-full flex-row items-center justify-between px-32 py-16">
+          <header className="fixed left-0 right-0 top-0 z-50 flex w-full flex-row items-center justify-between bg-black px-32 py-16">
             <div className="flex flex-row items-center gap-x-24">
               <Link href="/">
                 <LogoIcon className="h-16 w-16" />
@@ -51,22 +59,21 @@ const ClientPage = () => {
               </ul>
             </div>
           </header>
-          <div className="flex flex-grow flex-col items-start justify-end md:gap-y-16 2xl:gap-y-32">
-            <h1 className="text-[calc(100vw_/_20)] !font-light leading-snug tracking-tight">
-              Welcome to the
-              <br />
+          <div className="flex flex-grow flex-col items-start justify-end gap-y-16 lg:gap-y-24">
+            <h1 className="text-5xl !font-light leading-snug tracking-tight lg:text-[calc(100vw_/_20)]">
+              Welcome to the <br className="hidden lg:block" />
               Open Source Revolution
             </h1>
-            <p className="text-3xl font-light">
+            <p className="text-xl font-light md:text-3xl">
               Turn your coding endeavors into a sustainable income
             </p>
             <div className="flex flex-row items-center gap-x-12">
-              <button className="flex flex-row items-center gap-x-4 rounded-full bg-blue-500 px-8 py-4 font-light text-white transition-colors hover:bg-blue-400 md:text-xl">
+              <button className="flex flex-row items-center gap-x-4 whitespace-nowrap rounded-full bg-blue-500 px-8 py-4 font-light text-white transition-colors hover:bg-white hover:text-blue-500 md:text-xl">
                 <span>Get Started</span>
                 <ArrowForward />
               </button>
 
-              <button className="bg-transparent py-4 font-light md:text-xl">
+              <button className="whitespace-nowrap bg-transparent py-4 font-light md:text-xl">
                 <span>Open Source on GitHub</span>
               </button>
             </div>
@@ -76,14 +83,10 @@ const ClientPage = () => {
           <HorizontalMarquee direction="left" />
           <HorizontalMarquee direction="right" />
         </motion.section>
-        <Section id="backer" className="h-screen w-full bg-black">
-          <div className="flex h-full w-full flex-col items-center justify-center">
-            <h1 className="text-4xl font-light">Backer</h1>
-            <p className="text-xl font-light">
-              Support your favorite open source projects
-            </p>
-          </div>
-        </Section>
+        <Section
+          id="backer"
+          className="flex h-screen w-full flex-row items-start justify-start p-32"
+        ></Section>
         <motion.section className="h-screen w-full"></motion.section>
         <motion.section className="h-screen w-full"></motion.section>
         <motion.section className="h-screen w-full"></motion.section>
@@ -124,8 +127,9 @@ const HorizontalMarquee = (
 
   return (
     <motion.div {...props} ref={el} className="relative" style={{ x }}>
-      <h1 className="whitespace-nowrap text-9xl !font-light">
+      <h1 className="whitespace-nowrap text-5xl !font-light leading-snug tracking-tight lg:text-[calc(100vw_/_20)]">
         OPEN SOURCE OPEN SOURCE OPEN SOURCE OPEN SOURCE OPEN SOURCE OPEN SOURCE
+        OPEN SOURCE OPEN SOURCE
       </h1>
     </motion.div>
   )
