@@ -9,7 +9,6 @@ import {
   useTracker,
 } from '@14islands/r3f-scroll-rig'
 import { ArrowForward } from '@mui/icons-material'
-import { EffectComposer, Noise } from '@react-three/postprocessing'
 import {
   HTMLMotionProps,
   Variants,
@@ -32,9 +31,6 @@ const ClientPage = () => {
         gl={{ antialias: true, alpha: true }}
       >
         <ambientLight />
-        <EffectComposer>
-          <Noise opacity={1} />
-        </EffectComposer>
       </GlobalCanvas>
       <SmoothScrollbar config={{ duration: 0.2 }} />
       <motion.div className="z-100 fixed inset-0 flex flex-row">
