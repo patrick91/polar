@@ -15959,6 +15959,16 @@ packages:
       object-assign: 4.1.1
       thenify-all: 1.6.0
 
+  /n8ao@1.7.0(postprocessing@6.33.4)(three@0.159.0):
+    resolution: {integrity: sha512-0Ne+dnzlKByj4UR+OfPU04CanmbNPPtYcqJqWWcPw00CiMOLhkE23/gwoROLACKMRLuWsqhW2cMf5pYlywrIAQ==}
+    peerDependencies:
+      postprocessing: '>=6.30.0'
+      three: '>=0.137'
+    dependencies:
+      postprocessing: 6.33.4(three@0.159.0)
+      three: 0.159.0
+    dev: false
+
   /nano-css@5.3.5(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-vSB9X12bbNu4ALBu7nigJgRViZ6ja3OU7CeuiV1zMIbXOdmkLahgtPmh3GBOlDxbKY0CitqlPdOReGlBLSp+yg==}
     peerDependencies:
