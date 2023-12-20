@@ -22,6 +22,7 @@ from polar.reward.endpoints import router as rewards_router
 from polar.subscription.endpoints import router as subscription_router
 from polar.transaction.endpoints import router as transaction_router
 from polar.user.endpoints import router as user_router
+from polar.integrations.discord.endpoints import router as discord_router
 
 router = APIRouter(prefix="/api/v1")
 
@@ -31,6 +32,8 @@ router.include_router(user_router)
 router.include_router(github_router)
 # /integrations/stripe
 router.include_router(stripe_router)
+# /integrations/discord
+router.include_router(discord_router)
 # /backoffice
 router.include_router(backoffice_router)
 # /dashboard

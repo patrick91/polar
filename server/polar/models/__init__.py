@@ -26,6 +26,7 @@ from .user import OAuthAccount, User
 from .user_notification import UserNotification
 from .user_organization import UserOrganization
 from .user_organization_settings import UserOrganizationSettings
+from .discord_server import DiscordServer
 
 __all__ = [
     "Account",
@@ -57,4 +58,5 @@ __all__ = [
     "UserNotification",
     "UserOrganization",
     "UserOrganizationSettings",
+    "DiscordServer",
 ]

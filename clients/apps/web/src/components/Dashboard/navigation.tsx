@@ -5,6 +5,7 @@ import { ArrowUpRightIcon } from '@heroicons/react/20/solid'
 import {
   AttachMoneyOutlined,
   Bolt,
+  BuildCircleOutlined,
   CardGiftcardOutlined,
   Construction,
   CropFreeOutlined,
@@ -218,6 +219,19 @@ export const dashboardRoutes = (
           subs: undefined,
         },
       ]),
+  ...(isFeatureEnabled('discord')
+    ? [
+        {
+          id: 'integrations',
+          title: 'Integrations',
+          link: `/maintainer/${org?.name}/integrations`,
+          icon: <BuildCircleOutlined className="h-5 w-5" fontSize="inherit" />,
+          postIcon: undefined,
+          if: isOrgAdmin,
+          subs: undefined,
+        },
+      ]
+    : []),
   ...(isFeatureEnabled('backoffice')
     ? [
         {

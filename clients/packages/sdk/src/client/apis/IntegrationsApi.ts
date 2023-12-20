@@ -15,18 +15,36 @@
 
 import * as runtime from '../runtime';
 import type {
+  DiscordServer,
   GithubUser,
   HTTPValidationError,
   InstallationCreate,
   LookupUserRequest,
   Organization,
+  Platforms,
   SynchronizeMembersResponse,
   UserSignupType,
   WebhookResponse,
 } from '../models/index';
 
+export interface IntegrationsApiDiscordServerLookupRequest {
+    organizationName: string;
+    platform: Platforms;
+}
+
 export interface IntegrationsApiInstallRequest {
     installationCreate: InstallationCreate;
+}
+
+export interface IntegrationsApiIntegrationsDiscordAuthorizeRequest {
+    orgId: string;
+}
+
+export interface IntegrationsApiIntegrationsDiscordCallbackRequest {
+    code?: string;
+    codeVerifier?: string;
+    state?: string;
+    error?: string;
 }
 
 export interface IntegrationsApiIntegrationsGithubAuthorizeRequest {
@@ -58,6 +76,58 @@ export interface IntegrationsApiSynchronizeMembersRequest {
  * 
  */
 export class IntegrationsApi extends runtime.BaseAPI {
+
+    /**
+     * Lookup Discord Server for Organization.
+     * Lookup Discord Server for Organization (Public API)
+     */
+    async discordServerLookupRaw(requestParameters: IntegrationsApiDiscordServerLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscordServer>> {
+        if (requestParameters.organizationName === null || requestParameters.organizationName === undefined) {
+            throw new runtime.RequiredError('organizationName','Required parameter requestParameters.organizationName was null or undefined when calling discordServerLookup.');
+        }
+
+        if (requestParameters.platform === null || requestParameters.platform === undefined) {
+            throw new runtime.RequiredError('platform','Required parameter requestParameters.platform was null or undefined when calling discordServerLookup.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.organizationName !== undefined) {
+            queryParameters['organization_name'] = requestParameters.organizationName;
+        }
+
+        if (requestParameters.platform !== undefined) {
+            queryParameters['platform'] = requestParameters.platform;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("HTTPBearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/v1/integrations/discord/servers/lookup`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Lookup Discord Server for Organization.
+     * Lookup Discord Server for Organization (Public API)
+     */
+    async discordServerLookup(requestParameters: IntegrationsApiDiscordServerLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscordServer> {
+        const response = await this.discordServerLookupRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Install
@@ -97,6 +167,102 @@ export class IntegrationsApi extends runtime.BaseAPI {
      */
     async install(requestParameters: IntegrationsApiInstallRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Organization> {
         const response = await this.installRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Integrations.Discord.Authorize
+     */
+    async integrationsDiscordAuthorizeRaw(requestParameters: IntegrationsApiIntegrationsDiscordAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+        if (requestParameters.orgId === null || requestParameters.orgId === undefined) {
+            throw new runtime.RequiredError('orgId','Required parameter requestParameters.orgId was null or undefined when calling integrationsDiscordAuthorize.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.orgId !== undefined) {
+            queryParameters['org_id'] = requestParameters.orgId;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("HTTPBearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/v1/integrations/discord/authorize`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * Integrations.Discord.Authorize
+     */
+    async integrationsDiscordAuthorize(requestParameters: IntegrationsApiIntegrationsDiscordAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.integrationsDiscordAuthorizeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Integrations.Discord.Callback
+     */
+    async integrationsDiscordCallbackRaw(requestParameters: IntegrationsApiIntegrationsDiscordCallbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscordServer>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.code !== undefined) {
+            queryParameters['code'] = requestParameters.code;
+        }
+
+        if (requestParameters.codeVerifier !== undefined) {
+            queryParameters['code_verifier'] = requestParameters.codeVerifier;
+        }
+
+        if (requestParameters.state !== undefined) {
+            queryParameters['state'] = requestParameters.state;
+        }
+
+        if (requestParameters.error !== undefined) {
+            queryParameters['error'] = requestParameters.error;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("HTTPBearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/v1/integrations/discord/callback`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response);
+    }
+
+    /**
+     * Integrations.Discord.Callback
+     */
+    async integrationsDiscordCallback(requestParameters: IntegrationsApiIntegrationsDiscordCallbackRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscordServer> {
+        const response = await this.integrationsDiscordCallbackRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

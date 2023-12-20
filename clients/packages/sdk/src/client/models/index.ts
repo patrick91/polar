@@ -1011,6 +1011,43 @@ export interface CurrencyAmount {
 /**
  * 
  * @export
+ * @interface DiscordServer
+ */
+export interface DiscordServer {
+    /**
+     * 
+     * @type {string}
+     * @memberof DiscordServer
+     */
+    guild_id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DiscordServer
+     */
+    guild_name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DiscordServer
+     */
+    guild_icon: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof DiscordServer
+     */
+    guild_metadata: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof DiscordServer
+     */
+    organization_id: string;
+}
+/**
+ * 
+ * @export
  * @interface Entry
  */
 export interface Entry {
