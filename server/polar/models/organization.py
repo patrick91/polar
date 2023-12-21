@@ -160,7 +160,7 @@ class Organization(RecordModel):
     )
 
     def has_discord_bot(self) -> bool:
-        if not self.discord_guild_id:
+        if self.discord_guild_id is None:
             return False
 
         return self.discord_bot_connected_at is not None

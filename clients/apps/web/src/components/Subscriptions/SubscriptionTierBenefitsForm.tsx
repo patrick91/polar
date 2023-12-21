@@ -331,7 +331,10 @@ const RecommendedSubscriptionTierBenefits = ({
     addBenefit({
       organization_id: organization.id,
       type: 'discord',
-      properties: {},
+      properties: {
+        // TODO: MAKE THIS DYNAMIC
+        role_id: '1187407263531536455',
+      },
       is_tax_applicable: true,
       description: 'Discord Access',
     })

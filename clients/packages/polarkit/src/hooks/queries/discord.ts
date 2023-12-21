@@ -17,3 +17,12 @@ export const useDiscordGuildForOrg: (
     retry: defaultRetry,
     enabled: !!orgName,
   })
+
+export const useDiscordUser: () => UseQueryResult<DiscordUser, Error> = () =>
+  useQuery({
+    queryKey: ['discord', 'current_user'],
+    queryFn: () => api.integrations.discordUserLookup(),
+
+    retry: defaultRetry,
+    enabled: true,
+  })

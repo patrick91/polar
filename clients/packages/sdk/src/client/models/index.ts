@@ -4528,10 +4528,10 @@ export interface SubscriptionBenefitDiscord {
     repository_id?: string;
     /**
      * 
-     * @type {object}
+     * @type {SubscriptionBenefitDiscordProperties}
      * @memberof SubscriptionBenefitDiscord
      */
-    properties: object;
+    properties: SubscriptionBenefitDiscordProperties;
 }
 
 
@@ -4569,10 +4569,10 @@ export interface SubscriptionBenefitDiscordCreate {
     repository_id?: string;
     /**
      * 
-     * @type {object}
+     * @type {SubscriptionBenefitDiscordProperties}
      * @memberof SubscriptionBenefitDiscordCreate
      */
-    properties: object;
+    properties: SubscriptionBenefitDiscordProperties;
     /**
      * 
      * @type {string}
@@ -4596,6 +4596,19 @@ export const SubscriptionBenefitDiscordCreateTypeEnum = {
 } as const;
 export type SubscriptionBenefitDiscordCreateTypeEnum = typeof SubscriptionBenefitDiscordCreateTypeEnum[keyof typeof SubscriptionBenefitDiscordCreateTypeEnum];
 
+/**
+ * 
+ * @export
+ * @interface SubscriptionBenefitDiscordProperties
+ */
+export interface SubscriptionBenefitDiscordProperties {
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscordProperties
+     */
+    role_id: string;
+}
 /**
  * 
  * @export
@@ -4631,7 +4644,7 @@ export type SubscriptionBenefitType = typeof SubscriptionBenefitType[keyof typeo
  * @type SubscriptionBenefitUpdate
  * @export
  */
-export type SubscriptionBenefitUpdate = SubscriptionBenefitArticlesUpdate | SubscriptionBenefitCustomUpdate;
+export type SubscriptionBenefitUpdate = SubscriptionBenefitArticlesUpdate | SubscriptionBenefitCustomUpdate | SubscriptionBenefitDiscordUpdate;
 
 /**
  * 

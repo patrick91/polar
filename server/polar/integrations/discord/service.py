@@ -2,17 +2,79 @@ from typing import Any
 from uuid import UUID
 
 import structlog
+from sqlalchemy.exc import IntegrityError
 
-from polar.models import Organization
-from polar.postgres import AsyncSession, sql
+from polar.exceptions import ResourceAlreadyExists
 from polar.kit.utils import utc_now
+from polar.models import DiscordUserAccount, Organization, User
+from polar.postgres import AsyncSession, sql
 
-from .client import bot_client
+from .client import DiscordClient, bot_client
+from .schemas import DiscordUserCreate
 
 log = structlog.get_logger()
 
 
-class DiscordBot:
+class DiscordUserService:
+    def __init__(self, session: AsyncSession, polar_user: User):
+        self.session = session
+        self.polar_user = polar_user
+        self._client_initialized = False
+        self._client: DiscordClient | None = None
+        self._account: DiscordUserAccount | None = None
+
+    @classmethod
+    async def get_account(
+        cls,
+        session: AsyncSession,
+        polar_user_id: UUID,
+    ) -> DiscordUserAccount | None:
+        statement = sql.select(DiscordUserAccount).where(
+            DiscordUserAccount.user_id == polar_user_id
+        )
+        res = await session.execute(statement)
+        await session.commit()
+        account = res.scalars().one_or_none()
+        return account
+
+    @classmethod
+    async def link_account(
+        cls,
+        session: AsyncSession,
+        create_obj: DiscordUserCreate,
+    ) -> DiscordUserAccount:
+        try:
+            user = await DiscordUserAccount.create(
+                session, autocommit=True, **create_obj.dict()
+            )
+            return user
+        except IntegrityError:
+            raise ResourceAlreadyExists()
+
+    async def me(self) -> dict[str, Any] | None:
+        client = await self._get_client()
+        if client:
+            return await client.get_me()
+        return None
+
+    async def _get_client(self) -> DiscordClient | None:
+        if self._client_initialized:
+            return self._client
+
+        self._client_initialized = True
+        account = await self.get_account(self.session, self.polar_user.id)
+        if not account:
+            return None
+
+        self._account = account
+        client = DiscordClient(
+            headers={"Authorization": f"Bearer {self._account.access_token}"}
+        )
+        self._client = client
+        return self._client
+
+
+class DiscordBotService:
     def __init__(self, organization: Organization):
         self.organization = organization
 
@@ -40,7 +102,7 @@ class DiscordBot:
         if not self.organization.has_discord_bot():
             return None
 
-        response = await bot_client.get_guild(self.organization.discord_guild_id)
-        if response.is_success:
-            return response.json()
-        return None
+        return await bot_client.get_guild(
+            id=self.organization.discord_guild_id,
+            exclude_bot_roles=True,
+        )
