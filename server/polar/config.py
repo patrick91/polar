@@ -70,7 +70,7 @@ class Settings(BaseSettings):
     # Discord Bot
     DISCORD_CLIENT_ID: str = ""
     DISCORD_CLIENT_SECRET: str = ""
-    DISCORD_BOT_PERMISSIONS: str = "2415921155"
+    DISCORD_BOT_PERMISSIONS: str = "268435459"
 
     # Stripe
     STRIPE_SECRET_KEY: str = ""
