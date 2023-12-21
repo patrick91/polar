@@ -3,17 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes --exit-once-uploaded",
+    "dev": "next dev --port 3000",
+    "lint": "next lint",
+    "start": "next start",
+    "storybook": "storybook dev -p 6006 --no-open",
     "test": "jest"
-  },
-  "engines": {
-    "node": ">= 18 <20"
   },
   "dependencies": {
     "@14islands/r3f-scroll-rig": "^8.12.3",
@@ -30,9 +27,9 @@
     "@react-email/markdown": "0.0.8",
     "@react-email/render": "^0.0.10",
     "@react-email/tailwind": "0.0.13",
-    "@sentry/nextjs": "^7.88.0",
     "@react-three/drei": "^9.90.0",
     "@react-three/fiber": "^8.15.12",
+    "@sentry/nextjs": "^7.88.0",
     "@stripe/react-stripe-js": "^2.3.1",
     "@stripe/stripe-js": "^2.1.8",
     "@tailwindcss/forms": "^0.5.3",
@@ -113,5 +110,8 @@
     "tailwindcss-animate": "^1.0.5",
     "tsconfig": "workspace:*",
     "typescript": "5.3.3"
+  },
+  "engines": {
+    "node": ">= 18 <20"
   }
 }
