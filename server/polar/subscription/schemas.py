@@ -12,6 +12,7 @@ from polar.models.subscription import Subscription as SubscriptionModel
 from polar.models.subscription import SubscriptionStatus
 from polar.models.subscription_benefit import (
     SubscriptionBenefitArticlesProperties,
+    SubscriptionBenefitDiscordProperties,
     SubscriptionBenefitCustomProperties,
     SubscriptionBenefitProperties,
     SubscriptionBenefitType,
@@ -65,14 +66,14 @@ class SubscriptionBenefitCustomCreate(SubscriptionBenefitCreateBase):
     properties: SubscriptionBenefitCustomProperties
 
 
-# This is a dummy schema only there to produce a valid union below
-# Remove it when we have other create schemas to add
-class SubscriptionBenefitCustomBisCreate(SubscriptionBenefitCustomCreate):
-    ...
+class SubscriptionBenefitDiscordCreate(SubscriptionBenefitCreateBase):
+    type: Literal[SubscriptionBenefitType.discord]
+    is_tax_applicable: bool
+    properties: SubscriptionBenefitDiscordProperties
 
 
 SubscriptionBenefitCreate = (
-    SubscriptionBenefitCustomCreate | SubscriptionBenefitCustomBisCreate
+    SubscriptionBenefitCustomCreate | SubscriptionBenefitDiscordCreate
 )
 
 
@@ -97,8 +98,14 @@ class SubscriptionBenefitCustomUpdate(SubscriptionBenefitUpdateBase):
     properties: SubscriptionBenefitCustomProperties | None = None
 
 
+class SubscriptionBenefitDiscordUpdate(SubscriptionBenefitUpdateBase):
+    properties: SubscriptionBenefitCustomProperties | None = None
+
+
 SubscriptionBenefitUpdate = (
-    SubscriptionBenefitArticlesUpdate | SubscriptionBenefitCustomUpdate
+    SubscriptionBenefitArticlesUpdate
+    | SubscriptionBenefitCustomUpdate
+    | SubscriptionBenefitDiscordUpdate
 )
 
 
@@ -120,17 +127,25 @@ class SubscriptionBenefitArticles(SubscriptionBenefitBase):
     properties: SubscriptionBenefitArticlesProperties
 
 
+class SubscriptionBenefitDiscord(SubscriptionBenefitBase):
+    type: Literal[SubscriptionBenefitType.discord]
+    properties: SubscriptionBenefitDiscordProperties
+
+
 class SubscriptionBenefitCustom(SubscriptionBenefitBase):
     type: Literal[SubscriptionBenefitType.custom]
     properties: SubscriptionBenefitCustomProperties
     is_tax_applicable: bool
 
 
-SubscriptionBenefit = SubscriptionBenefitArticles | SubscriptionBenefitCustom
+SubscriptionBenefit = (
+    SubscriptionBenefitArticles | SubscriptionBenefitCustom | SubscriptionBenefitDiscord
+)
 
 subscription_benefit_schema_map: dict[
     SubscriptionBenefitType, type[SubscriptionBenefit]
 ] = {
+    SubscriptionBenefitType.discord: SubscriptionBenefitDiscord,
     SubscriptionBenefitType.articles: SubscriptionBenefitArticles,
     SubscriptionBenefitType.custom: SubscriptionBenefitCustom,
 }

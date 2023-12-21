@@ -20,7 +20,7 @@ import type {
   ListResourceSubscription,
   ListResourceSubscriptionSummary,
   ListResourceSubscriptionTier,
-  ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustom,
+  ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustomSubscriptionBenefitDiscord,
   Platforms,
   ResponseSubscriptionsCreateSubscriptionBenefit,
   ResponseSubscriptionsLookupSubscriptionBenefit,
@@ -658,7 +658,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Search Subscription Benefits
      */
-    async searchSubscriptionBenefitsRaw(requestParameters: SubscriptionsApiSearchSubscriptionBenefitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustom>> {
+    async searchSubscriptionBenefitsRaw(requestParameters: SubscriptionsApiSearchSubscriptionBenefitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustomSubscriptionBenefitDiscord>> {
         if (requestParameters.organizationName === null || requestParameters.organizationName === undefined) {
             throw new runtime.RequiredError('organizationName','Required parameter requestParameters.organizationName was null or undefined when calling searchSubscriptionBenefits.');
         }
@@ -720,7 +720,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Search Subscription Benefits
      */
-    async searchSubscriptionBenefits(requestParameters: SubscriptionsApiSearchSubscriptionBenefitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustom> {
+    async searchSubscriptionBenefits(requestParameters: SubscriptionsApiSearchSubscriptionBenefitsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustomSubscriptionBenefitDiscord> {
         const response = await this.searchSubscriptionBenefitsRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -13,6 +13,7 @@ from .base import (
     SubscriptionBenefitServiceProtocol,
 )
 from .custom import SubscriptionBenefitCustomService
+from .discord import SubscriptionBenefitDiscordService
 
 _SERVICE_CLASS_MAP: dict[
     SubscriptionBenefitType,
@@ -20,6 +21,7 @@ _SERVICE_CLASS_MAP: dict[
 ] = {
     SubscriptionBenefitType.custom: SubscriptionBenefitCustomService,
     SubscriptionBenefitType.articles: SubscriptionBenefitArticlesService,
+    SubscriptionBenefitType.discord: SubscriptionBenefitDiscordService,
 }
 
 

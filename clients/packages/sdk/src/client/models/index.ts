@@ -1634,7 +1634,7 @@ export interface IssueUpdateBadgeMessage {
  * @type ItemsInner
  * @export
  */
-export type ItemsInner = SubscriptionBenefitArticles | SubscriptionBenefitCustom;
+export type ItemsInner = SubscriptionBenefitArticles | SubscriptionBenefitCustom | SubscriptionBenefitDiscord;
 
 /**
  * 
@@ -1995,19 +1995,19 @@ export interface ListResourceTransaction {
 /**
  * 
  * @export
- * @interface ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustom
+ * @interface ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustomSubscriptionBenefitDiscord
  */
-export interface ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustom {
+export interface ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustomSubscriptionBenefitDiscord {
     /**
      * 
      * @type {Array<ItemsInner>}
-     * @memberof ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustom
+     * @memberof ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustomSubscriptionBenefitDiscord
      */
     items?: Array<ItemsInner>;
     /**
      * 
      * @type {Pagination}
-     * @memberof ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustom
+     * @memberof ListResourceUnionSubscriptionBenefitArticlesSubscriptionBenefitCustomSubscriptionBenefitDiscord
      */
     pagination: Pagination;
 }
@@ -3877,19 +3877,19 @@ export interface RepositoryBadgeSettingsUpdate {
  * @type ResponseSubscriptionsCreateSubscriptionBenefit
  * @export
  */
-export type ResponseSubscriptionsCreateSubscriptionBenefit = SubscriptionBenefitArticles | SubscriptionBenefitCustom;
+export type ResponseSubscriptionsCreateSubscriptionBenefit = SubscriptionBenefitArticles | SubscriptionBenefitCustom | SubscriptionBenefitDiscord;
 
 /**
  * @type ResponseSubscriptionsLookupSubscriptionBenefit
  * @export
  */
-export type ResponseSubscriptionsLookupSubscriptionBenefit = SubscriptionBenefitArticles | SubscriptionBenefitCustom;
+export type ResponseSubscriptionsLookupSubscriptionBenefit = SubscriptionBenefitArticles | SubscriptionBenefitCustom | SubscriptionBenefitDiscord;
 
 /**
  * @type ResponseSubscriptionsUpdateSubscriptionBenefit
  * @export
  */
-export type ResponseSubscriptionsUpdateSubscriptionBenefit = SubscriptionBenefitArticles | SubscriptionBenefitCustom;
+export type ResponseSubscriptionsUpdateSubscriptionBenefit = SubscriptionBenefitArticles | SubscriptionBenefitCustom | SubscriptionBenefitDiscord;
 
 /**
  * 
@@ -4346,7 +4346,7 @@ export interface SubscriptionBenefitArticlesUpdate {
  * @type SubscriptionBenefitCreate
  * @export
  */
-export type SubscriptionBenefitCreate = SubscriptionBenefitCustomBisCreate | SubscriptionBenefitCustomCreate;
+export type SubscriptionBenefitCreate = SubscriptionBenefitCustomCreate | SubscriptionBenefitDiscordCreate;
 
 /**
  * 
@@ -4434,59 +4434,6 @@ export type SubscriptionBenefitCustomTypeEnum = typeof SubscriptionBenefitCustom
 /**
  * 
  * @export
- * @interface SubscriptionBenefitCustomBisCreate
- */
-export interface SubscriptionBenefitCustomBisCreate {
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionBenefitCustomBisCreate
-     */
-    description: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionBenefitCustomBisCreate
-     */
-    organization_id?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionBenefitCustomBisCreate
-     */
-    repository_id?: string;
-    /**
-     * 
-     * @type {object}
-     * @memberof SubscriptionBenefitCustomBisCreate
-     */
-    properties: object;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionBenefitCustomBisCreate
-     */
-    type: SubscriptionBenefitCustomBisCreateTypeEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SubscriptionBenefitCustomBisCreate
-     */
-    is_tax_applicable: boolean;
-}
-
-
-/**
- * @export
- */
-export const SubscriptionBenefitCustomBisCreateTypeEnum = {
-    CUSTOM: 'custom'
-} as const;
-export type SubscriptionBenefitCustomBisCreateTypeEnum = typeof SubscriptionBenefitCustomBisCreateTypeEnum[keyof typeof SubscriptionBenefitCustomBisCreateTypeEnum];
-
-/**
- * 
- * @export
  * @interface SubscriptionBenefitCustomCreate
  */
 export interface SubscriptionBenefitCustomCreate {
@@ -4556,6 +4503,136 @@ export interface SubscriptionBenefitCustomUpdate {
      */
     properties?: object;
 }
+/**
+ * 
+ * @export
+ * @interface SubscriptionBenefitDiscord
+ */
+export interface SubscriptionBenefitDiscord {
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    created_at: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    modified_at?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    type: SubscriptionBenefitDiscordTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    description: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    selectable: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    deletable: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    organization_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    repository_id?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof SubscriptionBenefitDiscord
+     */
+    properties: object;
+}
+
+
+/**
+ * @export
+ */
+export const SubscriptionBenefitDiscordTypeEnum = {
+    DISCORD: 'discord'
+} as const;
+export type SubscriptionBenefitDiscordTypeEnum = typeof SubscriptionBenefitDiscordTypeEnum[keyof typeof SubscriptionBenefitDiscordTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface SubscriptionBenefitDiscordCreate
+ */
+export interface SubscriptionBenefitDiscordCreate {
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscordCreate
+     */
+    description: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscordCreate
+     */
+    organization_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscordCreate
+     */
+    repository_id?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof SubscriptionBenefitDiscordCreate
+     */
+    properties: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscordCreate
+     */
+    type: SubscriptionBenefitDiscordCreateTypeEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SubscriptionBenefitDiscordCreate
+     */
+    is_tax_applicable: boolean;
+}
+
+
+/**
+ * @export
+ */
+export const SubscriptionBenefitDiscordCreateTypeEnum = {
+    DISCORD: 'discord'
+} as const;
+export type SubscriptionBenefitDiscordCreateTypeEnum = typeof SubscriptionBenefitDiscordCreateTypeEnum[keyof typeof SubscriptionBenefitDiscordCreateTypeEnum];
+
 
 /**
  * An enumeration.
@@ -4563,7 +4640,8 @@ export interface SubscriptionBenefitCustomUpdate {
  */
 export const SubscriptionBenefitType = {
     CUSTOM: 'custom',
-    ARTICLES: 'articles'
+    ARTICLES: 'articles',
+    DISCORD: 'discord'
 } as const;
 export type SubscriptionBenefitType = typeof SubscriptionBenefitType[keyof typeof SubscriptionBenefitType];
 

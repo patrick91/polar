@@ -195,7 +195,7 @@ const SubscriptionTierBenefitsForm = ({
             className="self-start"
             onClick={toggle}
           >
-            New Benefit
+            + Add
           </Button>
         </div>
         <div className="dark:bg-polar-800 dark:border-polar-700 rounded-2xl border border-gray-200 bg-white px-6 py-4">
@@ -230,7 +230,7 @@ const SubscriptionTierBenefitsForm = ({
         isShown={isShown}
         hide={toggle}
         modalContent={
-          <NewSubscriptionTierBenefitModalContent
+          <AddSubscriptionTierBenefitModalContent
             organization={organization}
             hideModal={hide}
             onSelectBenefit={(benefit) => {
@@ -249,41 +249,18 @@ export default SubscriptionTierBenefitsForm
 interface NewSubscriptionTierBenefitModalContentProps {
   organization: Organization
   onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
+  addBenefit: (benefit: SubscriptionBenefitCreate) => void
   hideModal: () => void
+  isLoading: boolean
 }
 
 const NewSubscriptionTierBenefitModalContent = ({
   organization,
   onSelectBenefit,
+  addBenefit,
   hideModal,
+  isLoading,
 }: NewSubscriptionTierBenefitModalContentProps) => {
-  const [isLoading, setIsLoading] = useState(false)
-
-  const createSubscriptionBenefit = useCreateSubscriptionBenefit(
-    organization.name,
-  )
-
-  const handleCreateNewBenefit = useCallback(
-    async (subscriptionBenefitCreate: SubscriptionBenefitCreate) => {
-      try {
-        setIsLoading(true)
-        const benefit = await createSubscriptionBenefit.mutateAsync(
-          subscriptionBenefitCreate,
-        )
-
-        if (benefit) {
-          onSelectBenefit(benefit)
-          hideModal()
-        }
-      } catch (err) {
-        console.error(err)
-      } finally {
-        setIsLoading(false)
-      }
-    },
-    [hideModal, onSelectBenefit, createSubscriptionBenefit],
-  )
-
   const form = useForm<SubscriptionBenefitCreate>({
     defaultValues: {
       organization_id: organization.id,
@@ -308,7 +285,7 @@ const NewSubscriptionTierBenefitModalContent = ({
         <Form {...form}>
           <form
             className="flex flex-col gap-y-6"
-            onSubmit={handleSubmit(handleCreateNewBenefit)}
+            onSubmit={handleSubmit(addBenefit)}
           >
             <NewBenefitForm />
             <div className="mt-4 flex flex-row items-center gap-x-4">
@@ -327,6 +304,119 @@ const NewSubscriptionTierBenefitModalContent = ({
         </Form>
       </div>
     </div>
+  )
+}
+
+interface RecommendedSubscriptionTierBenefitProps {
+  organization: Organization
+  onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
+  addBenefit: (benefit: SubscriptionBenefitCreate) => void
+  showCustom: (state: boolean) => void
+  hideModal: () => void
+  isLoading: boolean
+}
+
+const RecommendedSubscriptionTierBenefits = ({
+  organization,
+  onSelectBenefit,
+  addBenefit,
+  showCustom,
+  hideModal,
+  isLoading,
+}: RecommendedSubscriptionTierBenefitProps) => {
+  const createDiscordBenefit = () => {
+    addBenefit({
+      organization_id: organization.id,
+      type: 'discord',
+      properties: {},
+      is_tax_applicable: true,
+      description: 'Discord Access',
+    })
+  }
+
+  return (
+    <div className="flex flex-col gap-y-6 px-8 py-10">
+      <div>
+        <h2 className="text-lg">Add Subscription Benefit</h2>
+        <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
+          Created benefits will be available for use in all tiers of your
+          organization
+        </p>
+      </div>
+      <div className="flex flex-col gap-y-6">
+        <ul className="flex flex-col gap-y-4">
+          <li>
+            <a href="#" onClick={createDiscordBenefit}>
+              Discord Access
+            </a>
+          </li>
+        </ul>
+
+        <a href="#" onClick={() => showCustom(true)}>
+          Create Custom
+        </a>
+      </div>
+    </div>
+  )
+}
+interface AddSubscriptionTierBenefitModalContentProps {
+  organization: Organization
+  onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
+  hideModal: () => void
+}
+
+const AddSubscriptionTierBenefitModalContent = ({
+  organization,
+  onSelectBenefit,
+  hideModal,
+}: AddSubscriptionTierBenefitModalContentProps) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [showCustom, setShowCustom] = useState(false)
+
+  const createSubscriptionBenefit = useCreateSubscriptionBenefit(
+    organization.name,
+  )
+
+  const addBenefit = useCallback(
+    async (newBenefit: SubscriptionBenefitCreate) => {
+      try {
+        setIsLoading(true)
+        const benefit = await createSubscriptionBenefit.mutateAsync(newBenefit)
+
+        if (benefit) {
+          onSelectBenefit(benefit)
+          hideModal()
+        }
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [hideModal, onSelectBenefit, createSubscriptionBenefit],
+  )
+
+  if (showCustom) {
+    return (
+      <NewSubscriptionTierBenefitModalContent
+        organization={organization}
+        onSelectBenefit={onSelectBenefit}
+        addBenefit={addBenefit}
+        hideModal={hideModal}
+        isLoading={isLoading}
+      />
+    )
+  }
+
+  return (
+    <RecommendedSubscriptionTierBenefits
+      organization={organization}
+      onSelectBenefit={onSelectBenefit}
+      addBenefit={addBenefit}
+      hideModal={hideModal}
+      showCustom={setShowCustom}
+      isLoading={isLoading}
+    />
   )
 }
 
