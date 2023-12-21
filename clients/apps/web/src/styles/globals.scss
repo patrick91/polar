@@ -52,6 +52,35 @@
   }
 }
 
+/* landing gradient */
+@layer base {
+  :root {
+    --gradient-color-1: #DEDEDE;
+    --gradient-color-2: #D9D9D9;
+    --gradient-color-3: #BABABA;
+    --gradient-color-4: #999999;
+
+
+
+    // 50: '#E5EFFF',
+    // 100: '#CCE0FF',
+    // 200: '#99C0FF',
+    // 300: '#66A1FF',
+    // 400: '#3381FF',
+    // 500: '#0000FF',
+    // 600: '#0054DB',
+    // 700: '#0047B8',
+    // 800: '#003994',
+    // 900: '#002B70',
+    // 950: '#00245E'
+
+    --gradient-color-1: #5495ff;
+    --gradient-color-2: #3381FF;
+    --gradient-color-3: #1a1aff;
+    --gradient-color-4: #0054DB;
+  }
+}
+
 /* chadcn/ui */
 
 @layer base {
