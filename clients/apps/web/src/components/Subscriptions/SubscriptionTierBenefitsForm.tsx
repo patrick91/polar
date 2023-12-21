@@ -28,6 +28,7 @@ import {
 import {
   useCreateSubscriptionBenefit,
   useDeleteSubscriptionBenefit,
+  useDiscordGuildForOrg,
   useUpdateSubscriptionBenefit,
 } from 'polarkit/hooks'
 import { useCallback, useState } from 'react'
@@ -324,6 +325,8 @@ const RecommendedSubscriptionTierBenefits = ({
   hideModal,
   isLoading,
 }: RecommendedSubscriptionTierBenefitProps) => {
+  const discordGuildQuery = useDiscordGuildForOrg(organization.name)
+
   const createDiscordBenefit = () => {
     addBenefit({
       organization_id: organization.id,
@@ -333,6 +336,8 @@ const RecommendedSubscriptionTierBenefits = ({
       description: 'Discord Access',
     })
   }
+
+  const discordGuild = discordGuildQuery?.data
 
   return (
     <div className="flex flex-col gap-y-6 px-8 py-10">
@@ -348,6 +353,7 @@ const RecommendedSubscriptionTierBenefits = ({
           <li>
             <a href="#" onClick={createDiscordBenefit}>
               Discord Access
+              {discordGuildQuery.isFetched && <span>{discordGuild.name}</span>}
             </a>
           </li>
         </ul>

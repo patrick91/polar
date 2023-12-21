@@ -15,7 +15,6 @@
 
 import * as runtime from '../runtime';
 import type {
-  DiscordServer,
   GithubUser,
   HTTPValidationError,
   InstallationCreate,
@@ -27,7 +26,7 @@ import type {
   WebhookResponse,
 } from '../models/index';
 
-export interface IntegrationsApiDiscordServerLookupRequest {
+export interface IntegrationsApiDiscordGuildLookupRequest {
     organizationName: string;
     platform: Platforms;
 }
@@ -82,13 +81,13 @@ export class IntegrationsApi extends runtime.BaseAPI {
      * Lookup Discord Server for Organization.
      * Lookup Discord Server for Organization (Public API)
      */
-    async discordServerLookupRaw(requestParameters: IntegrationsApiDiscordServerLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DiscordServer>> {
+    async discordGuildLookupRaw(requestParameters: IntegrationsApiDiscordGuildLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters.organizationName === null || requestParameters.organizationName === undefined) {
-            throw new runtime.RequiredError('organizationName','Required parameter requestParameters.organizationName was null or undefined when calling discordServerLookup.');
+            throw new runtime.RequiredError('organizationName','Required parameter requestParameters.organizationName was null or undefined when calling discordGuildLookup.');
         }
 
         if (requestParameters.platform === null || requestParameters.platform === undefined) {
-            throw new runtime.RequiredError('platform','Required parameter requestParameters.platform was null or undefined when calling discordServerLookup.');
+            throw new runtime.RequiredError('platform','Required parameter requestParameters.platform was null or undefined when calling discordGuildLookup.');
         }
 
         const queryParameters: any = {};
@@ -112,21 +111,21 @@ export class IntegrationsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/v1/integrations/discord/servers/lookup`,
+            path: `/api/v1/integrations/discord/guild/lookup`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response);
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * Lookup Discord Server for Organization.
      * Lookup Discord Server for Organization (Public API)
      */
-    async discordServerLookup(requestParameters: IntegrationsApiDiscordServerLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DiscordServer> {
-        const response = await this.discordServerLookupRaw(requestParameters, initOverrides);
+    async discordGuildLookup(requestParameters: IntegrationsApiDiscordGuildLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.discordGuildLookupRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

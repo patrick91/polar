@@ -3,13 +3,13 @@ import { UseQueryResult, useQuery } from '@tanstack/react-query'
 import { api } from '../../api'
 import { defaultRetry } from './retry'
 
-export const useDiscordServerForOrg: (
+export const useDiscordGuildForOrg: (
   orgName?: string,
 ) => UseQueryResult<DiscordServer, Error> = (orgName?: string) =>
   useQuery({
-    queryKey: ['discord', 'lookup', orgName],
+    queryKey: ['discord', 'guild', orgName],
     queryFn: () =>
-      api.integrations.discordServerLookup({
+      api.integrations.discordGuildLookup({
         platform: Platforms.GITHUB,
         organizationName: orgName || '',
       }),

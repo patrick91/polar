@@ -25,8 +25,7 @@ from polar.postgres import AsyncSession, get_db_session
 from polar.tags.api import Tags
 from polar.models import Organization
 
-from .schemas import DiscordServerCreate, DiscordServer
-from .service import discord_server
+from .service import DiscordBot
 
 log = structlog.get_logger()
 
@@ -53,9 +52,7 @@ async def get_server_bot_authorization_url(
     state = {}
     state["auth_type"] = "server"
     state["org_id"] = str(org.id)
-    state["org_name"] = org.name
 
-    # state["org_name"]
     encoded_state = jwt.encode(data=state, secret=settings.SECRET)
 
     authorization_url = await discord_oauth_client.get_authorization_url(
@@ -69,17 +66,31 @@ async def get_server_bot_authorization_url(
 
 
 async def authorize_server_bot(
-    session: AsyncSession, state: dict[str, Any], payload: dict[str, Any]
+    session: AsyncSession,
+    auth: UserRequiredAuth,
+    authz: Authz,
+    state: dict[str, Any],
+    payload: dict[str, Any],
 ) -> str:
     org_id = state["org_id"]
-    org_name = state["org_name"]
+    org = await organization_service.get(session, org_id)
+    if not org:
+        raise ResourceNotFound()
 
-    new_server = DiscordServerCreate.from_discord_authorization(org_id, payload)
-    server = await discord_server.create(session, new_server)
+    # Require organization admin to read Discord server
+    if not await authz.can(auth.subject, AccessType.write, org):
+        raise Unauthorized()
+
+    guild_id = payload["guild"]["id"]
+    connected = await DiscordBot.link_organization_by_id(
+        session,
+        organization=org,
+        guild_id=guild_id,
+    )
 
     # TODO: Handle server already exists & better handling
-    success_flag = 1 if server else 0
-    path = f"/maintainer/{org_name}/integrations?discord_setup={success_flag}"
+    success_flag = 1 if connected else 0
+    path = f"/maintainer/{org.name}/integrations?discord_setup={success_flag}"
     redirect_url = get_safe_return_url(path)
     return redirect_url
 
@@ -113,11 +124,12 @@ async def discord_authorize_server(
 async def discord_callback(
     request: Request,
     response: Response,
+    auth: UserRequiredAuth,
     session: AsyncSession = Depends(get_db_session),
     access_token_state: tuple[OAuth2Token, str | None] = Depends(
         oauth2_authorize_callback
     ),
-    auth: Auth = Depends(Auth.optional_user),
+    authz: Authz = Depends(Authz.authz),
 ) -> RedirectResponse:
     token_data, state = access_token_state
     if not state:
@@ -132,7 +144,13 @@ async def discord_callback(
     if auth_type != "server":
         raise Unauthorized("Invalid auth type")
 
-    redirect_url = await authorize_server_bot(session, state_data, token_data)
+    redirect_url = await authorize_server_bot(
+        session,
+        auth,
+        authz,
+        state_data,
+        token_data,
+    )
     return RedirectResponse(redirect_url, 303)
 
 
@@ -142,20 +160,20 @@ async def discord_callback(
 
 
 @router.get(
-    "/servers/lookup",
-    response_model=DiscordServer,
+    "/guild/lookup",
+    response_model=dict[str, Any],
     tags=[Tags.PUBLIC],
     description="Lookup Discord Server for Organization.",
     summary="Lookup Discord Server for Organization (Public API)",
     status_code=200,
     responses={404: {}},
 )
-async def discord_server_lookup(
+async def discord_guild_lookup(
     organization_name_platform: OrganizationNamePlatform,
     auth: UserRequiredAuth,
     session: AsyncSession = Depends(get_db_session),
     authz: Authz = Depends(Authz.authz),
-) -> DiscordServer:
+) -> dict[str, Any]:
     (organization_name, platform) = organization_name_platform
     org = await organization_service.get_by_name(session, platform, organization_name)
     if not org:
@@ -165,8 +183,9 @@ async def discord_server_lookup(
     if not await authz.can(auth.subject, AccessType.write, org):
         raise Unauthorized()
 
-    server = await discord_server.get_by(session, organization_id=org.id)
-    if server:
-        return DiscordServer.from_orm(server)
+    bot = DiscordBot(org)
+    guild = await bot.get_guild()
+    if guild:
+        return guild
 
     raise ResourceNotFound()

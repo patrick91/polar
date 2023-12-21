@@ -6,7 +6,7 @@ import Spinner from '@/components/Shared/Spinner'
 import { useCurrentOrgAndRepoFromURL } from '@/hooks/org'
 import { getServerURL } from 'polarkit/api'
 import { ShadowBox } from 'polarkit/components/ui/atoms'
-import { useDiscordServerForOrg } from 'polarkit/hooks'
+import { useDiscordGuildForOrg } from 'polarkit/hooks'
 
 const getDiscordAuthorizeMaintainerURL = (orgName: string) => {
   const path = '/api/v1/integrations/discord/authorize_server'
@@ -15,9 +15,9 @@ const getDiscordAuthorizeMaintainerURL = (orgName: string) => {
 
 export default function ClientPage() {
   const { org, isLoaded } = useCurrentOrgAndRepoFromURL()
-  const discordServerQuery = useDiscordServerForOrg(org?.name)
+  const discordGuildQuery = useDiscordGuildForOrg(org?.name)
 
-  if (!isLoaded || !org || !discordServerQuery.isFetched) {
+  if (!isLoaded || !org || !discordGuildQuery.isFetched) {
     return (
       <DashboardBody>
         <Spinner />
@@ -25,7 +25,7 @@ export default function ClientPage() {
     )
   }
 
-  const server = discordServerQuery?.data
+  const guild = discordGuildQuery?.data
 
   return (
     <DashboardBody>
@@ -34,20 +34,20 @@ export default function ClientPage() {
           <SectionDescription title="Discord" description="Setup Discord" />
 
           <ShadowBox>
-            {!server && (
+            {!guild && (
               <a href={getDiscordAuthorizeMaintainerURL(org.name)}>
                 Connect Discord
               </a>
             )}
 
-            {server && (
+            {guild && (
               <>
-                {server.guild_icon && (
+                {guild.icon && (
                   <img
-                    src={`https://cdn.discordapp.com/icons/${server.guild_id}/${server.guild_icon}.png`}
+                    src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
                   />
                 )}
-                <p>{server.guild_name}</p>
+                <p>{guild.name}</p>
               </>
             )}
           </ShadowBox>

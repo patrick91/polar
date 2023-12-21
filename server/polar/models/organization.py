@@ -11,6 +11,7 @@ from polar.enums import Platforms
 from polar.exceptions import PolarError
 from polar.kit.db.models import RecordModel
 from polar.kit.extensions.sqlalchemy import PostgresUUID, StringEnum
+from polar.kit.utils import utc_now
 
 from .account import Account
 
@@ -151,6 +152,18 @@ class Organization(RecordModel):
     #
     # End: Fields synced from GitHub
     #
+
+    # Discord Bot
+    discord_guild_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    discord_bot_connected_at: Mapped[datetime | None] = mapped_column(
+        TIMESTAMP(timezone=True), onupdate=utc_now, nullable=True, default=None
+    )
+
+    def has_discord_bot(self) -> bool:
+        if not self.discord_guild_id:
+            return False
+
+        return self.discord_bot_connected_at is not None
 
     @property
     def polar_site_url(self) -> str:

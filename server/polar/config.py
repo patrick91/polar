@@ -67,9 +67,10 @@ class Settings(BaseSettings):
     GITHUB_CLIENT_SECRET: str = ""
     GITHUB_POLAR_USER_ACCESS_TOKEN: str | None = None
 
-    # Discord Bot
+    # Discord
     DISCORD_CLIENT_ID: str = ""
     DISCORD_CLIENT_SECRET: str = ""
+    DISCORD_BOT_TOKEN: str = ""
     DISCORD_BOT_PERMISSIONS: str = "268435459"
 
     # Stripe
