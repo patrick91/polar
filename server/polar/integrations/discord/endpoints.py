@@ -18,10 +18,12 @@ from polar.authz.service import AccessType, Authz
 from polar.config import settings
 from polar.exceptions import ResourceNotFound, Unauthorized
 from polar.kit import jwt
+from polar.kit.http import get_safe_return_url
 from polar.organization.dependencies import OrganizationNamePlatform
 from polar.organization.service import organization as organization_service
 from polar.postgres import AsyncSession, get_db_session
 from polar.tags.api import Tags
+from polar.models import Organization
 
 from .schemas import DiscordServerCreate, DiscordServer
 from .service import discord_server
@@ -46,13 +48,14 @@ oauth2_authorize_callback = OAuth2AuthorizeCallback(
 
 async def get_server_bot_authorization_url(
     request: Request,
-    auth: Auth,
-    org_id: UUID,
+    org: Organization,
 ) -> str:
-    # TODO: Make sure user has the permissions to connect
     state = {}
     state["auth_type"] = "server"
-    state["org_id"] = str(org_id)
+    state["org_id"] = str(org.id)
+    state["org_name"] = org.name
+
+    # state["org_name"]
     encoded_state = jwt.encode(data=state, secret=settings.SECRET)
 
     authorization_url = await discord_oauth_client.get_authorization_url(
@@ -67,21 +70,42 @@ async def get_server_bot_authorization_url(
 
 async def authorize_server_bot(
     session: AsyncSession, state: dict[str, Any], payload: dict[str, Any]
-) -> DiscordServer:
+) -> str:
     org_id = state["org_id"]
+    org_name = state["org_name"]
+
     new_server = DiscordServerCreate.from_discord_authorization(org_id, payload)
-    # TODO: Handle server already exists
     server = await discord_server.create(session, new_server)
-    return DiscordServer.from_orm(server)
+
+    # TODO: Handle server already exists & better handling
+    success_flag = 1 if server else 0
+    path = f"/maintainer/{org_name}/integrations?discord_setup={success_flag}"
+    redirect_url = get_safe_return_url(path)
+    return redirect_url
 
 
-@router.get("/authorize", name="integrations.discord.authorize", tags=[Tags.INTERNAL])
-async def discord_authorize(
+@router.get(
+    "/authorize_server",
+    name="integrations.discord.authorize_server",
+    tags=[Tags.INTERNAL],
+)
+async def discord_authorize_server(
     request: Request,
-    org_id: UUID,
-    auth: Auth = Depends(Auth.current_user),
+    organization_name_platform: OrganizationNamePlatform,
+    auth: UserRequiredAuth,
+    session: AsyncSession = Depends(get_db_session),
+    authz: Authz = Depends(Authz.authz),
 ) -> RedirectResponse:
-    authorization_url = await get_server_bot_authorization_url(request, auth, org_id)
+    (organization_name, platform) = organization_name_platform
+    org = await organization_service.get_by_name(session, platform, organization_name)
+    if not org:
+        raise ResourceNotFound()
+
+    # Require organization admin to read Discord server
+    if not await authz.can(auth.subject, AccessType.write, org):
+        raise Unauthorized()
+
+    authorization_url = await get_server_bot_authorization_url(request, org)
     return RedirectResponse(authorization_url, 303)
 
 
@@ -94,7 +118,7 @@ async def discord_callback(
         oauth2_authorize_callback
     ),
     auth: Auth = Depends(Auth.optional_user),
-) -> DiscordServer:
+) -> RedirectResponse:
     token_data, state = access_token_state
     if not state:
         raise Unauthorized("No state")
@@ -107,7 +131,14 @@ async def discord_callback(
     auth_type = state_data["auth_type"]
     if auth_type != "server":
         raise Unauthorized("Invalid auth type")
-    return await authorize_server_bot(session, state_data, token_data)
+
+    redirect_url = await authorize_server_bot(session, state_data, token_data)
+    return RedirectResponse(redirect_url, 303)
+
+
+###############################################################################
+# API
+###############################################################################
 
 
 @router.get(

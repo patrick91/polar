@@ -8,8 +8,9 @@ import { getServerURL } from 'polarkit/api'
 import { ShadowBox } from 'polarkit/components/ui/atoms'
 import { useDiscordServerForOrg } from 'polarkit/hooks'
 
-const getDiscordAuthorizeMaintainerURL = (orgId: string) => {
-  return `${getServerURL()}/api/v1/integrations/discord/authorize?org_id=${orgId}`
+const getDiscordAuthorizeMaintainerURL = (orgName: string) => {
+  const path = '/api/v1/integrations/discord/authorize_server'
+  return `${getServerURL()}${path}?organization_name=${orgName}&platform=github`
 }
 
 export default function ClientPage() {
@@ -34,7 +35,7 @@ export default function ClientPage() {
 
           <ShadowBox>
             {!server && (
-              <a href={getDiscordAuthorizeMaintainerURL(org.id)}>
+              <a href={getDiscordAuthorizeMaintainerURL(org.name)}>
                 Connect Discord
               </a>
             )}

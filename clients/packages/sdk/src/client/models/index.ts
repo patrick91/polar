@@ -4633,6 +4633,25 @@ export const SubscriptionBenefitDiscordCreateTypeEnum = {
 } as const;
 export type SubscriptionBenefitDiscordCreateTypeEnum = typeof SubscriptionBenefitDiscordCreateTypeEnum[keyof typeof SubscriptionBenefitDiscordCreateTypeEnum];
 
+/**
+ * 
+ * @export
+ * @interface SubscriptionBenefitDiscordUpdate
+ */
+export interface SubscriptionBenefitDiscordUpdate {
+    /**
+     * 
+     * @type {string}
+     * @memberof SubscriptionBenefitDiscordUpdate
+     */
+    description?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof SubscriptionBenefitDiscordUpdate
+     */
+    properties?: object;
+}
 
 /**
  * An enumeration.
