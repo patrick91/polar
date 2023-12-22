@@ -46,7 +46,7 @@ class SubscriptionBenefitCustomProperties(SubscriptionBenefitProperties):
 
 
 class SubscriptionBenefitDiscordProperties(SubscriptionBenefitProperties):
-    ...
+    role_id: str
 
 
 class SubscriptionBenefitArticlesProperties(SubscriptionBenefitProperties):

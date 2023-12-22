@@ -106,3 +106,22 @@ class DiscordBotService:
             id=self.organization.discord_guild_id,
             exclude_bot_roles=True,
         )
+
+    async def add_member(
+        self,
+        organization: Organization,
+        account: DiscordUserAccount,
+        discord_user_id: str,  # HACK  - FIX ME
+        role_id: str,
+        nick: str | None,
+    ) -> dict[str, Any] | None:
+        if not organization.discord_guild_id:
+            return None
+
+        return await bot_client.add_member(
+            guild_id=organization.discord_guild_id,
+            discord_user_id=discord_user_id,
+            discord_user_access_token=account.access_token,
+            role_id=role_id,
+            nick=nick,
+        )

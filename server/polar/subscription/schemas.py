@@ -99,7 +99,7 @@ class SubscriptionBenefitCustomUpdate(SubscriptionBenefitUpdateBase):
 
 
 class SubscriptionBenefitDiscordUpdate(SubscriptionBenefitUpdateBase):
-    properties: SubscriptionBenefitCustomProperties | None = None
+    properties: SubscriptionBenefitDiscordProperties | None = None
 
 
 SubscriptionBenefitUpdate = (
