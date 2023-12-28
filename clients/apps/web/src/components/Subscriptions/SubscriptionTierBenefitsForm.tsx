@@ -1,3 +1,4 @@
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import {
   AutoAwesome,
   LoyaltyOutlined,
@@ -155,6 +156,14 @@ const BenefitRow = ({
   )
 }
 
+interface BenefitCreationProps {
+  organization: Organization
+  onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
+  addBenefit: (benefit: SubscriptionBenefitCreate) => void
+  showBenefitSelection: () => void
+  isLoading: boolean
+}
+
 interface SubscriptionTierBenefitsFormProps {
   organization: Organization
   benefits: SubscriptionTierBenefit[]
@@ -247,21 +256,13 @@ const SubscriptionTierBenefitsForm = ({
 
 export default SubscriptionTierBenefitsForm
 
-interface NewSubscriptionTierBenefitModalContentProps {
-  organization: Organization
-  onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
-  addBenefit: (benefit: SubscriptionBenefitCreate) => void
-  hideModal: () => void
-  isLoading: boolean
-}
-
 const NewSubscriptionTierBenefitModalContent = ({
   organization,
   onSelectBenefit,
   addBenefit,
-  hideModal,
+  showBenefitSelection,
   isLoading,
-}: NewSubscriptionTierBenefitModalContentProps) => {
+}: BenefitCreationProps) => {
   const form = useForm<SubscriptionBenefitCreate>({
     defaultValues: {
       organization_id: organization.id,
@@ -296,9 +297,9 @@ const NewSubscriptionTierBenefitModalContent = ({
               <Button
                 variant="ghost"
                 className="self-start"
-                onClick={hideModal}
+                onClick={showBenefitSelection}
               >
-                Cancel
+                Back
               </Button>
             </div>
           </form>
@@ -308,66 +309,111 @@ const NewSubscriptionTierBenefitModalContent = ({
   )
 }
 
-interface RecommendedSubscriptionTierBenefitProps {
-  organization: Organization
-  onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
-  addBenefit: (benefit: SubscriptionBenefitCreate) => void
-  showCustom: (state: boolean) => void
-  hideModal: () => void
-  isLoading: boolean
-}
-
-const RecommendedSubscriptionTierBenefits = ({
+const DiscordBenefitCreation = ({
   organization,
   onSelectBenefit,
   addBenefit,
-  showCustom,
-  hideModal,
+  showBenefitSelection,
   isLoading,
-}: RecommendedSubscriptionTierBenefitProps) => {
+}: BenefitCreationProps) => {
   const discordGuildQuery = useDiscordGuildForOrg(organization.name)
+  const [roleId, setRoleId] = useState<string>(null)
+  const [description, setDescription] = useState<string>(null)
 
-  const createDiscordBenefit = () => {
+  const createDiscordBenefit = (e) => {
+    e.preventDefault()
+    if (!roleId || !description) return
+
     addBenefit({
       organization_id: organization.id,
       type: 'discord',
       properties: {
-        // TODO: MAKE THIS DYNAMIC
-        role_id: '1187407263531536455',
+        role_id: roleId,
       },
       is_tax_applicable: true,
-      description: 'Discord Access',
+      description: description,
     })
   }
 
   const discordGuild = discordGuildQuery?.data
+  const hasDiscordWithRoles = discordGuild && discordGuild.roles.length > 0
+
+  const onRoleSelected = (roleId: string) => {
+    setRoleId(roleId)
+  }
 
   return (
     <div className="flex flex-col gap-y-6 px-8 py-10">
       <div>
-        <h2 className="text-lg">Add Subscription Benefit</h2>
+        <h2 className="text-lg">Discord</h2>
         <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
-          Created benefits will be available for use in all tiers of your
-          organization
+          Invite subscribers to your Discord server.
         </p>
       </div>
       <div className="flex flex-col gap-y-6">
-        <ul className="flex flex-col gap-y-4">
-          <li>
-            <a href="#" onClick={createDiscordBenefit}>
-              Discord Access
-              {discordGuildQuery.isFetched && <span>{discordGuild.name}</span>}
-            </a>
-          </li>
-        </ul>
+        {!discordGuild && <p>You need to setup a Discord integration</p>}
 
-        <a href="#" onClick={() => showCustom(true)}>
-          Create Custom
-        </a>
+        {!hasDiscordWithRoles && <p>You need to setup a Discord roles</p>}
+
+        {hasDiscordWithRoles && (
+          <form
+            className="flex flex-col gap-y-6"
+            onSubmit={createDiscordBenefit}
+          >
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                asChild
+                onMouseDown={(e) => e.stopPropagation()}
+              >
+                <Button
+                  variant="secondary"
+                  className="px-2 text-left"
+                  size="sm"
+                >
+                  <span>Select Role</span>
+                  <ChevronDownIcon className="ml-2 h-3 w-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {discordGuild.roles.map((role) => (
+                  <DropdownMenuItem onClick={() => onRoleSelected(role.id)}>
+                    {role.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <div className="flex flex-row items-center justify-between">
+              <label>Description</label>
+              <span className="dark:text-polar-400 text-sm text-gray-400"></span>
+            </div>
+            <Input
+              name="description"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value)
+              }}
+            />
+
+            <div className="mt-4 flex flex-row items-center gap-x-4">
+              <Button className="self-start" type="submit" loading={isLoading}>
+                Create
+              </Button>
+              <Button
+                variant="ghost"
+                className="self-start"
+                onClick={showBenefitSelection}
+              >
+                Back
+              </Button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   )
 }
+
 interface AddSubscriptionTierBenefitModalContentProps {
   organization: Organization
   onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
@@ -381,6 +427,7 @@ const AddSubscriptionTierBenefitModalContent = ({
 }: AddSubscriptionTierBenefitModalContentProps) => {
   const [isLoading, setIsLoading] = useState(false)
   const [showCustom, setShowCustom] = useState(false)
+  const [currentView, changeView] = useState<string>(null)
 
   const createSubscriptionBenefit = useCreateSubscriptionBenefit(
     organization.name,
@@ -405,28 +452,60 @@ const AddSubscriptionTierBenefitModalContent = ({
     [hideModal, onSelectBenefit, createSubscriptionBenefit],
   )
 
-  if (showCustom) {
+  const showBenefitSelection = () => {
+    changeView(null)
+  }
+
+  if (currentView === null) {
     return (
-      <NewSubscriptionTierBenefitModalContent
-        organization={organization}
-        onSelectBenefit={onSelectBenefit}
-        addBenefit={addBenefit}
-        hideModal={hideModal}
-        isLoading={isLoading}
-      />
+      <div className="flex flex-col gap-y-6 px-8 py-10">
+        <div>
+          <h2 className="text-lg">Add Subscription Benefit</h2>
+          <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
+            Created benefits will be available for use in all tiers of your
+            organization
+          </p>
+        </div>
+        <div className="flex flex-col gap-y-6">
+          <ul className="flex flex-col gap-y-4">
+            <li>
+              <a href="#" onClick={() => changeView('discord')}>
+                Discord Access
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={() => changeView('custom')}>
+                Create Custom
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     )
   }
 
-  return (
-    <RecommendedSubscriptionTierBenefits
-      organization={organization}
-      onSelectBenefit={onSelectBenefit}
-      addBenefit={addBenefit}
-      hideModal={hideModal}
-      showCustom={setShowCustom}
-      isLoading={isLoading}
-    />
-  )
+  switch (currentView) {
+    case 'discord':
+      return (
+        <DiscordBenefitCreation
+          organization={organization}
+          onSelectBenefit={onSelectBenefit}
+          addBenefit={addBenefit}
+          showBenefitSelection={showBenefitSelection}
+          isLoading={isLoading}
+        />
+      )
+    default:
+      return (
+        <NewSubscriptionTierBenefitModalContent
+          organization={organization}
+          onSelectBenefit={onSelectBenefit}
+          addBenefit={addBenefit}
+          showBenefitSelection={showBenefitSelection}
+          isLoading={isLoading}
+        />
+      )
+  }
 }
 
 interface UpdateSubscriptionTierBenefitModalContentProps {
