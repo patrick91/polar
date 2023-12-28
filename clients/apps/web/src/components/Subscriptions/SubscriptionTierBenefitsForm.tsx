@@ -1,43 +1,24 @@
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import {
   AutoAwesome,
   LoyaltyOutlined,
   MoreVertOutlined,
 } from '@mui/icons-material'
-import {
-  Organization,
-  SubscriptionBenefitCreate,
-  SubscriptionBenefitUpdate,
-  SubscriptionTierBenefit,
-} from '@polar-sh/sdk'
-import { Button, Input, Switch } from 'polarkit/components/ui/atoms'
-import { Checkbox } from 'polarkit/components/ui/checkbox'
+import { Organization, SubscriptionTierBenefit } from '@polar-sh/sdk'
+import { Button, Switch } from 'polarkit/components/ui/atoms'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from 'polarkit/components/ui/dropdown-menu'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from 'polarkit/components/ui/form'
-import {
-  useCreateSubscriptionBenefit,
-  useDeleteSubscriptionBenefit,
-  useDiscordGuildForOrg,
-  useUpdateSubscriptionBenefit,
-} from 'polarkit/hooks'
-import { useCallback, useState } from 'react'
-import { useForm, useFormContext } from 'react-hook-form'
+import { useDeleteSubscriptionBenefit } from 'polarkit/hooks'
+import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { Modal } from '../Modal'
 import { useModal } from '../Modal/useModal'
 import { ConfirmModal } from '../Shared/ConfirmModal'
+import CreateBenefitSelection from './Benefits/Create'
+import UpdateBenefit from './Benefits/Update'
 import {
   SubscriptionBenefit,
   isPremiumArticlesBenefit,
@@ -137,7 +118,7 @@ const BenefitRow = ({
         isShown={isEditShown}
         hide={hideEdit}
         modalContent={
-          <UpdateSubscriptionTierBenefitModalContent
+          <UpdateBenefit
             organization={organization}
             benefit={benefit}
             hideModal={hideEdit}
@@ -154,14 +135,6 @@ const BenefitRow = ({
       />
     </div>
   )
-}
-
-interface BenefitCreationProps {
-  organization: Organization
-  onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
-  addBenefit: (benefit: SubscriptionBenefitCreate) => void
-  showBenefitSelection: () => void
-  isLoading: boolean
 }
 
 interface SubscriptionTierBenefitsFormProps {
@@ -240,7 +213,7 @@ const SubscriptionTierBenefitsForm = ({
         isShown={isShown}
         hide={toggle}
         modalContent={
-          <AddSubscriptionTierBenefitModalContent
+          <CreateBenefitSelection
             organization={organization}
             hideModal={hide}
             onSelectBenefit={(benefit) => {
@@ -255,399 +228,3 @@ const SubscriptionTierBenefitsForm = ({
 }
 
 export default SubscriptionTierBenefitsForm
-
-const NewSubscriptionTierBenefitModalContent = ({
-  organization,
-  onSelectBenefit,
-  addBenefit,
-  showBenefitSelection,
-  isLoading,
-}: BenefitCreationProps) => {
-  const form = useForm<SubscriptionBenefitCreate>({
-    defaultValues: {
-      organization_id: organization.id,
-      properties: {},
-      type: 'custom',
-      is_tax_applicable: false,
-    },
-  })
-
-  const { handleSubmit } = form
-
-  return (
-    <div className="flex flex-col gap-y-6 px-8 py-10">
-      <div>
-        <h2 className="text-lg">Create Subscription Benefit</h2>
-        <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
-          Created benefits will be available for use in all tiers of your
-          organization
-        </p>
-      </div>
-      <div className="flex flex-col gap-y-6">
-        <Form {...form}>
-          <form
-            className="flex flex-col gap-y-6"
-            onSubmit={handleSubmit(addBenefit)}
-          >
-            <NewBenefitForm />
-            <div className="mt-4 flex flex-row items-center gap-x-4">
-              <Button className="self-start" type="submit" loading={isLoading}>
-                Create
-              </Button>
-              <Button
-                variant="ghost"
-                className="self-start"
-                onClick={showBenefitSelection}
-              >
-                Back
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </div>
-    </div>
-  )
-}
-
-const DiscordBenefitCreation = ({
-  organization,
-  onSelectBenefit,
-  addBenefit,
-  showBenefitSelection,
-  isLoading,
-}: BenefitCreationProps) => {
-  const discordGuildQuery = useDiscordGuildForOrg(organization.name)
-  const [roleId, setRoleId] = useState<string>(null)
-  const [description, setDescription] = useState<string>(null)
-
-  const createDiscordBenefit = (e) => {
-    e.preventDefault()
-    if (!roleId || !description) return
-
-    addBenefit({
-      organization_id: organization.id,
-      type: 'discord',
-      properties: {
-        role_id: roleId,
-      },
-      is_tax_applicable: true,
-      description: description,
-    })
-  }
-
-  const discordGuild = discordGuildQuery?.data
-  const hasDiscordWithRoles = discordGuild && discordGuild.roles.length > 0
-
-  const onRoleSelected = (roleId: string) => {
-    setRoleId(roleId)
-  }
-
-  return (
-    <div className="flex flex-col gap-y-6 px-8 py-10">
-      <div>
-        <h2 className="text-lg">Discord</h2>
-        <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
-          Invite subscribers to your Discord server.
-        </p>
-      </div>
-      <div className="flex flex-col gap-y-6">
-        {!discordGuild && <p>You need to setup a Discord integration</p>}
-
-        {!hasDiscordWithRoles && <p>You need to setup a Discord roles</p>}
-
-        {hasDiscordWithRoles && (
-          <form
-            className="flex flex-col gap-y-6"
-            onSubmit={createDiscordBenefit}
-          >
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                asChild
-                onMouseDown={(e) => e.stopPropagation()}
-              >
-                <Button
-                  variant="secondary"
-                  className="px-2 text-left"
-                  size="sm"
-                >
-                  <span>Select Role</span>
-                  <ChevronDownIcon className="ml-2 h-3 w-3" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {discordGuild.roles.map((role) => (
-                  <DropdownMenuItem onClick={() => onRoleSelected(role.id)}>
-                    {role.name}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <div className="flex flex-row items-center justify-between">
-              <label>Description</label>
-              <span className="dark:text-polar-400 text-sm text-gray-400"></span>
-            </div>
-            <Input
-              name="description"
-              value={description}
-              onChange={(e) => {
-                setDescription(e.target.value)
-              }}
-            />
-
-            <div className="mt-4 flex flex-row items-center gap-x-4">
-              <Button className="self-start" type="submit" loading={isLoading}>
-                Create
-              </Button>
-              <Button
-                variant="ghost"
-                className="self-start"
-                onClick={showBenefitSelection}
-              >
-                Back
-              </Button>
-            </div>
-          </form>
-        )}
-      </div>
-    </div>
-  )
-}
-
-interface AddSubscriptionTierBenefitModalContentProps {
-  organization: Organization
-  onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
-  hideModal: () => void
-}
-
-const AddSubscriptionTierBenefitModalContent = ({
-  organization,
-  onSelectBenefit,
-  hideModal,
-}: AddSubscriptionTierBenefitModalContentProps) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [showCustom, setShowCustom] = useState(false)
-  const [currentView, changeView] = useState<string>(null)
-
-  const createSubscriptionBenefit = useCreateSubscriptionBenefit(
-    organization.name,
-  )
-
-  const addBenefit = useCallback(
-    async (newBenefit: SubscriptionBenefitCreate) => {
-      try {
-        setIsLoading(true)
-        const benefit = await createSubscriptionBenefit.mutateAsync(newBenefit)
-
-        if (benefit) {
-          onSelectBenefit(benefit)
-          hideModal()
-        }
-      } catch (err) {
-        console.error(err)
-      } finally {
-        setIsLoading(false)
-      }
-    },
-    [hideModal, onSelectBenefit, createSubscriptionBenefit],
-  )
-
-  const showBenefitSelection = () => {
-    changeView(null)
-  }
-
-  if (currentView === null) {
-    return (
-      <div className="flex flex-col gap-y-6 px-8 py-10">
-        <div>
-          <h2 className="text-lg">Add Subscription Benefit</h2>
-          <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
-            Created benefits will be available for use in all tiers of your
-            organization
-          </p>
-        </div>
-        <div className="flex flex-col gap-y-6">
-          <ul className="flex flex-col gap-y-4">
-            <li>
-              <a href="#" onClick={() => changeView('discord')}>
-                Discord Access
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={() => changeView('custom')}>
-                Create Custom
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    )
-  }
-
-  switch (currentView) {
-    case 'discord':
-      return (
-        <DiscordBenefitCreation
-          organization={organization}
-          onSelectBenefit={onSelectBenefit}
-          addBenefit={addBenefit}
-          showBenefitSelection={showBenefitSelection}
-          isLoading={isLoading}
-        />
-      )
-    default:
-      return (
-        <NewSubscriptionTierBenefitModalContent
-          organization={organization}
-          onSelectBenefit={onSelectBenefit}
-          addBenefit={addBenefit}
-          showBenefitSelection={showBenefitSelection}
-          isLoading={isLoading}
-        />
-      )
-  }
-}
-
-interface UpdateSubscriptionTierBenefitModalContentProps {
-  organization: Organization
-  benefit: SubscriptionTierBenefit
-  hideModal: () => void
-}
-
-const UpdateSubscriptionTierBenefitModalContent = ({
-  organization,
-  benefit,
-  hideModal,
-}: UpdateSubscriptionTierBenefitModalContentProps) => {
-  const [isLoading, setIsLoading] = useState(false)
-
-  const updateSubscriptionBenefit = useUpdateSubscriptionBenefit(
-    organization.name,
-  )
-
-  const handleUpdateNewBenefit = useCallback(
-    async (subscriptionBenefitUpdate: SubscriptionBenefitUpdate) => {
-      try {
-        setIsLoading(true)
-        await updateSubscriptionBenefit.mutateAsync({
-          id: benefit.id,
-          subscriptionBenefitUpdate,
-        })
-
-        hideModal()
-      } catch (err) {
-        console.error(err)
-      } finally {
-        setIsLoading(false)
-      }
-    },
-    [hideModal, updateSubscriptionBenefit, benefit],
-  )
-
-  const form = useForm<SubscriptionBenefitUpdate>({
-    defaultValues: {
-      organization_id: organization.id,
-      ...benefit,
-    },
-    shouldUnregister: true,
-  })
-
-  const { handleSubmit } = form
-
-  return (
-    <div className="flex flex-col gap-y-6 px-8 py-10">
-      <div>
-        <h2 className="text-lg">Update Subscription Benefit</h2>
-        <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
-          Tax applicability and Benefit type cannot be updated
-        </p>
-      </div>
-      <div className="flex flex-col gap-y-6">
-        <Form {...form}>
-          <form
-            className="flex flex-col gap-y-6"
-            onSubmit={handleSubmit(handleUpdateNewBenefit)}
-          >
-            <NewBenefitForm update={true} />
-            <div className="mt-4 flex flex-row items-center gap-x-4">
-              <Button className="self-start" type="submit" loading={isLoading}>
-                Update
-              </Button>
-              <Button
-                variant="ghost"
-                className="self-start"
-                onClick={hideModal}
-              >
-                Cancel
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </div>
-    </div>
-  )
-}
-
-interface NewBenefitFormProps {
-  update?: boolean
-}
-
-const NewBenefitForm = ({ update = false }: NewBenefitFormProps) => {
-  const { control } = useFormContext<SubscriptionBenefitCreate>()
-
-  return (
-    <>
-      <FormField
-        control={control}
-        name="description"
-        rules={{
-          minLength: {
-            value: 3,
-            message: 'Description length must be at least 3 characters long',
-          },
-          maxLength: {
-            message: 'Description length must be less than 42 characters long',
-            value: 42,
-          },
-        }}
-        render={({ field }) => {
-          return (
-            <FormItem>
-              <div className="flex flex-row items-center justify-between">
-                <FormLabel>Description</FormLabel>
-                <span className="dark:text-polar-400 text-sm text-gray-400">
-                  {field.value?.length ?? 0} / 42
-                </span>
-              </div>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )
-        }}
-      />
-      {!update && (
-        <FormField
-          control={control}
-          name="is_tax_applicable"
-          render={({ field }) => {
-            return (
-              <FormItem className="flex flex-row items-center space-x-3 space-y-0">
-                <FormControl>
-                  <Checkbox
-                    defaultChecked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <FormLabel className="text-sm leading-none">
-                  Tax Applicable
-                </FormLabel>
-              </FormItem>
-            )
-          }}
-        />
-      )}
-    </>
-  )
-}
