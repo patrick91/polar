@@ -4,9 +4,8 @@ import {
   SubscriptionTierBenefit,
 } from '@polar-sh/sdk'
 import { useCreateSubscriptionBenefit } from 'polarkit/hooks'
-import { useCallback, useState } from 'react'
-import CreateCustomBenefit from './Custom/Create'
-import CreateDiscordBenefit from './Discord/Create'
+import { createElement, useCallback, useState } from 'react'
+import BenefitRegistry from './registry'
 
 export interface CreateBenefitProps {
   organization: Organization
@@ -86,28 +85,17 @@ const CreateBenefitSelection = ({
     )
   }
 
-  switch (currentView) {
-    case 'discord':
-      return (
-        <CreateDiscordBenefit
-          organization={organization}
-          onSelectBenefit={onSelectBenefit}
-          addBenefit={addBenefit}
-          showBenefitSelection={showBenefitSelection}
-          isLoading={isLoading}
-        />
-      )
-    default:
-      return (
-        <CreateCustomBenefit
-          organization={organization}
-          onSelectBenefit={onSelectBenefit}
-          addBenefit={addBenefit}
-          showBenefitSelection={showBenefitSelection}
-          isLoading={isLoading}
-        />
-      )
+  let createBenefitComponent = BenefitRegistry[currentView]?.create
+  if (!createBenefitComponent) {
+    createBenefitComponent = BenefitRegistry.custom.create
   }
+  return createElement(createBenefitComponent, {
+    organization,
+    onSelectBenefit,
+    addBenefit,
+    showBenefitSelection,
+    isLoading,
+  })
 }
 
 export default CreateBenefitSelection
