@@ -8,7 +8,7 @@ import {
 } from 'polarkit/components/ui/dropdown-menu'
 import { useDiscordGuildForOrg } from 'polarkit/hooks'
 import { useState } from 'react'
-import { CreateBenefitProps } from '../Create'
+import { CreateBenefitContainer, CreateBenefitProps } from '../Create'
 
 const CreateDiscordBenefit = ({
   organization,
@@ -44,14 +44,11 @@ const CreateDiscordBenefit = ({
   }
 
   return (
-    <div className="flex flex-col gap-y-6 px-8 py-10">
-      <div>
-        <h2 className="text-lg">Discord</h2>
-        <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
-          Invite subscribers to your Discord server.
-        </p>
-      </div>
-      <div className="flex flex-col gap-y-6">
+    <CreateBenefitContainer
+      title="Discord"
+      subtitle="Invite subscribers to your Discord server."
+    >
+      <>
         {!discordGuild && <p>You need to setup a Discord integration</p>}
 
         {!hasDiscordWithRoles && <p>You need to setup a Discord roles</p>}
@@ -110,8 +107,8 @@ const CreateDiscordBenefit = ({
             </div>
           </form>
         )}
-      </div>
-    </div>
+      </>
+    </CreateBenefitContainer>
   )
 }
 

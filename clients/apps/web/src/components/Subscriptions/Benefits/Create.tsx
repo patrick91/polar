@@ -15,6 +15,28 @@ export interface CreateBenefitProps {
   isLoading: boolean
 }
 
+export const CreateBenefitContainer = ({
+  title,
+  subtitle,
+  children,
+}: {
+  title: string
+  subtitle: string
+  children: JSX.Element
+}) => {
+  return (
+    <div className="flex flex-col gap-y-6 px-8 py-10">
+      <div>
+        <h2 className="text-lg">{title}</h2>
+        <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
+          {subtitle}
+        </p>
+      </div>
+      <div className="flex flex-col gap-y-6">{children}</div>
+    </div>
+  )
+}
+
 interface CreateBenefitSelectionProps {
   organization: Organization
   onSelectBenefit: (benefit: SubscriptionTierBenefit) => void
@@ -59,29 +81,23 @@ const CreateBenefitSelection = ({
 
   if (currentView === null) {
     return (
-      <div className="flex flex-col gap-y-6 px-8 py-10">
-        <div>
-          <h2 className="text-lg">Add Subscription Benefit</h2>
-          <p className="dark:text-polar-400 mt-2 text-sm text-gray-400">
-            Created benefits will be available for use in all tiers of your
-            organization
-          </p>
-        </div>
-        <div className="flex flex-col gap-y-6">
-          <ul className="flex flex-col gap-y-4">
-            <li>
-              <a href="#" onClick={() => changeView('discord')}>
-                Discord Access
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={() => changeView('custom')}>
-                Create Custom
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <CreateBenefitContainer
+        title="Add Subscription Benefit"
+        subtitle="Created benefits will be available for use in all tiers of your organization"
+      >
+        <ul className="flex flex-col gap-y-4">
+          <li>
+            <a href="#" onClick={() => changeView('discord')}>
+              Discord Access
+            </a>
+          </li>
+          <li>
+            <a href="#" onClick={() => changeView('custom')}>
+              Create Custom
+            </a>
+          </li>
+        </ul>
+      </CreateBenefitContainer>
     )
   }
 
