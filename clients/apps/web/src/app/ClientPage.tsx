@@ -119,9 +119,10 @@ const ClientPage = () => {
           >
             <h1 className="text-5xl !font-light leading-snug tracking-tight lg:text-[calc(100vw_/_20)]">
               <TextReveal>
-                A creator platform for the <br className="hidden lg:block" />
+                A creator platform for
+                <br className="hidden lg:block" />
               </TextReveal>
-              <TextReveal>Open Source Revolution</TextReveal>
+              <TextReveal>Developers</TextReveal>
             </h1>
             <TextReveal>
               <p className="text-xl font-light md:text-3xl">
