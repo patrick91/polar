@@ -14,7 +14,7 @@ paywall_regex = r"<Paywall>((.|\n)*?)<\/Paywall>"
 
 class Byline(Schema):
     name: str
-    avatar_url: str | None
+    avatar_url: str | None = None
 
 
 Visibility = Literal["private", "hidden", "public"]
@@ -28,13 +28,13 @@ class Article(Schema):
     byline: Byline
     visibility: Visibility
     organization: Organization
-    published_at: datetime.datetime | None
+    published_at: datetime.datetime | None = None
 
-    notify_subscribers: bool | None
-    notifications_sent_at: datetime.datetime | None
-    email_sent_to_count: int | None
-    web_view_count: int | None
-    paid_subscribers_only: bool | None
+    notify_subscribers: bool | None = None
+    notifications_sent_at: datetime.datetime | None = None
+    email_sent_to_count: int | None = None
+    web_view_count: int | None = None
+    paid_subscribers_only: bool | None = None
 
     @classmethod
     def strip_paywalled_content(cls, body: str, is_paid_subscriber: bool) -> str:
