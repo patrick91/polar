@@ -20,7 +20,7 @@ import type {
 } from '../models/index';
 
 export interface PullRequestsApiSearchRequest {
-    referencesIssueId?: string;
+    referencesIssueId?: string | null;
 }
 
 /**

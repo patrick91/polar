@@ -31,13 +31,13 @@ export interface TransactionsApiLookupTransactionRequest {
 }
 
 export interface TransactionsApiSearchTransactionsRequest {
-    type?: TransactionType;
-    accountId?: string;
-    paymentUserId?: string;
-    paymentOrganizationId?: string;
+    type?: TransactionType | null;
+    accountId?: string | null;
+    paymentUserId?: string | null;
+    paymentOrganizationId?: string | null;
     page?: number;
     limit?: number;
-    sorting?: Array<string>;
+    sorting?: Array<string> | null;
 }
 
 /**

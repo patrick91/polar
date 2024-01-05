@@ -30,16 +30,16 @@ export interface IntegrationsApiInstallRequest {
 }
 
 export interface IntegrationsApiIntegrationsGithubAuthorizeRequest {
-    paymentIntentId?: string;
-    userSignupType?: UserSignupType;
-    returnTo?: string;
+    paymentIntentId?: string | null;
+    userSignupType?: UserSignupType | null;
+    returnTo?: string | null;
 }
 
 export interface IntegrationsApiIntegrationsGithubCallbackRequest {
-    code?: string;
-    codeVerifier?: string;
-    state?: string;
-    error?: string;
+    code?: string | null;
+    codeVerifier?: string | null;
+    state?: string | null;
+    error?: string | null;
 }
 
 export interface IntegrationsApiLookupUserOperationRequest {
@@ -47,7 +47,7 @@ export interface IntegrationsApiLookupUserOperationRequest {
 }
 
 export interface IntegrationsApiStripeConnectRefreshRequest {
-    returnPath?: string;
+    returnPath?: string | null;
 }
 
 export interface IntegrationsApiSynchronizeMembersRequest {

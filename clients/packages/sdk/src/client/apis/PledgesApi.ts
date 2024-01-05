@@ -54,11 +54,11 @@ export interface PledgesApiGetRequest {
 }
 
 export interface PledgesApiSearchRequest {
-    platform?: Platforms;
-    organizationName?: string;
-    repositoryName?: string;
-    issueId?: string;
-    byOrganizationId?: string;
+    platform?: Platforms | null;
+    organizationName?: string | null;
+    repositoryName?: string | null;
+    issueId?: string | null;
+    byOrganizationId?: string | null;
 }
 
 export interface PledgesApiSpendingRequest {

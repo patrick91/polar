@@ -29,19 +29,19 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    stripe_id?: string;
+    stripe_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Account
      */
-    open_collective_slug?: string;
+    open_collective_slug?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof Account
      */
-    is_details_submitted?: boolean;
+    is_details_submitted?: boolean | null;
     /**
      * 
      * @type {string}
@@ -78,7 +78,7 @@ export interface AccountCreate {
      * @type {string}
      * @memberof AccountCreate
      */
-    open_collective_slug?: string;
+    open_collective_slug?: string | null;
     /**
      * Two letter uppercase country code
      * @type {string}
@@ -101,7 +101,7 @@ export interface AccountLink {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const AccountType = {
@@ -163,37 +163,37 @@ export interface Article {
      * @type {string}
      * @memberof Article
      */
-    published_at?: string;
+    published_at?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof Article
      */
-    notify_subscribers?: boolean;
+    notify_subscribers?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof Article
      */
-    notifications_sent_at?: string;
+    notifications_sent_at?: string | null;
     /**
      * 
      * @type {number}
      * @memberof Article
      */
-    email_sent_to_count?: number;
+    email_sent_to_count?: number | null;
     /**
      * 
      * @type {number}
      * @memberof Article
      */
-    web_view_count?: number;
+    web_view_count?: number | null;
     /**
      * 
      * @type {boolean}
      * @memberof Article
      */
-    paid_subscribers_only?: boolean;
+    paid_subscribers_only?: boolean | null;
 }
 
 
@@ -250,17 +250,17 @@ export interface ArticleCreate {
      */
     paid_subscribers_only?: boolean;
     /**
-     * Time of publishing. If this date is in the future, the post will be scheduled to publish at this time. If visibility is 'public', published_at will default to the current time.
+     * 
      * @type {string}
      * @memberof ArticleCreate
      */
-    published_at?: string;
+    published_at?: string | null;
     /**
-     * Set to true to deliver this article via email and/or notifications to subscribers.
+     * 
      * @type {boolean}
      * @memberof ArticleCreate
      */
-    notify_subscribers?: boolean;
+    notify_subscribers?: boolean | null;
 }
 
 
@@ -384,21 +384,21 @@ export interface ArticleUpdate {
      * @type {string}
      * @memberof ArticleUpdate
      */
-    title?: string;
+    title?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ArticleUpdate
      */
-    body?: string;
+    body?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ArticleUpdate
      */
-    slug?: string;
+    slug?: string | null;
     /**
-     * If the user or organization should be credited in the byline.
+     * 
      * @type {string}
      * @memberof ArticleUpdate
      */
@@ -410,29 +410,29 @@ export interface ArticleUpdate {
      */
     visibility?: ArticleUpdateVisibilityEnum;
     /**
-     * Set to true to only make this article available for subscribers to a paid subscription tier in the organization.
+     * 
      * @type {boolean}
      * @memberof ArticleUpdate
      */
-    paid_subscribers_only?: boolean;
+    paid_subscribers_only?: boolean | null;
     /**
-     * Time of publishing. If this date is in the future, the post will be scheduled to publish at this time.
+     * 
      * @type {string}
      * @memberof ArticleUpdate
      */
-    published_at?: string;
+    published_at?: string | null;
     /**
-     * Set to true for changes to published_at to take affect.
+     * 
      * @type {boolean}
      * @memberof ArticleUpdate
      */
-    set_published_at?: boolean;
+    set_published_at?: boolean | null;
     /**
-     * Set to true to deliver this article via email and/or notifications to subscribers.
+     * 
      * @type {boolean}
      * @memberof ArticleUpdate
      */
-    notify_subscribers?: boolean;
+    notify_subscribers?: boolean | null;
 }
 
 
@@ -657,17 +657,17 @@ export interface BackofficePledge {
      */
     type: PledgeType;
     /**
-     * If and when the pledge was refunded to the pledger
+     * 
      * @type {string}
      * @memberof BackofficePledge
      */
-    refunded_at?: string;
+    refunded_at?: string | null;
     /**
-     * When the payout is scheduled to be made to the maintainers behind the issue. Disputes must be made before this date.
+     * 
      * @type {string}
      * @memberof BackofficePledge
      */
-    scheduled_payout_at?: string;
+    scheduled_payout_at?: string | null;
     /**
      * 
      * @type {Issue}
@@ -679,13 +679,13 @@ export interface BackofficePledge {
      * @type {Pledger}
      * @memberof BackofficePledge
      */
-    pledger?: Pledger;
+    pledger?: Pledger | null;
     /**
-     * URL of invoice for this pledge
+     * 
      * @type {string}
      * @memberof BackofficePledge
      */
-    hosted_invoice_url?: string;
+    hosted_invoice_url?: string | null;
     /**
      * If the currently authenticated subject can perform admin actions on behalf of the maker of the peldge
      * @type {boolean}
@@ -703,37 +703,37 @@ export interface BackofficePledge {
      * @type {Pledger}
      * @memberof BackofficePledge
      */
-    created_by?: Pledger;
+    created_by?: Pledger | null;
     /**
      * 
      * @type {string}
      * @memberof BackofficePledge
      */
-    payment_id?: string;
+    payment_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof BackofficePledge
      */
-    dispute_reason?: string;
+    dispute_reason?: string | null;
     /**
      * 
      * @type {string}
      * @memberof BackofficePledge
      */
-    disputed_by_user_id?: string;
+    disputed_by_user_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof BackofficePledge
      */
-    disputed_at?: string;
+    disputed_at?: string | null;
     /**
      * 
      * @type {string}
      * @memberof BackofficePledge
      */
-    pledger_email?: string;
+    pledger_email?: string | null;
 }
 /**
  * 
@@ -752,13 +752,13 @@ export interface BackofficeReward {
      * @type {User}
      * @memberof BackofficeReward
      */
-    user?: User;
+    user?: User | null;
     /**
      * 
      * @type {Organization}
      * @memberof BackofficeReward
      */
-    organization?: Organization;
+    organization?: Organization | null;
     /**
      * 
      * @type {CurrencyAmount}
@@ -772,17 +772,17 @@ export interface BackofficeReward {
      */
     state: RewardState;
     /**
-     * If and when the reward was paid out.
+     * 
      * @type {string}
      * @memberof BackofficeReward
      */
-    paid_at?: string;
+    paid_at?: string | null;
     /**
      * 
      * @type {string}
      * @memberof BackofficeReward
      */
-    transfer_id?: string;
+    transfer_id?: string | null;
     /**
      * 
      * @type {string}
@@ -794,13 +794,13 @@ export interface BackofficeReward {
      * @type {string}
      * @memberof BackofficeReward
      */
-    pledge_payment_id?: string;
+    pledge_payment_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof BackofficeReward
      */
-    pledger_email?: string;
+    pledger_email?: string | null;
 }
 /**
  * 
@@ -819,7 +819,7 @@ export interface Byline {
      * @type {string}
      * @memberof Byline
      */
-    avatar_url?: string;
+    avatar_url?: string | null;
 }
 /**
  * 
@@ -845,13 +845,13 @@ export interface ConfirmIssueSplit {
      * @type {string}
      * @memberof ConfirmIssueSplit
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ConfirmIssueSplit
      */
-    github_username?: string;
+    github_username?: string | null;
     /**
      * 
      * @type {number}
@@ -912,7 +912,7 @@ export interface CreatePersonalAccessTokenResponse {
      * @type {string}
      * @memberof CreatePersonalAccessTokenResponse
      */
-    last_used_at?: string;
+    last_used_at?: string | null;
     /**
      * 
      * @type {string}
@@ -964,17 +964,17 @@ export interface CreatePledgePayLater {
      */
     amount: number;
     /**
-     * The organization to give credit to. The pledge will be paid by the authenticated user.
+     * 
      * @type {string}
      * @memberof CreatePledgePayLater
      */
-    on_behalf_of_organization_id?: string;
+    on_behalf_of_organization_id?: string | null;
     /**
-     * The organization to create the pledge as. The pledge will be paid by this organization.
+     * 
      * @type {string}
      * @memberof CreatePledgePayLater
      */
-    by_organization_id?: string;
+    by_organization_id?: string | null;
 }
 /**
  * 
@@ -1037,25 +1037,25 @@ export interface Entry {
      * @type {Array<Reward>}
      * @memberof Entry
      */
-    rewards?: Array<Reward>;
+    rewards?: Array<Reward> | null;
     /**
      * 
      * @type {PledgesTypeSummaries}
      * @memberof Entry
      */
-    pledges_summary?: PledgesTypeSummaries;
+    pledges_summary?: PledgesTypeSummaries | null;
     /**
      * 
      * @type {Array<IssueReferenceRead>}
      * @memberof Entry
      */
-    references?: Array<IssueReferenceRead>;
+    references?: Array<IssueReferenceRead> | null;
     /**
      * 
      * @type {Array<Pledge>}
      * @memberof Entry
      */
-    pledges?: Array<Pledge>;
+    pledges?: Array<Pledge> | null;
 }
 /**
  * 
@@ -1098,13 +1098,13 @@ export interface ExternalGitHubCommitReference {
      * @type {string}
      * @memberof ExternalGitHubCommitReference
      */
-    branch_name?: string;
+    branch_name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ExternalGitHubCommitReference
      */
-    message?: string;
+    message?: string | null;
 }
 /**
  * 
@@ -1168,11 +1168,11 @@ export interface FreeSubscriptionCreate {
      */
     tier_id: string;
     /**
-     * Email of your backer. This field is required if the API is called outside the Polar app.
+     * 
      * @type {string}
      * @memberof FreeSubscriptionCreate
      */
-    customer_email?: string;
+    customer_email?: string | null;
 }
 /**
  * 
@@ -1185,13 +1185,13 @@ export interface Funding {
      * @type {CurrencyAmount}
      * @memberof Funding
      */
-    funding_goal?: CurrencyAmount;
+    funding_goal?: CurrencyAmount | null;
     /**
      * 
      * @type {CurrencyAmount}
      * @memberof Funding
      */
-    pledges_sum?: CurrencyAmount;
+    pledges_sum?: CurrencyAmount | null;
 }
 /**
  * 
@@ -1239,10 +1239,10 @@ export type Id = string;
 export interface InstallationCreate {
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof InstallationCreate
      */
-    platform: InstallationCreatePlatformEnum;
+    platform: any | null;
     /**
      * 
      * @type {number}
@@ -1250,16 +1250,6 @@ export interface InstallationCreate {
      */
     external_id: number;
 }
-
-
-/**
- * @export
- */
-export const InstallationCreatePlatformEnum = {
-    GITHUB: 'github'
-} as const;
-export type InstallationCreatePlatformEnum = typeof InstallationCreatePlatformEnum[keyof typeof InstallationCreatePlatformEnum];
-
 /**
  * 
  * @export
@@ -1291,17 +1281,17 @@ export interface Issue {
      */
     title: string;
     /**
-     * GitHub issue body
+     * 
      * @type {string}
      * @memberof Issue
      */
-    body?: string;
+    body?: string | null;
     /**
-     * Number of GitHub comments made on the issue
+     * 
      * @type {number}
      * @memberof Issue
      */
-    comments?: number;
+    comments?: number | null;
     /**
      * 
      * @type {Array<Label>}
@@ -1313,19 +1303,19 @@ export interface Issue {
      * @type {Author}
      * @memberof Issue
      */
-    author?: Author;
+    author?: Author | null;
     /**
-     * GitHub assignees
+     * 
      * @type {Array<Assignee>}
      * @memberof Issue
      */
-    assignees?: Array<Assignee>;
+    assignees?: Array<Assignee> | null;
     /**
      * 
      * @type {Reactions}
      * @memberof Issue
      */
-    reactions?: Reactions;
+    reactions?: Reactions | null;
     /**
      * 
      * @type {string}
@@ -1337,13 +1327,13 @@ export interface Issue {
      * @type {string}
      * @memberof Issue
      */
-    issue_closed_at?: string;
+    issue_closed_at?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Issue
      */
-    issue_modified_at?: string;
+    issue_modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -1357,11 +1347,11 @@ export interface Issue {
      */
     needs_confirmation_solved: boolean;
     /**
-     * If this issue has been marked as confirmed solved through Polar
+     * 
      * @type {string}
      * @memberof Issue
      */
-    confirmed_solved_at?: string;
+    confirmed_solved_at?: string | null;
     /**
      * 
      * @type {Funding}
@@ -1375,11 +1365,11 @@ export interface Issue {
      */
     repository: Repository;
     /**
-     * Share of rewrads that will be rewarded to contributors of this issue. A number between 0 and 100 (inclusive).
+     * 
      * @type {number}
      * @memberof Issue
      */
-    upfront_split_to_contributors?: number;
+    upfront_split_to_contributors?: number | null;
     /**
      * If this issue currently has the Polar badge SVG embedded
      * @type {boolean}
@@ -1387,11 +1377,11 @@ export interface Issue {
      */
     pledge_badge_currently_embedded: boolean;
     /**
-     * Optional custom badge SVG promotional content
+     * 
      * @type {string}
      * @memberof Issue
      */
-    badge_custom_content?: string;
+    badge_custom_content?: string | null;
 }
 
 
@@ -1452,7 +1442,7 @@ export interface IssueFunding {
      * @type {CurrencyAmount}
      * @memberof IssueFunding
      */
-    funding_goal?: CurrencyAmount;
+    funding_goal?: CurrencyAmount | null;
     /**
      * 
      * @type {CurrencyAmount}
@@ -1487,7 +1477,7 @@ export interface IssueListResponse {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const IssueListType = {
@@ -1519,23 +1509,23 @@ export interface IssueReferenceRead {
      * @type {PullRequestReference}
      * @memberof IssueReferenceRead
      */
-    pull_request_reference?: PullRequestReference;
+    pull_request_reference?: PullRequestReference | null;
     /**
      * 
      * @type {ExternalGitHubPullRequestReference}
      * @memberof IssueReferenceRead
      */
-    external_github_pull_request_reference?: ExternalGitHubPullRequestReference;
+    external_github_pull_request_reference?: ExternalGitHubPullRequestReference | null;
     /**
      * 
      * @type {ExternalGitHubCommitReference}
      * @memberof IssueReferenceRead
      */
-    external_github_commit_reference?: ExternalGitHubCommitReference;
+    external_github_commit_reference?: ExternalGitHubCommitReference | null;
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const IssueReferenceType = {
@@ -1547,7 +1537,7 @@ export type IssueReferenceType = typeof IssueReferenceType[keyof typeof IssueRef
 
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const IssueSortBy = {
@@ -1567,7 +1557,7 @@ export type IssueSortBy = typeof IssueSortBy[keyof typeof IssueSortBy];
 
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const IssueStatus = {
@@ -1620,7 +1610,7 @@ export interface Label {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const ListFundingSortBy = {
@@ -2022,7 +2012,7 @@ export interface LoginResponse {
      * @type {string}
      * @memberof LoginResponse
      */
-    token?: string;
+    token?: string | null;
 }
 /**
  * 
@@ -2067,7 +2057,7 @@ export interface MagicLinkRequest {
      * @type {string}
      * @memberof MagicLinkRequest
      */
-    return_to?: string;
+    return_to?: string | null;
 }
 /**
  * 
@@ -2128,7 +2118,7 @@ export interface MaintainerPledgeConfirmationPendingNotification {
      * @type {string}
      * @memberof MaintainerPledgeConfirmationPendingNotification
      */
-    pledge_id?: string;
+    pledge_id?: string | null;
 }
 /**
  * 
@@ -2141,7 +2131,7 @@ export interface MaintainerPledgeCreatedNotification {
      * @type {string}
      * @memberof MaintainerPledgeCreatedNotification
      */
-    pledger_name?: string;
+    pledger_name?: string | null;
     /**
      * 
      * @type {string}
@@ -2189,13 +2179,13 @@ export interface MaintainerPledgeCreatedNotification {
      * @type {string}
      * @memberof MaintainerPledgeCreatedNotification
      */
-    pledge_id?: string;
+    pledge_id?: string | null;
     /**
      * 
      * @type {PledgeType}
      * @memberof MaintainerPledgeCreatedNotification
      */
-    pledge_type?: PledgeType;
+    pledge_type?: PledgeType | null;
 }
 /**
  * 
@@ -2244,7 +2234,7 @@ export interface MaintainerPledgePaidNotification {
      * @type {string}
      * @memberof MaintainerPledgePaidNotification
      */
-    pledge_id?: string;
+    pledge_id?: string | null;
 }
 /**
  * 
@@ -2305,7 +2295,7 @@ export interface MaintainerPledgePendingNotification {
      * @type {string}
      * @memberof MaintainerPledgePendingNotification
      */
-    pledge_id?: string;
+    pledge_id?: string | null;
 }
 /**
  * 
@@ -2446,59 +2436,59 @@ export interface NotificationRead {
      * @type {MaintainerPledgePaidNotification}
      * @memberof NotificationRead
      */
-    maintainer_pledge_paid?: MaintainerPledgePaidNotification;
+    maintainer_pledge_paid?: MaintainerPledgePaidNotification | null;
     /**
      * 
      * @type {MaintainerPledgeConfirmationPendingNotification}
      * @memberof NotificationRead
      */
-    maintainer_pledge_confirmation_pending?: MaintainerPledgeConfirmationPendingNotification;
+    maintainer_pledge_confirmation_pending?: MaintainerPledgeConfirmationPendingNotification | null;
     /**
      * 
      * @type {MaintainerPledgePendingNotification}
      * @memberof NotificationRead
      */
-    maintainer_pledge_pending?: MaintainerPledgePendingNotification;
+    maintainer_pledge_pending?: MaintainerPledgePendingNotification | null;
     /**
      * 
      * @type {MaintainerPledgeCreatedNotification}
      * @memberof NotificationRead
      */
-    maintainer_pledge_created?: MaintainerPledgeCreatedNotification;
+    maintainer_pledge_created?: MaintainerPledgeCreatedNotification | null;
     /**
      * 
      * @type {PledgerPledgePendingNotification}
      * @memberof NotificationRead
      */
-    pledger_pledge_pending?: PledgerPledgePendingNotification;
+    pledger_pledge_pending?: PledgerPledgePendingNotification | null;
     /**
      * 
      * @type {RewardPaidNotification}
      * @memberof NotificationRead
      */
-    reward_paid?: RewardPaidNotification;
+    reward_paid?: RewardPaidNotification | null;
     /**
      * 
      * @type {MaintainerPledgedIssueConfirmationPendingNotification}
      * @memberof NotificationRead
      */
-    maintainer_pledged_issue_confirmation_pending?: MaintainerPledgedIssueConfirmationPendingNotification;
+    maintainer_pledged_issue_confirmation_pending?: MaintainerPledgedIssueConfirmationPendingNotification | null;
     /**
      * 
      * @type {MaintainerPledgedIssuePendingNotification}
      * @memberof NotificationRead
      */
-    maintainer_pledged_issue_pending?: MaintainerPledgedIssuePendingNotification;
+    maintainer_pledged_issue_pending?: MaintainerPledgedIssuePendingNotification | null;
     /**
      * 
      * @type {TeamAdminMemberPledgedNotification}
      * @memberof NotificationRead
      */
-    team_admin_member_pledged?: TeamAdminMemberPledgedNotification;
+    team_admin_member_pledged?: TeamAdminMemberPledgedNotification | null;
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const NotificationType = {
@@ -2531,7 +2521,7 @@ export interface NotificationsList {
      * @type {string}
      * @memberof NotificationsList
      */
-    last_read_notification_id?: string;
+    last_read_notification_id?: string | null;
 }
 /**
  * 
@@ -2563,7 +2553,7 @@ export interface OAuthAccountRead {
      * @type {string}
      * @memberof OAuthAccountRead
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {Platforms}
@@ -2620,47 +2610,47 @@ export interface Organization {
      */
     is_personal: boolean;
     /**
-     * Public field from GitHub
+     * 
      * @type {string}
      * @memberof Organization
      */
-    bio?: string;
+    bio?: string | null;
     /**
-     * Public field from GitHub
+     * 
      * @type {string}
      * @memberof Organization
      */
-    pretty_name?: string;
+    pretty_name?: string | null;
     /**
-     * Public field from GitHub
+     * 
      * @type {string}
      * @memberof Organization
      */
-    company?: string;
+    company?: string | null;
     /**
-     * Public field from GitHub
+     * 
      * @type {string}
      * @memberof Organization
      */
-    blog?: string;
+    blog?: string | null;
     /**
-     * Public field from GitHub
+     * 
      * @type {string}
      * @memberof Organization
      */
-    location?: string;
+    location?: string | null;
     /**
-     * Public field from GitHub
+     * 
      * @type {string}
      * @memberof Organization
      */
-    email?: string;
+    email?: string | null;
     /**
-     * Public field from GitHub
+     * 
      * @type {string}
      * @memberof Organization
      */
-    twitter_username?: string;
+    twitter_username?: string | null;
     /**
      * 
      * @type {number}
@@ -2678,31 +2668,31 @@ export interface Organization {
      * @type {number}
      * @memberof Organization
      */
-    default_upfront_split_to_contributors?: number;
+    default_upfront_split_to_contributors?: number | null;
     /**
      * 
      * @type {string}
      * @memberof Organization
      */
-    account_id?: string;
+    account_id?: string | null;
     /**
-     * Where to send emails about payments for pledegs that this organization/team has made. Only visible for members of the organization
+     * 
      * @type {string}
      * @memberof Organization
      */
-    billing_email?: string;
+    billing_email?: string | null;
     /**
-     * Overall team monthly spending limit, per calendar month. Only visible for members of the organization
+     * 
      * @type {number}
      * @memberof Organization
      */
-    total_monthly_spending_limit?: number;
+    total_monthly_spending_limit?: number | null;
     /**
-     * Team members monthly spending limit, per calendar month. Only visible for members of the organization
+     * 
      * @type {number}
      * @memberof Organization
      */
-    per_user_monthly_spending_limit?: number;
+    per_user_monthly_spending_limit?: number | null;
     /**
      * Feature flag for if this organization is a team.
      * @type {boolean}
@@ -2733,7 +2723,7 @@ export interface OrganizationBadgeSettingsRead {
      * @type {string}
      * @memberof OrganizationBadgeSettingsRead
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {Array<RepositoryBadgeSettingsRead>}
@@ -2789,13 +2779,13 @@ export interface OrganizationMember {
      * @type {string}
      * @memberof OrganizationMember
      */
-    github_username?: string;
+    github_username?: string | null;
     /**
      * 
      * @type {string}
      * @memberof OrganizationMember
      */
-    avatar_url?: string;
+    avatar_url?: string | null;
     /**
      * 
      * @type {boolean}
@@ -2840,67 +2830,67 @@ export interface OrganizationUpdate {
      * @type {boolean}
      * @memberof OrganizationUpdate
      */
-    set_default_upfront_split_to_contributors?: boolean;
+    set_default_upfront_split_to_contributors?: boolean | null;
     /**
      * 
      * @type {number}
      * @memberof OrganizationUpdate
      */
-    default_upfront_split_to_contributors?: number;
+    default_upfront_split_to_contributors?: number | null;
     /**
      * 
      * @type {boolean}
      * @memberof OrganizationUpdate
      */
-    pledge_badge_show_amount?: boolean;
+    pledge_badge_show_amount?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof OrganizationUpdate
      */
-    billing_email?: string;
+    billing_email?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof OrganizationUpdate
      */
-    set_default_badge_custom_content?: boolean;
+    set_default_badge_custom_content?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof OrganizationUpdate
      */
-    default_badge_custom_content?: string;
+    default_badge_custom_content?: string | null;
     /**
      * 
      * @type {number}
      * @memberof OrganizationUpdate
      */
-    pledge_minimum_amount?: number;
+    pledge_minimum_amount?: number | null;
     /**
      * 
      * @type {boolean}
      * @memberof OrganizationUpdate
      */
-    set_total_monthly_spending_limit?: boolean;
+    set_total_monthly_spending_limit?: boolean | null;
     /**
      * 
      * @type {number}
      * @memberof OrganizationUpdate
      */
-    total_monthly_spending_limit?: number;
+    total_monthly_spending_limit?: number | null;
     /**
      * 
      * @type {boolean}
      * @memberof OrganizationUpdate
      */
-    set_per_user_monthly_spending_limit?: boolean;
+    set_per_user_monthly_spending_limit?: boolean | null;
     /**
      * 
      * @type {number}
      * @memberof OrganizationUpdate
      */
-    per_user_monthly_spending_limit?: number;
+    per_user_monthly_spending_limit?: number | null;
 }
 /**
  * 
@@ -2944,7 +2934,7 @@ export interface PaginationResponse {
      * @type {number}
      * @memberof PaginationResponse
      */
-    next_page?: number;
+    next_page?: number | null;
 }
 /**
  * 
@@ -2969,7 +2959,7 @@ export interface PaymentMethod {
      * @type {string}
      * @memberof PaymentMethod
      */
-    brand?: string;
+    brand?: string | null;
     /**
      * 
      * @type {string}
@@ -2995,7 +2985,8 @@ export interface PaymentMethod {
  * @export
  */
 export const PaymentMethodTypeEnum = {
-    CARD: 'card'
+    CARD: 'card',
+    NULL: 'null'
 } as const;
 export type PaymentMethodTypeEnum = typeof PaymentMethodTypeEnum[keyof typeof PaymentMethodTypeEnum];
 
@@ -3033,7 +3024,7 @@ export interface PersonalAccessToken {
      * @type {string}
      * @memberof PersonalAccessToken
      */
-    last_used_at?: string;
+    last_used_at?: string | null;
     /**
      * 
      * @type {string}
@@ -3049,7 +3040,7 @@ export interface PersonalAccessToken {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const Platforms = {
@@ -3094,17 +3085,17 @@ export interface Pledge {
      */
     type: PledgeType;
     /**
-     * If and when the pledge was refunded to the pledger
+     * 
      * @type {string}
      * @memberof Pledge
      */
-    refunded_at?: string;
+    refunded_at?: string | null;
     /**
-     * When the payout is scheduled to be made to the maintainers behind the issue. Disputes must be made before this date.
+     * 
      * @type {string}
      * @memberof Pledge
      */
-    scheduled_payout_at?: string;
+    scheduled_payout_at?: string | null;
     /**
      * 
      * @type {Issue}
@@ -3116,13 +3107,13 @@ export interface Pledge {
      * @type {Pledger}
      * @memberof Pledge
      */
-    pledger?: Pledger;
+    pledger?: Pledger | null;
     /**
-     * URL of invoice for this pledge
+     * 
      * @type {string}
      * @memberof Pledge
      */
-    hosted_invoice_url?: string;
+    hosted_invoice_url?: string | null;
     /**
      * If the currently authenticated subject can perform admin actions on behalf of the maker of the peldge
      * @type {boolean}
@@ -3140,7 +3131,7 @@ export interface Pledge {
      * @type {Pledger}
      * @memberof Pledge
      */
-    created_by?: Pledger;
+    created_by?: Pledger | null;
 }
 /**
  * 
@@ -3195,7 +3186,7 @@ export interface PledgeSpending {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const PledgeState = {
@@ -3235,27 +3226,17 @@ export interface PledgeStripePaymentIntentCreate {
     amount: number;
     /**
      * If the payment method should be saved for future usage.
-     * @type {string}
+     * @type {}
      * @memberof PledgeStripePaymentIntentCreate
      */
-    setup_future_usage?: PledgeStripePaymentIntentCreateSetupFutureUsageEnum;
+    setup_future_usage?:  | null;
     /**
-     * The organization to give credit to. The pledge will be paid by the authenticated user.
+     * 
      * @type {string}
      * @memberof PledgeStripePaymentIntentCreate
      */
-    on_behalf_of_organization_id?: string;
+    on_behalf_of_organization_id?: string | null;
 }
-
-
-/**
- * @export
- */
-export const PledgeStripePaymentIntentCreateSetupFutureUsageEnum = {
-    ON_SESSION: 'on_session'
-} as const;
-export type PledgeStripePaymentIntentCreateSetupFutureUsageEnum = typeof PledgeStripePaymentIntentCreateSetupFutureUsageEnum[keyof typeof PledgeStripePaymentIntentCreateSetupFutureUsageEnum];
-
 /**
  * 
  * @export
@@ -3291,7 +3272,7 @@ export interface PledgeStripePaymentIntentMutationResponse {
      * @type {string}
      * @memberof PledgeStripePaymentIntentMutationResponse
      */
-    client_secret?: string;
+    client_secret?: string | null;
 }
 /**
  * 
@@ -3313,30 +3294,20 @@ export interface PledgeStripePaymentIntentUpdate {
     amount: number;
     /**
      * If the payment method should be saved for future usage.
-     * @type {string}
+     * @type {}
      * @memberof PledgeStripePaymentIntentUpdate
      */
-    setup_future_usage?: PledgeStripePaymentIntentUpdateSetupFutureUsageEnum;
+    setup_future_usage?:  | null;
     /**
-     * The organization to give credit to. The pledge will be paid by the authenticated user.
+     * 
      * @type {string}
      * @memberof PledgeStripePaymentIntentUpdate
      */
-    on_behalf_of_organization_id?: string;
+    on_behalf_of_organization_id?: string | null;
 }
 
-
 /**
- * @export
- */
-export const PledgeStripePaymentIntentUpdateSetupFutureUsageEnum = {
-    ON_SESSION: 'on_session'
-} as const;
-export type PledgeStripePaymentIntentUpdateSetupFutureUsageEnum = typeof PledgeStripePaymentIntentUpdateSetupFutureUsageEnum[keyof typeof PledgeStripePaymentIntentUpdateSetupFutureUsageEnum];
-
-
-/**
- * An enumeration.
+ * 
  * @export
  */
 export const PledgeType = {
@@ -3363,13 +3334,13 @@ export interface Pledger {
      * @type {string}
      * @memberof Pledger
      */
-    github_username?: string;
+    github_username?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Pledger
      */
-    avatar_url?: string;
+    avatar_url?: string | null;
 }
 /**
  * 
@@ -3424,13 +3395,13 @@ export interface PledgerPledgePendingNotification {
      * @type {string}
      * @memberof PledgerPledgePendingNotification
      */
-    pledge_id?: string;
+    pledge_id?: string | null;
     /**
      * 
      * @type {PledgeType}
      * @memberof PledgerPledgePendingNotification
      */
-    pledge_type?: PledgeType;
+    pledge_type?: PledgeType | null;
 }
 /**
  * 
@@ -3524,7 +3495,7 @@ export interface PullRequest {
      * @type {Author}
      * @memberof PullRequest
      */
-    author?: Author;
+    author?: Author | null;
     /**
      * 
      * @type {number}
@@ -3615,13 +3586,13 @@ export interface PullRequestReference {
      * @type {string}
      * @memberof PullRequestReference
      */
-    merged_at?: string;
+    merged_at?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PullRequestReference
      */
-    closed_at?: string;
+    closed_at?: string | null;
     /**
      * 
      * @type {boolean}
@@ -3725,25 +3696,25 @@ export interface Repository {
      * @type {string}
      * @memberof Repository
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {number}
      * @memberof Repository
      */
-    stars?: number;
+    stars?: number | null;
     /**
      * 
      * @type {string}
      * @memberof Repository
      */
-    license?: string;
+    license?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Repository
      */
-    homepage?: string;
+    homepage?: string | null;
     /**
      * 
      * @type {Organization}
@@ -3768,7 +3739,7 @@ export interface RepositoryBadgeSettingsRead {
      * @type {string}
      * @memberof RepositoryBadgeSettingsRead
      */
-    avatar_url?: string;
+    avatar_url?: string | null;
     /**
      * 
      * @type {string}
@@ -3890,13 +3861,13 @@ export interface Reward {
      * @type {User}
      * @memberof Reward
      */
-    user?: User;
+    user?: User | null;
     /**
      * 
      * @type {Organization}
      * @memberof Reward
      */
-    organization?: Organization;
+    organization?: Organization | null;
     /**
      * 
      * @type {CurrencyAmount}
@@ -3910,11 +3881,11 @@ export interface Reward {
      */
     state: RewardState;
     /**
-     * If and when the reward was paid out.
+     * 
      * @type {string}
      * @memberof Reward
      */
-    paid_at?: string;
+    paid_at?: string | null;
 }
 /**
  * 
@@ -3973,7 +3944,7 @@ export interface RewardPaidNotification {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const RewardState = {
@@ -4012,11 +3983,11 @@ export interface RewardsSummaryReceiver {
      * @type {string}
      * @memberof RewardsSummaryReceiver
      */
-    avatar_url?: string;
+    avatar_url?: string | null;
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const Status = {
@@ -4039,29 +4010,29 @@ export interface SubscribeSession {
      */
     id: string;
     /**
-     * URL where you should redirect your backer so they can subscribe to the selected tier.
+     * 
      * @type {string}
      * @memberof SubscribeSession
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscribeSession
      */
-    customer_email?: string;
+    customer_email?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscribeSession
      */
-    customer_name?: string;
+    customer_name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscribeSession
      */
-    organization_subscriber_id?: string;
+    organization_subscriber_id?: string | null;
     /**
      * 
      * @type {SubscriptionTier}
@@ -4073,13 +4044,13 @@ export interface SubscribeSession {
      * @type {string}
      * @memberof SubscribeSession
      */
-    organization_name?: string;
+    organization_name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscribeSession
      */
-    repository_name?: string;
+    repository_name?: string | null;
 }
 /**
  * 
@@ -4100,17 +4071,17 @@ export interface SubscribeSessionCreate {
      */
     success_url: string;
     /**
-     * ID of the Organization on behalf which you want to subscribe this tier to. You need to be an administrator of the Organization to do this.
+     * 
      * @type {string}
      * @memberof SubscribeSessionCreate
      */
-    organization_subscriber_id?: string;
+    organization_subscriber_id?: string | null;
     /**
-     * If you already know the email of your backer, you can set it. It'll be pre-filled on the subscription page.
+     * 
      * @type {string}
      * @memberof SubscribeSessionCreate
      */
-    customer_email?: string;
+    customer_email?: string | null;
 }
 /**
  * 
@@ -4129,7 +4100,7 @@ export interface Subscription {
      * @type {string}
      * @memberof Subscription
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -4153,7 +4124,7 @@ export interface Subscription {
      * @type {string}
      * @memberof Subscription
      */
-    current_period_end?: string;
+    current_period_end?: string | null;
     /**
      * 
      * @type {boolean}
@@ -4165,13 +4136,13 @@ export interface Subscription {
      * @type {string}
      * @memberof Subscription
      */
-    started_at?: string;
+    started_at?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Subscription
      */
-    ended_at?: string;
+    ended_at?: string | null;
     /**
      * 
      * @type {string}
@@ -4195,7 +4166,7 @@ export interface Subscription {
      * @type {string}
      * @memberof Subscription
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
@@ -4213,7 +4184,7 @@ export interface Subscription {
      * @type {SubscriptionOrganization}
      * @memberof Subscription
      */
-    organization?: SubscriptionOrganization;
+    organization?: SubscriptionOrganization | null;
     /**
      * 
      * @type {SubscriptionTier}
@@ -4238,7 +4209,7 @@ export interface SubscriptionBenefitArticles {
      * @type {string}
      * @memberof SubscriptionBenefitArticles
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -4247,10 +4218,10 @@ export interface SubscriptionBenefitArticles {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof SubscriptionBenefitArticles
      */
-    type: SubscriptionBenefitArticlesTypeEnum;
+    type: any | null;
     /**
      * 
      * @type {string}
@@ -4274,13 +4245,13 @@ export interface SubscriptionBenefitArticles {
      * @type {string}
      * @memberof SubscriptionBenefitArticles
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionBenefitArticles
      */
-    repository_id?: string;
+    repository_id?: string | null;
     /**
      * 
      * @type {SubscriptionBenefitArticlesProperties}
@@ -4288,16 +4259,6 @@ export interface SubscriptionBenefitArticles {
      */
     properties: SubscriptionBenefitArticlesProperties;
 }
-
-
-/**
- * @export
- */
-export const SubscriptionBenefitArticlesTypeEnum = {
-    ARTICLES: 'articles'
-} as const;
-export type SubscriptionBenefitArticlesTypeEnum = typeof SubscriptionBenefitArticlesTypeEnum[keyof typeof SubscriptionBenefitArticlesTypeEnum];
-
 /**
  * 
  * @export
@@ -4322,7 +4283,7 @@ export interface SubscriptionBenefitArticlesUpdate {
      * @type {string}
      * @memberof SubscriptionBenefitArticlesUpdate
      */
-    description?: string;
+    description?: string | null;
 }
 /**
  * @type SubscriptionBenefitCreate
@@ -4347,7 +4308,7 @@ export interface SubscriptionBenefitCustom {
      * @type {string}
      * @memberof SubscriptionBenefitCustom
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -4356,10 +4317,10 @@ export interface SubscriptionBenefitCustom {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof SubscriptionBenefitCustom
      */
-    type: SubscriptionBenefitCustomTypeEnum;
+    type: any | null;
     /**
      * 
      * @type {string}
@@ -4383,13 +4344,13 @@ export interface SubscriptionBenefitCustom {
      * @type {string}
      * @memberof SubscriptionBenefitCustom
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionBenefitCustom
      */
-    repository_id?: string;
+    repository_id?: string | null;
     /**
      * 
      * @type {object}
@@ -4403,16 +4364,6 @@ export interface SubscriptionBenefitCustom {
      */
     is_tax_applicable: boolean;
 }
-
-
-/**
- * @export
- */
-export const SubscriptionBenefitCustomTypeEnum = {
-    CUSTOM: 'custom'
-} as const;
-export type SubscriptionBenefitCustomTypeEnum = typeof SubscriptionBenefitCustomTypeEnum[keyof typeof SubscriptionBenefitCustomTypeEnum];
-
 /**
  * 
  * @export
@@ -4430,13 +4381,13 @@ export interface SubscriptionBenefitCustomBisCreate {
      * @type {string}
      * @memberof SubscriptionBenefitCustomBisCreate
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionBenefitCustomBisCreate
      */
-    repository_id?: string;
+    repository_id?: string | null;
     /**
      * 
      * @type {object}
@@ -4445,10 +4396,10 @@ export interface SubscriptionBenefitCustomBisCreate {
     properties: object;
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof SubscriptionBenefitCustomBisCreate
      */
-    type: SubscriptionBenefitCustomBisCreateTypeEnum;
+    type: any | null;
     /**
      * 
      * @type {boolean}
@@ -4456,16 +4407,6 @@ export interface SubscriptionBenefitCustomBisCreate {
      */
     is_tax_applicable: boolean;
 }
-
-
-/**
- * @export
- */
-export const SubscriptionBenefitCustomBisCreateTypeEnum = {
-    CUSTOM: 'custom'
-} as const;
-export type SubscriptionBenefitCustomBisCreateTypeEnum = typeof SubscriptionBenefitCustomBisCreateTypeEnum[keyof typeof SubscriptionBenefitCustomBisCreateTypeEnum];
-
 /**
  * 
  * @export
@@ -4483,13 +4424,13 @@ export interface SubscriptionBenefitCustomCreate {
      * @type {string}
      * @memberof SubscriptionBenefitCustomCreate
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionBenefitCustomCreate
      */
-    repository_id?: string;
+    repository_id?: string | null;
     /**
      * 
      * @type {object}
@@ -4498,10 +4439,10 @@ export interface SubscriptionBenefitCustomCreate {
     properties: object;
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof SubscriptionBenefitCustomCreate
      */
-    type: SubscriptionBenefitCustomCreateTypeEnum;
+    type: any | null;
     /**
      * 
      * @type {boolean}
@@ -4509,16 +4450,6 @@ export interface SubscriptionBenefitCustomCreate {
      */
     is_tax_applicable: boolean;
 }
-
-
-/**
- * @export
- */
-export const SubscriptionBenefitCustomCreateTypeEnum = {
-    CUSTOM: 'custom'
-} as const;
-export type SubscriptionBenefitCustomCreateTypeEnum = typeof SubscriptionBenefitCustomCreateTypeEnum[keyof typeof SubscriptionBenefitCustomCreateTypeEnum];
-
 /**
  * 
  * @export
@@ -4530,7 +4461,7 @@ export interface SubscriptionBenefitCustomUpdate {
      * @type {string}
      * @memberof SubscriptionBenefitCustomUpdate
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {object}
@@ -4540,7 +4471,7 @@ export interface SubscriptionBenefitCustomUpdate {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const SubscriptionBenefitType = {
@@ -4582,7 +4513,7 @@ export interface SubscriptionOrganization {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const SubscriptionStatus = {
@@ -4613,7 +4544,7 @@ export interface SubscriptionSummary {
      * @type {SubscriptionOrganization}
      * @memberof SubscriptionSummary
      */
-    organization?: SubscriptionOrganization;
+    organization?: SubscriptionOrganization | null;
     /**
      * 
      * @type {SubscriptionTier}
@@ -4638,7 +4569,7 @@ export interface SubscriptionTier {
      * @type {string}
      * @memberof SubscriptionTier
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -4662,7 +4593,7 @@ export interface SubscriptionTier {
      * @type {string}
      * @memberof SubscriptionTier
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {boolean}
@@ -4692,13 +4623,13 @@ export interface SubscriptionTier {
      * @type {string}
      * @memberof SubscriptionTier
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionTier
      */
-    repository_id?: string;
+    repository_id?: string | null;
     /**
      * 
      * @type {Array<SubscriptionTierBenefit>}
@@ -4723,7 +4654,7 @@ export interface SubscriptionTierBenefit {
      * @type {string}
      * @memberof SubscriptionTierBenefit
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -4759,13 +4690,13 @@ export interface SubscriptionTierBenefit {
      * @type {string}
      * @memberof SubscriptionTierBenefit
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionTierBenefit
      */
-    repository_id?: string;
+    repository_id?: string | null;
 }
 /**
  * 
@@ -4803,7 +4734,7 @@ export interface SubscriptionTierCreate {
      * @type {string}
      * @memberof SubscriptionTierCreate
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {boolean}
@@ -4827,13 +4758,13 @@ export interface SubscriptionTierCreate {
      * @type {string}
      * @memberof SubscriptionTierCreate
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionTierCreate
      */
-    repository_id?: string;
+    repository_id?: string | null;
 }
 
 
@@ -4848,7 +4779,7 @@ export type SubscriptionTierCreateTypeEnum = typeof SubscriptionTierCreateTypeEn
 
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const SubscriptionTierType = {
@@ -4869,31 +4800,31 @@ export interface SubscriptionTierUpdate {
      * @type {string}
      * @memberof SubscriptionTierUpdate
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionTierUpdate
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof SubscriptionTierUpdate
      */
-    is_highlighted?: boolean;
+    is_highlighted?: boolean | null;
     /**
      * 
      * @type {number}
      * @memberof SubscriptionTierUpdate
      */
-    price_amount?: number;
+    price_amount?: number | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionTierUpdate
      */
-    price_currency?: string;
+    price_currency?: string | null;
 }
 /**
  * 
@@ -4925,19 +4856,19 @@ export interface SubscriptionUser {
      * @type {string}
      * @memberof SubscriptionUser
      */
-    github_username?: string;
+    github_username?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionUser
      */
-    avatar_url?: string;
+    avatar_url?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionUser
      */
-    email?: string;
+    email?: string | null;
 }
 /**
  * 
@@ -5019,7 +4950,7 @@ export interface SummaryPledge {
      * @type {Pledger}
      * @memberof SummaryPledge
      */
-    pledger?: Pledger;
+    pledger?: Pledger | null;
 }
 /**
  * 
@@ -5112,7 +5043,7 @@ export interface Transaction {
      * @type {string}
      * @memberof Transaction
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5160,43 +5091,43 @@ export interface Transaction {
      * @type {string}
      * @memberof Transaction
      */
-    pledge_id?: string;
+    pledge_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Transaction
      */
-    issue_reward_id?: string;
+    issue_reward_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Transaction
      */
-    subscription_id?: string;
+    subscription_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Transaction
      */
-    payout_transaction_id?: string;
+    payout_transaction_id?: string | null;
     /**
      * 
      * @type {TransactionPledge}
      * @memberof Transaction
      */
-    pledge?: TransactionPledge;
+    pledge?: TransactionPledge | null;
     /**
      * 
      * @type {TransactionIssueReward}
      * @memberof Transaction
      */
-    issue_reward?: TransactionIssueReward;
+    issue_reward?: TransactionIssueReward | null;
     /**
      * 
      * @type {TransactionSubscription}
      * @memberof Transaction
      */
-    subscription?: TransactionSubscription;
+    subscription?: TransactionSubscription | null;
 }
 /**
  * 
@@ -5215,7 +5146,7 @@ export interface TransactionDetails {
      * @type {string}
      * @memberof TransactionDetails
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5263,43 +5194,43 @@ export interface TransactionDetails {
      * @type {string}
      * @memberof TransactionDetails
      */
-    pledge_id?: string;
+    pledge_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof TransactionDetails
      */
-    issue_reward_id?: string;
+    issue_reward_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof TransactionDetails
      */
-    subscription_id?: string;
+    subscription_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof TransactionDetails
      */
-    payout_transaction_id?: string;
+    payout_transaction_id?: string | null;
     /**
      * 
      * @type {TransactionPledge}
      * @memberof TransactionDetails
      */
-    pledge?: TransactionPledge;
+    pledge?: TransactionPledge | null;
     /**
      * 
      * @type {TransactionIssueReward}
      * @memberof TransactionDetails
      */
-    issue_reward?: TransactionIssueReward;
+    issue_reward?: TransactionIssueReward | null;
     /**
      * 
      * @type {TransactionSubscription}
      * @memberof TransactionDetails
      */
-    subscription?: TransactionSubscription;
+    subscription?: TransactionSubscription | null;
     /**
      * 
      * @type {Array<Transaction>}
@@ -5324,7 +5255,7 @@ export interface TransactionIssue {
      * @type {string}
      * @memberof TransactionIssue
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5391,7 +5322,7 @@ export interface TransactionIssueReward {
      * @type {string}
      * @memberof TransactionIssueReward
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5428,7 +5359,7 @@ export interface TransactionOrganization {
      * @type {string}
      * @memberof TransactionOrganization
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5477,7 +5408,7 @@ export interface TransactionPledge {
      * @type {string}
      * @memberof TransactionPledge
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5514,7 +5445,7 @@ export interface TransactionRepository {
      * @type {string}
      * @memberof TransactionRepository
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5557,7 +5488,7 @@ export interface TransactionSubscription {
      * @type {string}
      * @memberof TransactionSubscription
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5606,7 +5537,7 @@ export interface TransactionSubscriptionTier {
      * @type {string}
      * @memberof TransactionSubscriptionTier
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5630,25 +5561,25 @@ export interface TransactionSubscriptionTier {
      * @type {string}
      * @memberof TransactionSubscriptionTier
      */
-    organization_id?: string;
+    organization_id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof TransactionSubscriptionTier
      */
-    repository_id?: string;
+    repository_id?: string | null;
     /**
      * 
      * @type {TransactionOrganization}
      * @memberof TransactionSubscriptionTier
      */
-    organization?: TransactionOrganization;
+    organization?: TransactionOrganization | null;
     /**
      * 
      * @type {TransactionRepository}
      * @memberof TransactionSubscriptionTier
      */
-    repository?: TransactionRepository;
+    repository?: TransactionRepository | null;
 }
 
 /**
@@ -5725,19 +5656,19 @@ export interface UpdateIssue {
      * @type {CurrencyAmount}
      * @memberof UpdateIssue
      */
-    funding_goal?: CurrencyAmount;
+    funding_goal?: CurrencyAmount | null;
     /**
      * 
      * @type {number}
      * @memberof UpdateIssue
      */
-    upfront_split_to_contributors?: number;
+    upfront_split_to_contributors?: number | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateIssue
      */
-    set_upfront_split_to_contributors?: boolean;
+    set_upfront_split_to_contributors?: boolean | null;
 }
 /**
  * 
@@ -5781,7 +5712,7 @@ export interface UserBase {
      * @type {string}
      * @memberof UserBase
      */
-    avatar_url?: string;
+    avatar_url?: string | null;
     /**
      * 
      * @type {object}
@@ -5793,7 +5724,7 @@ export interface UserBase {
      * @type {string}
      * @memberof UserBase
      */
-    account_id?: string;
+    account_id?: string | null;
 }
 /**
  * 
@@ -5812,7 +5743,7 @@ export interface UserRead {
      * @type {string}
      * @memberof UserRead
      */
-    modified_at?: string;
+    modified_at?: string | null;
     /**
      * 
      * @type {string}
@@ -5830,7 +5761,7 @@ export interface UserRead {
      * @type {string}
      * @memberof UserRead
      */
-    avatar_url?: string;
+    avatar_url?: string | null;
     /**
      * 
      * @type {object}
@@ -5842,7 +5773,7 @@ export interface UserRead {
      * @type {string}
      * @memberof UserRead
      */
-    account_id?: string;
+    account_id?: string | null;
     /**
      * 
      * @type {string}
@@ -5902,7 +5833,7 @@ export interface UserSetAccount {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const UserSignupType = {
@@ -5935,13 +5866,13 @@ export interface UserUpdateSettings {
      * @type {boolean}
      * @memberof UserUpdateSettings
      */
-    email_newsletters_and_changelogs?: boolean;
+    email_newsletters_and_changelogs?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof UserUpdateSettings
      */
-    email_promotions_and_events?: boolean;
+    email_promotions_and_events?: boolean | null;
 }
 /**
  * 
@@ -5970,7 +5901,7 @@ export interface ValidationError {
 }
 
 /**
- * An enumeration.
+ * 
  * @export
  */
 export const Visibility = {
@@ -6093,11 +6024,11 @@ export interface WebhookResponse {
      * @type {string}
      * @memberof WebhookResponse
      */
-    message?: string;
+    message?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebhookResponse
      */
-    job_id?: string;
+    job_id?: string | null;
 }

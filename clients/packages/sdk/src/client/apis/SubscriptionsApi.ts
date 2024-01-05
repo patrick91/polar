@@ -78,10 +78,10 @@ export interface SubscriptionsApiGetSubscriptionsStatisticsRequest {
     endDate: string;
     organizationName: string;
     platform: Platforms;
-    repositoryName?: string;
+    repositoryName?: string | null;
     directOrganization?: boolean;
-    types?: Array<SubscriptionTierType>;
-    subscriptionTierId?: string;
+    types?: Array<SubscriptionTierType> | null;
+    subscriptionTierId?: string | null;
 }
 
 export interface SubscriptionsApiLookupSubscriptionBenefitRequest {
@@ -95,9 +95,9 @@ export interface SubscriptionsApiLookupSubscriptionTierRequest {
 export interface SubscriptionsApiSearchSubscriptionBenefitsRequest {
     organizationName: string;
     platform: Platforms;
-    repositoryName?: string;
+    repositoryName?: string | null;
     directOrganization?: boolean;
-    type?: SubscriptionBenefitType;
+    type?: SubscriptionBenefitType | null;
     page?: number;
     limit?: number;
 }
@@ -105,33 +105,33 @@ export interface SubscriptionsApiSearchSubscriptionBenefitsRequest {
 export interface SubscriptionsApiSearchSubscriptionTiersRequest {
     organizationName: string;
     platform: Platforms;
-    repositoryName?: string;
+    repositoryName?: string | null;
     directOrganization?: boolean;
     includeArchived?: boolean;
-    type?: SubscriptionTierType;
+    type?: SubscriptionTierType | null;
     page?: number;
     limit?: number;
 }
 
 export interface SubscriptionsApiSearchSubscriptionsRequest {
-    repositoryName?: string;
+    repositoryName?: string | null;
     directOrganization?: boolean;
-    type?: SubscriptionTierType;
-    subscriptionTierId?: string;
-    subscriberUserId?: string;
-    subscriberOrganizationId?: string;
-    active?: boolean;
+    type?: SubscriptionTierType | null;
+    subscriptionTierId?: string | null;
+    subscriberUserId?: string | null;
+    subscriberOrganizationId?: string | null;
+    active?: boolean | null;
     page?: number;
     limit?: number;
-    sorting?: Array<string>;
-    organizationName?: string;
-    platform?: Platforms;
+    sorting?: Array<string> | null;
+    organizationName?: string | null;
+    platform?: Platforms | null;
 }
 
 export interface SubscriptionsApiSearchSubscriptionsSummaryRequest {
     organizationName: string;
     platform: Platforms;
-    repositoryName?: string;
+    repositoryName?: string | null;
     page?: number;
     limit?: number;
 }
@@ -139,14 +139,14 @@ export interface SubscriptionsApiSearchSubscriptionsSummaryRequest {
 export interface SubscriptionsApiSubscriptionsExportRequest {
     organizationName: string;
     platform: Platforms;
-    repositoryName?: string;
+    repositoryName?: string | null;
 }
 
 export interface SubscriptionsApiSubscriptionsImportRequest {
     organizationName: string;
     platform: Platforms;
     file: Blob;
-    repositoryName?: string;
+    repositoryName?: string | null;
 }
 
 export interface SubscriptionsApiUpdateSubscriptionBenefitRequest {

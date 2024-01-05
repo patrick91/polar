@@ -27,11 +27,11 @@ import type {
 export interface DashboardApiGetDashboardRequest {
     platform: Platforms;
     orgName: string;
-    repoName?: string;
+    repoName?: string | null;
     issueListType?: IssueListType;
-    status?: Array<IssueStatus>;
-    q?: string;
-    sort?: IssueSortBy;
+    status?: Array<IssueStatus> | null;
+    q?: string | null;
+    sort?: IssueSortBy | null;
     onlyPledged?: boolean;
     onlyBadged?: boolean;
     page?: number;
@@ -39,9 +39,9 @@ export interface DashboardApiGetDashboardRequest {
 
 export interface DashboardApiGetPersonalDashboardRequest {
     issueListType?: IssueListType;
-    status?: Array<IssueStatus>;
-    q?: string;
-    sort?: IssueSortBy;
+    status?: Array<IssueStatus> | null;
+    q?: string | null;
+    sort?: IssueSortBy | null;
     onlyPledged?: boolean;
     onlyBadged?: boolean;
     page?: number;

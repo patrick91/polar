@@ -34,7 +34,7 @@ export interface RepositoriesApiLookupRequest {
 export interface RepositoriesApiSearchRequest {
     platform: Platforms;
     organizationName: string;
-    repositoryName?: string;
+    repositoryName?: string | null;
 }
 
 /**

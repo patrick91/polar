@@ -54,7 +54,7 @@ export interface IssuesApiGetBodyRequest {
 }
 
 export interface IssuesApiLookupRequest {
-    externalUrl?: string;
+    externalUrl?: string | null;
 }
 
 export interface IssuesApiRemovePolarBadgeRequest {
@@ -64,11 +64,11 @@ export interface IssuesApiRemovePolarBadgeRequest {
 export interface IssuesApiSearchRequest {
     platform: Platforms;
     organizationName: string;
-    repositoryName?: string;
+    repositoryName?: string | null;
     sort?: IssueSortBy;
-    havePledge?: boolean;
-    haveBadge?: boolean;
-    githubMilestoneNumber?: number;
+    havePledge?: boolean | null;
+    haveBadge?: boolean | null;
+    githubMilestoneNumber?: number | null;
 }
 
 export interface IssuesApiUpdateRequest {

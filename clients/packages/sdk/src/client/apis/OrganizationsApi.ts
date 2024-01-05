@@ -49,17 +49,17 @@ export interface OrganizationsApiListRequest {
 }
 
 export interface OrganizationsApiListMembersRequest {
-    id: string;
+    id: string | null;
 }
 
 export interface OrganizationsApiLookupRequest {
-    platform?: Platforms;
-    organizationName?: string;
+    platform?: Platforms | null;
+    organizationName?: string | null;
 }
 
 export interface OrganizationsApiSearchRequest {
-    platform?: Platforms;
-    organizationName?: string;
+    platform?: Platforms | null;
+    organizationName?: string | null;
 }
 
 export interface OrganizationsApiSetAccountRequest {
